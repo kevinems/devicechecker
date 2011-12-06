@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="fill_parent"
+	android:layout_height="fill_parent" 
+	android:background="#383838"
+	android:orientation="vertical">
+	
+  <TextView
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:textSize="20sp"
+   android:paddingTop="20dip"
+   android:textColor="#ffff00"
+   android:text="@string/judge_result"
+   >
+   </TextView>
+    
+    <RadioGroup 
+       	android:id="@+id/RadioGroup01" 
+       	android:orientation="vertical"
+       	android:layout_width="wrap_content" 
+       	android:layout_height="wrap_content">			<!-- 声明一个RadioGroup控件 -->
+      	<RadioButton 
+         	android:text="@string/check_nook" 
+         	android:id="@+id/off" 
+         	android:checked="true"
+         	android:layout_width="wrap_content" 
+         	android:layout_height="wrap_content">	
+      	</RadioButton>   								<!-- 声明一个RadioButton控件 -->
+      	<RadioButton 
+         	android:text="@string/check_ok" 
+         	android:id="@+id/on" 
+         	android:layout_width="wrap_content" 
+         	android:layout_height="wrap_content">
+      	</RadioButton>  								<!-- 声明一个RadioButton控件 -->
+  	</RadioGroup>
+  	
+  	 <LinearLayout 
+		android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"	
+		android:paddingBottom="40dip"
+		android:gravity="center_horizontal|bottom">
+  	
+  	<Button android:layout_width="200dp"
+  	android:layout_height="wrap_content"
+  	android:textSize="20sp"
+  	android:text="@string/btn_ok_text"
+  	android:id="@+id/judgeid"
+  	/>
+  	
+  	</LinearLayout>
+    
+</LinearLayout>

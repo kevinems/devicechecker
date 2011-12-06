@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="800px"
+    android:layout_height="480px"
+    >
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:textSize="30px"
+    android:text="@string/input_password"
+    />
+<EditText
+	android:id="@+id/inputpassword"
+	android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:password="true"
+    android:layout_marginTop="5px"
+/>
+	<LinearLayout
+		android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingTop="5px"
+	    android:gravity="center"
+	>
+		<Button
+			android:id="@+id/login"
+			android:layout_width="fill_parent"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:textSize="30px"
+			android:text="@string/but_ok"
+		/>
+		
+		<Button
+			android:id="@+id/cancel"
+			android:layout_width="fill_parent"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:textSize="30px"
+			android:text="@string/but_cancel"
+		/>
+		
+	</LinearLayout>
+</LinearLayout>

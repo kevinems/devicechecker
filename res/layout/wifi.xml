@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="#383838">
+	<FrameLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<LinearLayout android:orientation="vertical"
+			android:gravity="center" android:layout_width="fill_parent"
+			android:layout_height="60dp">
+			<TextView android:id="@+id/wifi_state_text"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:textSize="15dp" android:textColor="@color/green" />
+
+		</LinearLayout>
+
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+			<TextView android:layout_width="wrap_content" android:id="@+id/wifitext"
+				android:layout_height="wrap_content" android:textSize="20dp"
+				android:textColor="#ffff00" />
+
+
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="50dp" android:orientation="horizontal"
+				android:gravity="center_vertical">
+				<TextView android:layout_width="wrap_content" android:id="@+id/wifisingaltext"
+					android:layout_height="wrap_content" android:textSize="30dp"
+					android:textColor="#ffff00" />
+
+				<ImageView android:layout_width="40dp" android:id="@+id/wifisingalimage"
+					android:layout_height="40dp" />
+			</LinearLayout>
+		</LinearLayout>
+
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="@dimen/test_item_wifi_list_height">
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" 
+				android:text="@string/wifinotice"
+				android:textSize="@dimen/test_item_tips_text_small_size"
+				android:textColor="#ffff00" />
+		<ListView android:id="@+id/wifilist" android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:clickable="false">
+			</ListView>
+		</LinearLayout>
+	</FrameLayout>
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_gravity="bottom" android:gravity="bottom">
+
+		<Button android:id="@+id/but_nook" 
+			android:layout_width="@dimen/test_item_bottom_button_width"
+			android:layout_height="@dimen/test_item_bottom_button_heith"
+			android:text="@string/check_nook"
+			android:textSize="@dimen/test_item_tips_text_size" 
+			android:background="@color/red"
+			android:gravity="center" android:layout_weight="1" />
+
+		<Button android:id="@+id/connectwifi" 
+			android:layout_width="@dimen/test_item_bottom_button_width"
+			android:layout_height="@dimen/test_item_bottom_button_heith"
+			android:text="@string/connectwifi"
+			android:textSize="@dimen/test_item_tips_text_size" android:background="@color/yellow"
+			android:gravity="center" android:layout_weight="1" />
+
+
+		<Button android:id="@+id/test_net" 
+		android:layout_width="@dimen/test_item_bottom_button_width"
+			android:layout_height="@dimen/test_item_bottom_button_heith"
+			android:text="@string/test_net"
+			android:textSize="@dimen/test_item_tips_text_size"
+			android:background="@color/yellow"
+			android:gravity="center" android:layout_weight="1" />
+
+		<Button android:id="@+id/but_ok" 
+		android:layout_width="@dimen/test_item_bottom_button_width"
+			android:layout_height="@dimen/test_item_bottom_button_heith"
+			android:text="@string/check_ok"
+			android:textSize="@dimen/test_item_tips_text_size"
+			android:background="@color/green"
+			android:gravity="center" android:layout_weight="1" />
+
+
+	</LinearLayout>
+</LinearLayout>

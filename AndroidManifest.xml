@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<android:sharedUserId="android.uid.system"/>
+run in system must signed in a special system-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="smit.com.factorytest"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <application android:icon="@drawable/icon" 
+    			 android:label="@string/app_name"
+    			 android:screenOrientation="nosensor"
+>
+        <activity android:name=".MainActivity"
+                  android:label="@string/app_name"
+                  android:screenOrientation="nosensor"
+                  android:theme="@style/activityTitlebarRed">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.factorytest.MAINTEST"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".TestColor"
+                  android:label="@string/LCD_test"
+                  android:screenOrientation="nosensor"
+                  android:theme="@style/activityTitlebarRed">
+        </activity>
+        
+        
+        <activity android:name=".usbactivity"
+                  android:label="@string/usb_test"
+                  android:screenOrientation="nosensor"
+                  android:theme="@style/activityTitlebarRed">
+        </activity>
+        <activity android:name=".headsetactivity"
+                  android:label="@string/headset_test"
+                  android:screenOrientation="nosensor"
+                  android:theme="@style/activityTitlebarRed">
+        </activity>
+         <activity android:name=".sdcardactivity"
+                  android:label="@string/sd_test"
+                  android:screenOrientation="nosensor"
+                  android:theme="@style/activityTitlebarRed">
+        </activity>
+        <activity android:name=".MusicPlayActivity"
+                  android:label="@string/audio_test"
+                  android:screenOrientation="nosensor"
+                  android:theme="@style/activityTitlebarRed">
+        </activity>
+        <activity android:name="videoplayeractivity"
+                  android:label="@string/video_test"
+                  android:screenOrientation="nosensor"
+                  android:theme="@style/activityTitlebarRed">
+        </activity>
+         <activity android:name="MediaRecoderactivity"
+                    android:label="@string/record_test"
+                    android:screenOrientation="nosensor"
+                    android:theme="@style/activityTitlebarRed">
+        </activity>
+           <activity android:name=".HDMIActivity"
+           android:label="@string/HDMI_test"
+           android:screenOrientation="nosensor"
+           android:theme="@style/activityTitlebarRed">
+        </activity>
+        
+         <activity android:name=".SleepWakeActivity"
+         android:label="@string/close_test"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">
+        </activity>
+        
+         <activity android:name=".RtcActivity"
+         android:label="@string/RTC_test"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">
+        </activity>
+        
+       
+        <activity android:name=".WifiActivity"
+        android:label="@string/Wifi_test"
+        android:screenOrientation="nosensor"
+        android:theme="@style/activityTitlebarRed">
+        </activity>
+         <activity android:name=".TestGSensor"
+                  android:label="@string/GSensor_test"
+                  android:screenOrientation="nosensor"
+                  android:theme="@style/activityTitlebarRed">
+        </activity>
+         <activity android:name=".TunchScreenActivity"
+                  android:label="@string/touch_test"
+                  android:screenOrientation="nosensor"
+                  android:theme="@style/activityTitlebarRed">
+        </activity>
+         <activity android:name=".TsTestActivity"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">                
+        </activity>
+        
+        <activity android:name=".JudgeTestResult"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">                
+        </activity>
+             
+         <activity android:name=".MediaPlayerVideo"
+         android:label="@string/video_test"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">                
+        </activity>
+        
+        <activity android:name=".CameraActivity"
+         android:label="@string/test_camera"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">                
+        </activity>
+        
+         <activity android:name=".GpsActivity"
+         android:label="@string/test_gps"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">                
+        </activity>
+        
+         <activity android:name=".OtgActivity"
+         android:label="@string/test_otg"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">                
+        </activity>
+        
+         <activity android:name=".TestVibrator"
+         android:label="@string/test_vibrator"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">                
+        </activity>
+        
+        <activity android:name=".TestKey"
+         android:label="@string/test_key"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">                
+        </activity>
+        <activity android:name=".getLincenseActivity" 
+          android:label="@string/get_cpuid" 
+          android:screenOrientation="nosensor"
+          android:theme="@style/activityTitlebarRed"/>
+        
+        
+    </application>
+    
+	<uses-permission android:name="com.google.android.providers.gmail.permission.WRITE_GMAIL" />
+    <uses-permission android:name="com.google.android.providers.gmail.permission.READ_GMAIL" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.DEVICE_POWER" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.HARDWARE_TEST" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.MASTER_CLEAR" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="com.google.android.googleapps.permission.GOOGLE_AUTH" />
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CLEAR_APP_USER_DATA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS"/>
+    <uses-permission android:name="android.permission.ACCESS_CHECKIN_PROPERTIES"/>
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY"/>
+    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY"/>
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"/>
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
+    <uses-permission android:name="android.permission.BATTERY_STATS"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
+     <uses-permission android:name="android.permission.DEVICE_POWER" />
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+	<uses-permission android:name="android.permission.DEVICE_POWER"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+	<uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+	<uses-permission android:name="android.permission.INSTALL_PACKAGES"></uses-permission>
+    <uses-permission android:name="android.permission.MASTER_CLEAR" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<supports-screens android:largeScreens="true"
+		android:normalScreens="true" 
+		android:smallScreens="true"
+		android:anyDensity="true" />
+</manifest> 

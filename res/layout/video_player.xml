@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#383838"
+    
+    >
+    <VideoView
+	android:id="@+id/videoview"  
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent" 
+    android:gravity="center"	
+    />
+    
+    <LinearLayout 
+		android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="350px"
+		android:gravity="bottom" 
+        >	
+			
+		<Button android:id="@+id/but_nook" 
+			android:layout_width="200dp"
+			android:layout_height="100px" 
+			android:text="@string/check_nook"
+			android:textSize="30sp"
+			android:background="@color/red"
+			android:gravity="center"/>
+			
+		<Button android:id="@+id/but_ok" 
+			android:layout_width="200dp"
+			android:layout_height="100px"
+			android:layout_marginLeft="400px" 
+			android:text="@string/check_ok"
+			android:textSize="30sp"
+			android:background="@color/green" 
+			android:gravity="center"/>
+			
+	</LinearLayout>
+
+</FrameLayout>

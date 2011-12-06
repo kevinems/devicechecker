@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <dimen name="main_menu_text_size">22dp</dimen>
+    <dimen name="main_menu_button_width">200dp</dimen>
+    <dimen name="main_menu_button_margin_top">20dp</dimen>
+    <dimen name="main_menu_button_margin_bottom">20dp</dimen>
+    
+    <dimen name="test_item_padding_left">20dp</dimen>
+    <dimen name="test_item_padding_top">20dp</dimen>
+    <dimen name="test_item_tips_text_size">30dp</dimen>
+    <dimen name="test_item_tips_text_small_size">20dp</dimen>
+     <dimen name="test_item_tips_text_big_size">100dp</dimen>
+    <dimen name="test_item_bottom_button_width">200dp</dimen>
+    <dimen name="test_item_bottom_button_heith">100dp</dimen>
+    <dimen name="test_item_button_text_size">50dp</dimen>
+    <dimen name="test_item_button_height">150dp</dimen>
+    <dimen name="test_item_button_paddingBottom">20dp</dimen>
+    <dimen name="test_item_button_magin_left">50dp</dimen>
+    <dimen name="test_item_button_magin_bottom">50dp</dimen>
+    <dimen name="test_item_wifi_list_height">300dp</dimen>
+    <dimen name="test_item_wifi_item_height">60dp</dimen>
+    <dimen name="test_item_wifi_item_ap_textsize">20dp</dimen>
+    <dimen name="test_item_wifi_item_link_textsize">12dp</dimen>
+    
+    <dimen name="toast_y_offset">150dp</dimen>
+</resources>

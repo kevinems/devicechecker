@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">工厂测试</string>
+    
+    <string name="start_test">开始测试</string>
+    <string name="see_log">查看测试结果</string>
+    <string name="test_notice">测试需知:\r\n绿色代表该项合格,红色代笔不合格,灰色代表还没有测试,白色代表当前测试项.</string>  
+    <string name="log_info">如下为测试信息</string>
+    <string name="to_one_mode">单项测试模式</string>
+    <string name="to_factory_mode">工厂测试模式</string>
+    <string name="to_change_mode">切换模式</string>
+    <string name="input_password">请输入密码:</string>
+    <string name="but_ok">确定</string>
+    <string name="but_cancel">取消</string>
+    <string name="password_error">密码错误</string>
+    
+    
+     <string name="touch_test">触摸屏校准</string>
+     <string name="LCD_test">LCD测试</string>
+     <string name="GSensor_test">加速度传感器测试</string>
+     <string name="usb_test">USB连接测试</string>
+     <string name="sd_test">SD卡连接测试</string>
+     <string name="headset_test">耳机连接测试</string>
+     <string name="audio_test">音频测试</string>
+     <string name="video_test">视频测试</string>
+     <string name="record_test">录音测试</string>
+     <string name="HDMI_test">HDMI测试</string>
+     <string name="Wifi_test">Wifi测试</string>
+     <string name="close_test">挂机唤醒测试</string>
+     <string name="RTC_test">RTC测试</string>
+    
+    
+     <string name="usb_test_hinta">请插入usb</string>
+     <string name="usb_test_hintb">请拔出usb</string>
+     <string name="usb_test_in">USB插入</string>
+     <string name="usb_test_out">USB拔出</string>
+     
+   
+     <string name="sd_test_hinta">请插入SD卡</string>
+     <string name="sd_test_hintb">请拔出SD卡</string>
+     <string name="sd_test_hintc">正在更新LOGO,请稍等!</string>
+     <string name="sd_test_in">SD插入</string>
+     <string name="sd_test_out">SD拔出</string>
+     <string name="sd_test_logo_ok">LOGO更新成功</string>
+     <string name="test_sd_success">SD卡测试成功,即将进入下一项测试......</string>
+     
+    
+     <string name="headset_test_hinta">请插入耳机</string>
+     <string name="headset_test_hintb">请拔出耳机</string>
+     <string name="headset_test_in">耳机插入</string>
+     <string name="headset_test_out">耳机拔出</string>
+     
+     
+      <string name="mediarecord_test_hint">点开始录音开始录音，点播放录音播放录音.</string>  
+      <string name="record_start">开始录音</string>
+      <string name="record_stop">停止录制</string>
+      <string name="record_play">播放录音</string>
+       <string name="record_stop_play">停止播放</string>
+       <string name="record_test_init_err">启动录音设备失败</string>
+       <string name="record_test_recording">正在录音...</string>
+       <string name="record_test_recording_stop">录音停止</string>
+        <string name="record_test_Playing">正在播放...</string>
+         <string name="record_test_stop_Playing">播放停止</string>
+      
+      
+      <string name="audio_test_hinta">扬声器正常音量</string>  
+      <string name="audio_test_hintb">扬声器最大音量</string> 
+      <string name="audio_test_hintc">扬声器静音</string>
+      <string name="audio_test_hintd">请插入耳机</string> 
+      <string name="audio_test_hinte">请拔出耳机</string> 
+      <string name="audio_stop">停止</string>
+      <string name="audio_play">播放</string>
+      <string name="audio_max_volume">测最大音量</string>
+      <string name="audio_min_volume">测最小音量</string>
+      <string name="audio_headphne">测耳机发音</string>
+      
+      
+      
+      <string name="test_audio_sd_error">SD卡读取异常</string>
+      <string name="test_audio_file_error">SD卡测试音频文件不存在</string>
+      <string name="test_video_file_error">SD卡测试视频文件不存在</string>
+      <string name="test_record_file_error">SD卡录制音频文件不存在</string>
+      
+      
+    <string name="hdminotice">请插上HDMI接口，打开HDMI,按开始测试，查看电视画面是否清晰、流畅，声音是否有杂音，图像与声音同步或者其他的异常情况.</string>
+	<string name="hdmistart">开始HDMI测试</string>
+	<string name="hdmiopen">打开HDMI</string>
+	<string name="hdmiclose">关闭HDMI</string>
+    <string name="hdmiopenscess">打开HDMI成功</string>
+	<string name="hdmiclosescess">关闭HDMI成功</string>
+	<string name="hdmineedopen">请先打开HDMI</string>
+	<string name="hdmiin">请插上HDMI接口</string>
+	
+	<string name="sleepwake">短按开关键，将机器挂起，唤醒，观察机器电流是否在范围内。</string>
+
+	<string name="rtcstart">开始RTC测试</string>
+	<string name="rtcisrunning">正在进行rtc测试,请稍等！</string>
+	<string name="rtcsucess">RTC正常</string>
+	<string name="rtcerror">RTC异常</string>
+	<string name="rtcnotice">点击开始RTC测试,查看提示信息</string>
+	
+	<string name="wifinotice">下面是Ap信息,点击连接连接到TTPP-LLIINNKK,请配置AP名字为TTPP-LLIINNKK,密码为 43214321,点击测试网络可以测试是否连接</string>
+	<string name="wificonnect">WIFI已连接</string>
+	<string name="wifidisconnect">WIFI未连接</string>
+	<string name="disconnect">未连接</string>
+	<!--
+	<string name="wificonnectfail">WIFI连接失败</string>
+	<string name="wifidisconnectfail">WIFI断开失败</string>
+	--><string name="connectwifi">连接WIFI</string>
+	<string name="disconnectwifi">断开WIFI</string>
+	<string name="connectisrunning">正在WIFI连接,请稍等!</string>
+	<string name="disconnectisrunning">正在断开WIFI,请稍等!</string>
+	<string name="apname">AP:</string>
+	<string name="mac_addr">MAC地址:</string>
+	<string name="ip_addr">IP地址:</string>
+	<string name="singal_speed">信号强度:</string>
+	<string name="linktime">连接时间:</string>
+	<string name="test_net">测试网络</string>
+	<string name="test_neting">正在测试网络</string>
+	<string name="browserconnect">网络连接成功</string>
+	<string name="browserdisconnect">网络连接失败</string>
+	
+	<string name="connecttips">"配置AP名字为TTPP-LLIINNKK,密码为 43214321,请保证机器连接到AP为TTPP-LLIINNKK才能正常测试"</string>
+
+	
+	<string name="test_gsensor_hint">X\\Y\\Z 数据跳动为合格。</string>
+	
+	<string name="test_brightness_low">亮度低</string>
+	<string name="test_brightness_middle">亮度中</string>
+	<string name="test_brightness_height">亮度高</string>
+	
+	<string name="success_tips">成功校正触摸屏</string>
+	<string name="tstest_tips">请测试触摸屏，通过请点击确认，重新校正请点击取消</string>
+	<string name="try_again_tips">请再试一次</string>
+	<string name="btn_ok_text">确认</string>
+	<string name="btn_cancel_text">取消</string>
+	
+	<string name="check_ok">合格</string>
+	<string name="check_nook">不合格</string>
+	<string name="to_next">下一步</string>
+	<string name="check_none">未测试</string>
+	<string name="judge_result">判断该项测试结果</string>
+	
+	<string name="vedio_des">查看视频播放是否流畅.</string>
+	<string name="vedio_play">开始播放</string>
+	
+	<string name="time_second">秒</string>
+	
+	<string name="test_camera">Camera测试</string>
+	<string name="takepic">请对准物体,马上开始拍照</string>
+	<string name="istakepic">正在拍照,请稍等......</string>
+	
+	<string name="test_gps">Gps测试</string>
+	<string name="test_gps_prn">PRN</string>
+    <string name="test_gps_snr">SNR</string>
+    <string name="test_gps_notice">PRN SNR 有值为合格</string>
+    <string name="test_gps_testing">正在检测Gps设备,请稍等</string>
+    
+    <string name="test_otg">Otg连接测试</string>
+    <string name="test_otg_hand_in">请插入Otg设备,插入后请稍等!</string>
+    <string name="test_otg_hang_out">请拔出Otg设备</string>
+    <string name="test_otg_in">Otg设备已插入</string>
+    <string name="test_otg_out">Otg设备已拔出</string>
+    <string name="test_otg_success">Otg设备测试成功,即将进入下一项测试......</string>
+    
+     <string name="test_vibrator">振动测试</string>
+     <string name="vibrator_notice">机器振动为合格</string>
+     
+      <string name="test_key">按键测试</string>
+    <string name="press_key">请按下要测试的按键,测试HOME键短按会退出测试软件，长按可以唤出测试软件。</string>
+    <string name="keycode_a">A</string>
+    <string name="keycode_b">B</string>
+    <string name="keycode_c">C</string>
+    <string name="keycode_d">D</string>
+    <string name="keycode_volume_down">音量减</string>
+    <string name="keycode_volume_up">音量加</string>
+    <string name="keycode_mute">静音</string>
+    <string name="keycode_menu">Menu</string>
+    <string name="keycode_back">Back</string>
+    <string name="keycode_search">搜索</string>
+     
+     <string name="connect_service">开始连接服务器,请稍等!</string>
+     <string name="download_testitem">开始更新测试项,请稍等!</string>
+     <string name="wifi_error">WIFI连接失败,请检查设备是否正常</string>
+     <string name="button_ok">确定</string>
+     <string name="machine_invalid">验证机器合法性,请稍等!</string>
+     <string name="machine_id_error">不是合法的机器</string>
+     <string name="get_machine_id_no">没有取的机器ID,请连接网络</string>
+     <string name="get_machine_id_yes">机器合法</string>
+     <string name="get_test_item">正在取测试项,请稍等!</string>
+     <string name="get_test_error">取测试项失败</string>
+     <string name="get_test_suc">取测试项成功</string>
+     <string name="up_machine_info">正在上传机器信息,请稍等!</string>
+     <string name="up_machine_info_error">上传机器信息失败.</string>
+     <string name="up_log_info">正在上传测试信息,请稍等!</string>
+     <string name="up_log_info_error">上传测试信息失败.</string>
+     <string name="start_active">正在激活机器,请稍等!</string>
+     <string name="active_error">激活机器失败</string>
+     <string name="active_suc">激活机器成功</string>
+     <string name="active_confrim">正在激活确认,请稍等!</string>
+     <string name="active_confrim_error">激活确认失败</string>
+     <string name="active_confrim_suc">激活确认成功,请重启机器</string>
+     <string name="active_agian">机器已经激活</string>
+     <string name="active_voerdue">过了有效期,激活失败</string>
+     <string name="no_test_item">不存在该测试项</string>
+     <string name="active_machine">激活</string>
+     <string name="reload_testitem">重取测试项</string>
+     <string name="no_test">没有测试项,请下载测试项.</string>
+     <string name="no_wan">网络连接失败,请重连网络.</string>
+     <string name="link_wifi_again">重连网络</string>
+     <string name="test_fail">测试未通过</string>
+     <string name="can_not_active">测试未通过,不能激活</string>
+      <string name="voice_control">音量大小调节</string>
+      <string name="get_cpuid">存储机器序列号</string>
+      <string name="please_get_cpuid">请按按钮存储机器序列号</string>
+      <string name="cpuid">机器序列号:</string>
+      <string name="check_status">检测状态,请稍等......</string>
+      <string name="write_cpuiding">正在存储机器序列号,请稍等......</string>
+      <string name="cpuid_isexist_tonext">机器序列号已经存储,即将退出,请稍等......</string>
+      
+    <string name="write_cpu_id_error">写机器序列号错误</string>  
+    <string name="no_cpu_id">没有机器序列号</string>  
+    <string name="sdcard_mounted">请插入SD卡</string>
+    <string name="write_cpuid">成功存储机器序列号</string>
+    <string name="cpuid_isexist">机器序列号已经存储</string>
+    <string name="licensefile_create">成功存储机器序列号</string>
+    <string name="licensefile_notexist">没有与此机器配对的授权文件</string>  
+    <string name="key_isnull">没有与此机器配对的授权文件</string>
+    <string name="generate_key">授权文件已导入机器，请重启</string>
+    
+    <string name="up_test_item">正在上传测试项信息,请稍等......</string>
+    <string name="wifi_disconnect">上传测试项失败,请检查网络是否连通</string>
+    <string name="service_app_error">上传测试项失败,请检查服务端程序是否正常</string>
+    <string name="wifi_loading">正在重连网络,请稍等......</string>
+  
+     <!-- Value for the wifi security.  This means no encryption. -->
+    <string name="wifi_security_open">Open</string>
+    <!-- Value for the wifi security -->
+    <string name="wifi_security_wep">WEP</string>
+    <!-- Value for the wifi security -->
+    <string name="wifi_security_psk">WPA/WPA2 PSK</string>
+    <!-- Value for the wifi security -->
+    <string name="wifi_security_eap">Enterprise(802.1x)</string>
+    <!-- Value for the wifi security -->
+
+    
+     <!--Wi-Fi settings screen, connect to network dialog box, check box label -->
+    <string name="wifi_show_password">Show password.</string>
+    <!--Wi-Fi settings screen menu option -->
+    <string name="scan_wifi">Scan</string>
+    <!-- Wifi network summary when not in nearby. -->
+    <string name="summary_not_in_range">Not in range</string>
+    <!-- Wifi network summary when the network is configured previously, capitalized by app -->
+    <string name="summary_remembered">remembered</string>
+    <!-- Wifi network summary when there was an error connecting -->
+    <string name="summary_connection_failed">Connection unsuccessful, touch to try again</string>
+    <!-- Header for the list of wifi networks-->
+    <string name="wifi_access_points">Wi-Fi networks</string>
+    <!-- Caption for entering the SSID of a wifi network -->
+    <string name="wifi_type_ssid">Network SSID</string>
+    <!-- The label for security -->
+    <string name="wifi_security">Security</string>
+    <!-- Button caption to save a configuration wifi -->
+    <string name="wifi_save_config">Save</string>
+    
+    <!-- Value for the wifi security when it is unknown -->
+    <string name="wifi_security_unknown">Unknown</string>
+    <!-- Verbose security type of a wifi network.  Open means no security. Capitalized by app. -->
+    <string name="wifi_security_verbose_open">open network</string>
+    <!-- Verbose security type of a wifi network.  Capitalized by app. -->
+    <string name="wifi_security_verbose_wep">secured with WEP</string>
+    <!-- Verbose security type of a wifi network.  Capitalized by app. -->
+    <string name="wifi_security_verbose_psk">secured with WPA/WPA2 PSK</string>
+    <!-- Verbose security type of a wifi network.  Capitalized by app. -->
+    <string name="wifi_security_verbose_eap">secured with 802.1x EAP</string>
+    
+     <!-- Status message of Wi-Fi when it is scanning 
+    <string name="fragment_status_scanning">Scanning\u2026</string>
+     Status message of Wi-Fi when it is connecting to a particular network 
+    <string name="fragment_status_connecting">Connecting to <xliff:g id="network_name">%1$s</xliff:g>\u2026</string>
+     Status message of Wi-Fi when it is authenticating with a network 
+    <string name="fragment_status_authenticating">Authenticating with <xliff:g id="network_name">%1$s</xliff:g>\u2026</string>
+     Status message of Wi-Fi when it is obtaining the IP address from a netwrok 
+    <string name="fragment_status_obtaining_ip">Obtaining IP address from <xliff:g id="network_name">%1$s</xliff:g>\u2026</string>
+     Status message of Wi-Fi when it is connect to a network 
+    <string name="fragment_status_connected">Connected to <xliff:g id="network_name">%1$s</xliff:g></string>
+     Status message of Wi-Fi when it is disconnecting from a network 
+    <string name="fragment_status_disconnecting">Disconnecting from <xliff:g id="network_name">%1$s</xliff:g>\u2026</string>
+     Status message of Wi-Fi when it is disconnected from a network
+    <string name="fragment_status_disconnected">Disconnected</string>
+     Status message of Wi-Fi when it is a failure (connection) 
+    <string name="fragment_status_failed">Unsuccessful</string>-->
+    
+     <!-- Status message of Wi-Fi when it is scanning -->
+    <string name="fragment_status_scanning">Scanning\u2026</string>
+    <!-- Status message of Wi-Fi when it is connecting to a particular network -->
+    <string name="fragment_status_connecting">Connecting to\u2026</string>
+    <!-- Status message of Wi-Fi when it is authenticating with a network -->
+    <string name="fragment_status_authenticating">Authenticating with\u2026</string>
+    <!-- Status message of Wi-Fi when it is obtaining the IP address from a netwrok -->
+    <string name="fragment_status_obtaining_ip">Obtaining IP address from\u2026</string>
+    <!-- Status message of Wi-Fi when it is connect to a network -->
+    <string name="fragment_status_connected">Connected to</string>
+    <!-- Status message of Wi-Fi when it is disconnecting from a network -->
+    <string name="fragment_status_disconnecting">Disconnecting from\u2026</string>
+    <!-- Status message of Wi-Fi when it is disconnected from a network-->
+    <string name="fragment_status_disconnected">Disconnected</string>
+    <!-- Status message of Wi-Fi when it is a failure (connection) -->
+    <string name="fragment_status_failed">Unsuccessful</string>
+
+    <!-- Status message of Wi-Fi when it is scanning -->
+    <string name="status_scanning">Scanning\u2026</string>
+    <!-- Status message of Wi-Fi when it is connecting (but the network is not known right now) -->
+    <string name="status_connecting">Connecting\u2026</string>
+    <!-- Status message of Wi-Fi when it is authenticating (but the network is not known right now) -->
+    <string name="status_authenticating">Authenticating\u2026</string>
+    <!--Wi-Fi settings screen, summary text for network when connecting -->
+    <string name="status_obtaining_ip">Obtaining address\u2026</string>
+    <!--Wi-Fi settings screen, summary text for network when connected -->
+    <string name="status_connected">Connected</string>
+    <!-- Status message of Wi-Fi when it is disconnecting (but the network is not known right now) -->
+    <string name="status_disconnecting">Disconnecting\u2026</string>
+    <!-- Status message of Wi-Fi when it is disconnected (but the network is not known right now) -->
+    <string name="status_disconnected">Disconnected</string>
+    <!-- Status message of Wi-Fi when it is a failure (but the network is not known right now) -->
+    <string name="status_failed">Unsuccessful</string>
+</resources>
