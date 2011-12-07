@@ -262,9 +262,10 @@ public class getLincenseActivity extends Activity {
 	}
 
 	public boolean sdcardIsMounted() {
-		boolean bool = Environment.getStorageState(
-				Environment.getStorageInfo("sdcard").mDirectory.getPath())
-				.equals("mounted");
+//		boolean bool = Environment.getStorageState(
+//				Environment.getStorageInfo("sdcard").mDirectory.getPath())
+//				.equals("mounted");
+		boolean bool = true;
 
 		return bool;
 	}
@@ -498,7 +499,8 @@ public class getLincenseActivity extends Activity {
 	private void mount() {
         IMountService mountService = getMountService();
         try {
-        	String path = Environment.getStorageInfo("sdcard").mDirectory.toString();
+        	//String path = Environment.getStorageInfo("sdcard").mDirectory.toString();
+        	String path = null;
             if (mountService != null) {
                 mountService.mountVolume(path);
             } else {
@@ -510,7 +512,8 @@ public class getLincenseActivity extends Activity {
 	
     private void doUnmount() {
         IMountService mountService = getMountService();
-        String extStoragePath = Environment.getStorageInfo("sdcard").mDirectory.toString();
+        //String extStoragePath = Environment.getStorageInfo("sdcard").mDirectory.toString();
+        String extStoragePath = null;
     	{		
 	 		try {
 	            mountService.unmountVolume(extStoragePath, true);
