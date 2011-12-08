@@ -147,7 +147,8 @@
 	
 	<string name="time_second">秒</string>
 	
-	<string name="test_camera">Camera测试</string>
+	<string name="test_camera">后Camera测试</string>
+	<string name="test_cameraSub">前Camera测试</string>
 	<string name="takepic">请对准物体,马上开始拍照</string>
 	<string name="istakepic">正在拍照,请稍等......</string>
 	

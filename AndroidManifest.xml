@@ -114,6 +114,12 @@ run in system must signed in a special system-->
          android:theme="@style/activityTitlebarRed">                
         </activity>
         
+        <activity android:name=".CameraSubActivity"
+         android:label="@string/test_cameraSub"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">                
+        </activity>
+        
          <activity android:name=".GpsActivity"
          android:label="@string/test_gps"
          android:screenOrientation="nosensor"

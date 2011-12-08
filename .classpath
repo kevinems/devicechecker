@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/factoryTest"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/factorylib"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/factorytestlib"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
