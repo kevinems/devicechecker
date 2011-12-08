@@ -27,6 +27,7 @@ import org.xml.sax.InputSource;
 import org.xmlpull.v1.XmlSerializer;
 
 import smit.com.factorytest.CameraActivity;
+import smit.com.factorytest.CameraSubActivity;
 import smit.com.factorytest.GpsActivity;
 import smit.com.factorytest.HDMIActivity;
 import smit.com.factorytest.MediaPlayerVideo;
@@ -90,7 +91,7 @@ public class FileOperate {
 	
 	private static String Tag="FileOperate";
 	private static byte[] buffer = new byte[100];
-	public static int testCount=15;
+	public static int testCount=16;
 	public static int curTestItem=0;
 	public static boolean testmode=false;		//true  «≤‚ ‘ƒ£ Ω
 	
@@ -105,10 +106,11 @@ public class FileOperate {
 	public static final int TestItemRecord=8;
 	public static final int TestItemHDMI=9;
 	public static final int TestItemCamera=10;
-    public static final int TestItemOtg=11;
-    public static final int TestItemSd=12;
-	public static final int TestItemClose=13;
-	public static final int TestItemCpu=14;
+	public static final int TestItemCameraSub=11;
+    public static final int TestItemOtg=12;
+    public static final int TestItemSd=13;
+	public static final int TestItemClose=14;
+	public static final int TestItemCpu=15;
 	
 	
 	
@@ -118,9 +120,9 @@ public class FileOperate {
     
     public static String []TestItemStr={"Wifi","Screen_Color","Key","Gps","GSensor",
     									"Vibrator","Audio","Video","Record","HDMI",
-    									"Camera","Otg","Sd","Sleep-Awake","GetCpuID"};
+    									"Camera","CameraSub","Otg","Sd","Sleep-Awake","GetCpuID"};
     
-    public static String []curtestItem={"Screen_Color","Camera","Key","GSensor","Vibrator",
+    public static String []curtestItem={"Screen_Color","Camera","CameraSub","Key","GSensor","Vibrator",
 		"Video","HDMI","Record","Otg","Sd",
 		"Sleep-Awake","Wifi","GetCpuID"};
 	
@@ -597,6 +599,9 @@ public class FileOperate {
 		}	
 		else if(curTestItemStr.equals("Camera")){
 			mIntent=new Intent(mContext.getApplicationContext(), CameraActivity.class);
+		}
+		else if(curTestItemStr.equals("CameraSub")){
+			mIntent=new Intent(mContext.getApplicationContext(), CameraSubActivity.class);
 		}
 		else if(curTestItemStr.equals("Otg")){
 			mIntent=new Intent(mContext.getApplicationContext(), OtgActivity.class);

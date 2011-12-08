@@ -19,9 +19,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class CameraActivity extends Activity implements SurfaceHolder.Callback{
+public class CameraSubActivity extends Activity implements SurfaceHolder.Callback{
 	
-	 private static final String 	TAG = "CameraActivityDemo";
+	 private static final String 	TAG = "CameraSubActivityDemo";
 	    private SurfaceView 		mPreview;
 	    private SurfaceHolder 		holder;
 	    private Camera        		m_camera;
@@ -35,7 +35,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback{
 		boolean checkOk=false;	//是否是成功
 	
 		private void setValue(int value){
-			FileOperate.setIndexValue(FileOperate.TestItemCamera, value);
+			FileOperate.setIndexValue(FileOperate.TestItemCameraSub, value);
 			FileOperate.writeToFile(this);
 					
 		}
@@ -71,19 +71,8 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback{
 	    			finish();
 	    			 if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
 	    				 
-	    				 Intent mIntent = FileOperate.getCurIntent(CameraActivity.this,"Camera");
+	    				 Intent mIntent = FileOperate.getCurIntent(CameraSubActivity.this,"CameraSub");
 						 if (mIntent!=null) {
-							 if (mHandler!=null) {	//release resource to avoid force close
-									
-									mHandler.removeCallbacks(progressDismiss);
-									mHandler=null;
-								}
-								
-								if (m_camera!=null) {
-									  m_camera.stopPreview();
-							          m_camera.release();
-							          m_camera = null;         
-								}
 		    				 startActivity(mIntent);
 						}
 					}     		
@@ -97,7 +86,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback{
 	        isTakepic=(TextView)findViewById(R.id.istakepic);
 	        
 	        if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-	        FileOperate.setIndexValue(FileOperate.TestItemCamera, FileOperate.CHECK_FAILURE);
+	        FileOperate.setIndexValue(FileOperate.TestItemCameraSub, FileOperate.CHECK_FAILURE);
 	        FileOperate.writeToFile(this);
 	        }
 	     }
@@ -109,7 +98,6 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback{
 			super.onBackPressed();
 		}
 	}
-	 
 	 
 	 @Override
 	protected void onDestroy() {
@@ -173,8 +161,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback{
 	                
 	        try 
             {        	
-	        	//m_camera = Camera.open();
-	        	m_camera = Camera.open();
+	        	m_camera = Camera.open(m_camera.getNumberOfCameras()-1);	//sub camera
 	        	if (m_camera!=null){
            		 m_camera.setPreviewDisplay(holder);
                }

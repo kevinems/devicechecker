@@ -85,6 +85,7 @@ public class MainActivity extends Activity{
 	private Button mTestHDMI= null;
 	
 	private Button mTestCamera=null;
+	private Button mTestCameraSub=null;
 	private Button mTestOtg=null;
 	private Button mTestSD = null;
 	private Button mTestclose=null;
@@ -229,6 +230,7 @@ public class MainActivity extends Activity{
     	mTestRecoder = (Button)findViewById(R.id.test_record);
     	mTestHDMI = (Button)findViewById(R.id.test_HDMI); 
     	mTestCamera=(Button)findViewById(R.id.test_carema); 	
+    	mTestCameraSub=(Button)findViewById(R.id.test_caremaSub); 
     	mTestOtg=(Button)findViewById(R.id.test_otg);
     	mTestSD=(Button)findViewById(R.id.test_sd);
     	mTestclose = (Button)findViewById(R.id.test_close);	
@@ -320,6 +322,14 @@ public class MainActivity extends Activity{
     	mTestCamera.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				mIntent = new Intent(MainActivity.this, CameraActivity.class);
+				startActivity(mIntent);
+			}
+		});
+    	
+    	mTestCameraSub.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				//mIntent = new Intent(MainActivity.this, CameraActivity.class);
+				mIntent = new Intent(MainActivity.this, CameraSubActivity.class);
 				startActivity(mIntent);
 			}
 		});
@@ -547,6 +557,8 @@ public class MainActivity extends Activity{
 				v=mTestHDMI;
 			}else if(i==FileOperate.TestItemCamera){
 				v=mTestCamera;
+			}else if(i==FileOperate.TestItemCameraSub){
+				v=mTestCameraSub;
 			}else if(i==FileOperate.TestItemOtg){
 				v=mTestOtg;
 			}else if(i==FileOperate.TestItemSd){
@@ -862,6 +874,12 @@ public class MainActivity extends Activity{
 				noexistitem.add(mTestCamera);
 			}
 			
+			if (FileOperate.existTestItem("CameraSub")) {
+				//existitem.add(mTestCamera);
+			}else {
+				noexistitem.add(mTestCameraSub);
+			}
+			
 			if (FileOperate.existTestItem("Otg")) {
 				//existitem.add(mTestOtg);
 			}else {
@@ -912,6 +930,8 @@ public class MainActivity extends Activity{
     				existitem.add(mTestHDMI);
     			}else if (curString.equals("Camera")) {
     				existitem.add(mTestCamera);
+    			}else if (curString.equals("CameraSub")) {
+    				existitem.add(mTestCameraSub);
     			}else if (curString.equals("Otg")) {
     				existitem.add(mTestOtg);
     			}else if (curString.equals("Sd")) {
