@@ -138,7 +138,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback{
 	        		Camera.Parameters parameters = m_camera.getParameters();
 		            parameters.setPictureFormat(PixelFormat.JPEG);
 		            //parameters.setPreviewSize(320, 240);
-		            parameters.setPreviewSize(1024, 768);
+		            parameters.setPreviewSize(480, 360);
 		            m_camera.setParameters(parameters);
 		            m_camera.setDisplayOrientation(90);
 		            m_camera.startPreview();
