@@ -21,6 +21,8 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
@@ -68,6 +70,7 @@ public class MainActivity extends Activity{
 	private Button mTestclose=null;
 	
 	private Button mGetCpuid=null;
+	private TextView mVersion = null;
 	
 	//private Button mTestRtc = null;
 	//
@@ -175,6 +178,10 @@ public class MainActivity extends Activity{
         
         
         initButton();    
+        
+        //version
+        mVersion = (TextView)findViewById(R.id.test_version);
+        mVersion.setText("版本号：" + getAppVersionName(getApplicationContext()));
         
         refreashTestItemLayout();
          
@@ -1173,6 +1180,25 @@ public class MainActivity extends Activity{
     
     private String intToIp(int i){
 	   return ( i & 0xFF)+ "." + ((i >> 8 ) & 0xFF)  + "." + ((i >> 16 ) & 0xFF) +"."+((i >> 24 ) & 0xFF ) ;
+    }
+    
+    /**  
+     * 返回当前程序版本名  
+     */  
+    public static String getAppVersionName(Context context) {   
+        String versionName = "";   
+        try {   
+            // ---get the package info---   
+            PackageManager pm = context.getPackageManager();   
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);   
+            versionName = pi.versionName;   
+            if (versionName == null || versionName.length() <= 0) {   
+                return "";   
+            }   
+        } catch (Exception e) {   
+            Log.e("VersionInfo", "Exception", e);   
+        }   
+        return versionName;   
     }
     
        

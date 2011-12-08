@@ -10,6 +10,7 @@
     <string name="to_one_mode">单项测试模式</string>
     <string name="to_factory_mode">工厂测试模式</string>
     <string name="to_change_mode">切换模式</string>
+    <string name="cur_version">版本:</string>
     <string name="input_password">请输入密码:</string>
     <string name="but_ok">确定</string>
     <string name="but_cancel">取消</string>
