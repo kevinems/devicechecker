@@ -50,7 +50,7 @@ public class getLincenseActivity extends Activity {
 	private IntentFilter mIntentFilter;
 
 	private void setValue(int value){
-		FileOperate.setIndexValue(FileOperate.TestItemCpu, value);
+//		FileOperate.setIndexValue(FileOperate.TestItemCpu, value);
 		FileOperate.writeToFile(this);
 		
 		//ParseSeverData.startUpTestItemThread("HDMI");

@@ -1,10 +1,8 @@
 package smit.com.factorytest;
 
 import java.io.IOException;
-import java.lang.Thread.State;
 import java.math.BigInteger;
 import java.net.InetAddress;
-import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -16,22 +14,17 @@ import java.util.TimerTask;
 import org.xml.sax.InputSource;
 
 import smit.com.util.AccessPointState;
-
 import smit.com.util.FileOperate;
-import smit.com.util.ParseSeverData;
-
-import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.DialogInterface.OnKeyListener;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -39,33 +32,22 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.PowerManager;
-import android.os.SystemClock;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceScreen;
-import android.provider.Browser;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
-import android.webkit.GeolocationPermissions;
-import android.webkit.WebStorage;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class WifiActivity extends Activity implements OnClickListener{
 	private static final String TAG = "WifiActivity";

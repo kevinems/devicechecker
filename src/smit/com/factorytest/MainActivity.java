@@ -1,47 +1,28 @@
 package smit.com.factorytest;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import org.xml.sax.InputSource;
 
-
-import smit.com.factorytest.R;
-import smit.com.factorytest.WifiActivity.WifiReceiver;
-import smit.com.factorytest.WifiActivity.getXmlThread;
 import smit.com.util.AccessPointState;
 import smit.com.util.FileOperate;
 import smit.com.util.ParseSeverData;
-import smit.com.util.TouchScreenReceiver;
 import smit.com.util.UpTestItem;
-import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.DialogInterface.OnKeyListener;
-import android.content.pm.IPackageInstallObserver;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageParser.NewPermissionInfo;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.hardware.Camera;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
@@ -53,18 +34,14 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity{
 	private static final String TAG = "MainActivity";
@@ -565,9 +542,9 @@ public class MainActivity extends Activity{
 				v=mTestSD;
 			}else if (i==FileOperate.TestItemClose) {
 				v=mTestclose;
-			}else if (i==FileOperate.TestItemCpu){
+			}/*else if (i==FileOperate.TestItemCpu){
 				v=mGetCpuid;
-			}
+			}*/
     		
     		switch (FileOperate.getIndexValue(i)) {
     		

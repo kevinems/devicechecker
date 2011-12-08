@@ -91,7 +91,7 @@ public class FileOperate {
 	
 	private static String Tag="FileOperate";
 	private static byte[] buffer = new byte[100];
-	public static int testCount=16;
+	public static int testCount=15;
 	public static int curTestItem=0;
 	public static boolean testmode=false;		//true 是测试模式
 	
@@ -110,7 +110,7 @@ public class FileOperate {
     public static final int TestItemOtg=12;
     public static final int TestItemSd=13;
 	public static final int TestItemClose=14;
-	public static final int TestItemCpu=15;
+	//public static final int TestItemCpu=15;
 	
 	
 	
@@ -120,11 +120,11 @@ public class FileOperate {
     
     public static String []TestItemStr={"Wifi","Screen_Color","Key","Gps","GSensor",
     									"Vibrator","Audio","Video","Record","HDMI",
-    									"Camera","CameraSub","Otg","Sd","Sleep-Awake","GetCpuID"};
+    									"Camera","CameraSub","Otg","Sd","Sleep-Awake"/*,"GetCpuID"*/};
     
     public static String []curtestItem={"Screen_Color","Camera","CameraSub","Key","GSensor","Vibrator",
 		"Video","HDMI","Record","Otg","Sd",
-		"Sleep-Awake","Wifi","GetCpuID"};
+		"Sleep-Awake","Wifi"/*,"GetCpuID"*/};
 	
 	public static int CHECK_NULL=0;
 	public static int CHECK_SUCCESS=1;
@@ -139,7 +139,8 @@ public class FileOperate {
 	
 	//固定ip
 	public static  String AP_NAME="\"TTPP-LLIINNKK\"";
-	public static  String AP_PASSWORD="12341234";
+	//public static  String AP_PASSWORD="12341234";
+	public static  String AP_PASSWORD="43214321";
 	
 	//上传测试项
 	public static final int DIALOG_UP_TEST_ITEM=0x100;
