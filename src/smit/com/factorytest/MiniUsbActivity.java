@@ -13,7 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class usbactivity extends Activity {
+public class MiniUsbActivity extends Activity {
 	TextView mUsbTextView,mUsbTips;
 	Usb.OnListener m_UsbListerer;
 	Usb mUsb;
@@ -56,8 +56,8 @@ public class usbactivity extends Activity {
 	}
 	
 	private void setValue(int value){
-		//FileOperate.setIndexValue(FileOperate.TestItemUsb, value);
-		//FileOperate.writeToFile(this);
+		FileOperate.setIndexValue(FileOperate.TestItemUsb, value);
+		FileOperate.writeToFile(this);
 	}
 	@Override
 	protected void onStart() {
@@ -86,7 +86,7 @@ public class usbactivity extends Activity {
 						 FileOperate.setCurTest(true);
 						 finish();
 						 
-						 Intent mIntent = new Intent(usbactivity.this, sdcardactivity.class);
+						 Intent mIntent = new Intent(MiniUsbActivity.this, sdcardactivity.class);
 							startActivity(mIntent);
 					 }else {
 						//²»ºÏ¸ñ

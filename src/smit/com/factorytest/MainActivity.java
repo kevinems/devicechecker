@@ -66,6 +66,7 @@ public class MainActivity extends Activity{
 	private Button mTestCamera=null;
 	private Button mTestCameraSub=null;
 	private Button mTestOtg=null;
+	private Button mTestUsb=null;
 	private Button mTestSD = null;
 	private Button mTestclose=null;
 	
@@ -216,6 +217,7 @@ public class MainActivity extends Activity{
     	mTestCamera=(Button)findViewById(R.id.test_carema); 	
     	mTestCameraSub=(Button)findViewById(R.id.test_caremaSub); 
     	mTestOtg=(Button)findViewById(R.id.test_otg);
+    	mTestUsb=(Button)findViewById(R.id.test_usb);
     	mTestSD=(Button)findViewById(R.id.test_sd);
     	mTestclose = (Button)findViewById(R.id.test_close);	
     	//mTestRtc = (Button)findViewById(R.id.test_Rtc);
@@ -312,7 +314,6 @@ public class MainActivity extends Activity{
     	
     	mTestCameraSub.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				//mIntent = new Intent(MainActivity.this, CameraActivity.class);
 				mIntent = new Intent(MainActivity.this, CameraSubActivity.class);
 				startActivity(mIntent);
 			}
@@ -321,6 +322,13 @@ public class MainActivity extends Activity{
     	mTestOtg.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				mIntent = new Intent(MainActivity.this, OtgActivity.class);
+				startActivity(mIntent);
+			}
+		});
+    	
+    	mTestUsb.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				mIntent = new Intent(MainActivity.this, MiniUsbActivity.class);
 				startActivity(mIntent);
 			}
 		});
@@ -545,6 +553,8 @@ public class MainActivity extends Activity{
 				v=mTestCameraSub;
 			}else if(i==FileOperate.TestItemOtg){
 				v=mTestOtg;
+			}else if(i==FileOperate.TestItemUsb){
+				v=mTestUsb;
 			}else if(i==FileOperate.TestItemSd){
 				v=mTestSD;
 			}else if (i==FileOperate.TestItemClose) {
@@ -870,6 +880,12 @@ public class MainActivity extends Activity{
 				noexistitem.add(mTestOtg);
 			}
 			
+			if (FileOperate.existTestItem("Usb")) {
+				//existitem.add(mTestUsb);
+			}else {
+				noexistitem.add(mTestUsb);
+			}
+			
 			if (FileOperate.existTestItem("Sd")) {
 				//existitem.add(mTestSD);
 			}else {
@@ -918,6 +934,8 @@ public class MainActivity extends Activity{
     				existitem.add(mTestCameraSub);
     			}else if (curString.equals("Otg")) {
     				existitem.add(mTestOtg);
+    			}else if (curString.equals("Usb")) {
+    				existitem.add(mTestUsb);
     			}else if (curString.equals("Sd")) {
     				existitem.add(mTestSD);
     			}else if (curString.equals("Sleep-Awake")) {

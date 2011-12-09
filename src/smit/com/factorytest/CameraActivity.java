@@ -36,8 +36,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback{
 	
 		private void setValue(int value){
 			FileOperate.setIndexValue(FileOperate.TestItemCamera, value);
-			FileOperate.writeToFile(this);
-					
+			FileOperate.writeToFile(this);		
 		}
 		
 	 @Override
