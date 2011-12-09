@@ -220,7 +220,7 @@ public class MainActivity extends Activity{
     	mTestCameraSub=(Button)findViewById(R.id.test_caremaSub); 
     	mTestOtg=(Button)findViewById(R.id.test_otg);
     	mTestUsb=(Button)findViewById(R.id.test_usb);
-    	mTestStandardUsb=(Button)findViewById(R.id.test_standare_usb);
+    	mTestStandardUsb=(Button)findViewById(R.id.test_standard_usb);
     	mTestSD=(Button)findViewById(R.id.test_sd);
     	mTestclose = (Button)findViewById(R.id.test_close);	
     	//mTestRtc = (Button)findViewById(R.id.test_Rtc);
