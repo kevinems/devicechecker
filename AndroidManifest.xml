@@ -28,11 +28,18 @@ run in system must signed in a special system-->
         </activity>
         
         
-        <activity android:name=".usbactivity"
+        <activity android:name=".MiniUsbActivity"
                   android:label="@string/usb_test"
                   android:screenOrientation="nosensor"
                   android:theme="@style/activityTitlebarRed">
         </activity>
+        
+        <activity android:name=".StandardUsbActivity"
+                  android:label="@string/standare_usb_test"
+                  android:screenOrientation="nosensor"
+                  android:theme="@style/activityTitlebarRed">
+        </activity>
+        
         <activity android:name=".headsetactivity"
                   android:label="@string/headset_test"
                   android:screenOrientation="nosensor"
@@ -128,6 +135,12 @@ run in system must signed in a special system-->
         
          <activity android:name=".OtgActivity"
          android:label="@string/test_otg"
+         android:screenOrientation="nosensor"
+         android:theme="@style/activityTitlebarRed">                
+        </activity>
+        
+        <activity android:name=".usbactivity"
+         android:label="@string/usb_test"
          android:screenOrientation="nosensor"
          android:theme="@style/activityTitlebarRed">                
         </activity>

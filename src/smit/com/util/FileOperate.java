@@ -32,11 +32,13 @@ import smit.com.factorytest.GpsActivity;
 import smit.com.factorytest.HDMIActivity;
 import smit.com.factorytest.MediaPlayerVideo;
 import smit.com.factorytest.MediaRecoderactivity;
+import smit.com.factorytest.MiniUsbActivity;
 import smit.com.factorytest.MusicPlayActivity;
 import smit.com.factorytest.OtgActivity;
 import smit.com.factorytest.R;
 import smit.com.factorytest.RtcActivity;
 import smit.com.factorytest.SleepWakeActivity;
+import smit.com.factorytest.StandardUsbActivity;
 import smit.com.factorytest.TestColor;
 import smit.com.factorytest.TestGSensor;
 import smit.com.factorytest.TestKey;
@@ -91,7 +93,7 @@ public class FileOperate {
 	
 	private static String Tag="FileOperate";
 	private static byte[] buffer = new byte[100];
-	public static int testCount=15;
+	public static int testCount=18;
 	public static int curTestItem=0;
 	public static boolean testmode=false;		//true 是测试模式
 	
@@ -108,9 +110,11 @@ public class FileOperate {
 	public static final int TestItemCamera=10;
 	public static final int TestItemCameraSub=11;
     public static final int TestItemOtg=12;
-    public static final int TestItemSd=13;
-	public static final int TestItemClose=14;
-	//public static final int TestItemCpu=15;
+    public static final int TestItemUsb=13;
+    public static final int TestItemStandardUsb=14;
+    public static final int TestItemSd=15;
+	public static final int TestItemClose=16;
+	public static final int TestItemCpu=17;
 	
 	
 	
@@ -120,10 +124,11 @@ public class FileOperate {
     
     public static String []TestItemStr={"Wifi","Screen_Color","Key","Gps","GSensor",
     									"Vibrator","Audio","Video","Record","HDMI",
-    									"Camera","CameraSub","Otg","Sd","Sleep-Awake"/*,"GetCpuID"*/};
+    									"Camera","CameraSub","Otg", "Usb", "StandardUsb", "Sd","Sleep-Awake"/*,"GetCpuID"*/};
     
+    //当前需要测试的项目
     public static String []curtestItem={"Screen_Color","Camera","CameraSub","Key","GSensor","Vibrator",
-		"Video","HDMI","Record","Otg","Sd",
+		"Video","HDMI","Record",/*"Otg",*/"Usb", "StandardUsb", "Sd",
 		"Sleep-Awake","Wifi"/*,"GetCpuID"*/};
 	
 	public static int CHECK_NULL=0;
@@ -604,8 +609,14 @@ public class FileOperate {
 		else if(curTestItemStr.equals("CameraSub")){
 			mIntent=new Intent(mContext.getApplicationContext(), CameraSubActivity.class);
 		}
-		else if(curTestItemStr.equals("Otg")){
-			mIntent=new Intent(mContext.getApplicationContext(), OtgActivity.class);
+//		else if(curTestItemStr.equals("Otg")){
+//			mIntent=new Intent(mContext.getApplicationContext(), OtgActivity.class);
+//		}
+		else if(curTestItemStr.equals("Usb")){
+			mIntent=new Intent(mContext.getApplicationContext(), MiniUsbActivity.class);
+		}
+		else if(curTestItemStr.equals("StandardUsb")){
+			mIntent=new Intent(mContext.getApplicationContext(), StandardUsbActivity.class);
 		}
 		else if(curTestItemStr.equals("Sd")){
 			mIntent=new Intent(mContext.getApplicationContext(), sdcardactivity.class);
