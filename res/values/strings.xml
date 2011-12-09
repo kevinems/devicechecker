@@ -213,6 +213,8 @@
      <string name="link_wifi_again">重连网络</string>
      <string name="test_fail">测试未通过</string>
      <string name="can_not_active">测试未通过,不能激活</string>
+     
+      <string name="video_tip">1.检测喇叭发音是否正常。\r\n2.插入耳机，检测耳机发音是否正常。</string>
       <string name="voice_control">音量大小调节</string>
       <string name="get_cpuid">存储机器序列号</string>
       <string name="please_get_cpuid">请按按钮存储机器序列号</string>

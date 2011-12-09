@@ -244,6 +244,7 @@ public class MainActivity extends Activity{
     	mTestWifi.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				mIntent = new Intent(MainActivity.this, WifiActivity.class);
+				
 				startActivity(mIntent);
 			}
 		});

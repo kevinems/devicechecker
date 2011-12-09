@@ -41,7 +41,7 @@ public class StandardUsbActivity extends Activity{
 		 final Window win = getWindow();
  	    win.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		setContentView(R.layout.test_standare_usb);		
+		setContentView(R.layout.test_standard_usb);		
 		
 		mYes=(Button)findViewById(R.id.but_ok);
 		mNo=(Button)findViewById(R.id.but_nook);
