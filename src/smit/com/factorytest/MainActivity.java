@@ -67,6 +67,7 @@ public class MainActivity extends Activity{
 	private Button mTestCameraSub=null;
 	private Button mTestOtg=null;
 	private Button mTestUsb=null;
+	private Button mTestStandardUsb=null;
 	private Button mTestSD = null;
 	private Button mTestclose=null;
 	
@@ -176,14 +177,9 @@ public class MainActivity extends Activity{
         FileOperate.setGobalHandle(mhHandler);
         
         FileOperate.SetTestItemXML();
-        
-        
+             
         initButton();    
-        
-        //version
-        mVersion = (TextView)findViewById(R.id.test_version);
-        mVersion.setText("°æ±¾ºÅ£º" + getAppVersionName(getApplicationContext()));
-        
+                
         refreashTestItemLayout();
          
         
@@ -195,13 +191,19 @@ public class MainActivity extends Activity{
         
         
     }
+
+
+	private void DisplayVersion() {
+		mVersion.setText("°æ±¾ºÅ£º" + getAppVersionName(getApplicationContext()));
+	}
     
    
     private void initButton(){
     	//mModeShow=(TextView)findViewById(R.id.mode_show);
     	
     	//mWifiStatus=(TextView)findViewById(R.id.wifisingalimage);
-    	
+    	mVersion = (TextView)findViewById(R.id.test_version);
+        DisplayVersion();
 
     	
     	mTestWifi = (Button)findViewById(R.id.test_wifi);
@@ -218,6 +220,7 @@ public class MainActivity extends Activity{
     	mTestCameraSub=(Button)findViewById(R.id.test_caremaSub); 
     	mTestOtg=(Button)findViewById(R.id.test_otg);
     	mTestUsb=(Button)findViewById(R.id.test_usb);
+    	mTestStandardUsb=(Button)findViewById(R.id.test_standare_usb);
     	mTestSD=(Button)findViewById(R.id.test_sd);
     	mTestclose = (Button)findViewById(R.id.test_close);	
     	//mTestRtc = (Button)findViewById(R.id.test_Rtc);
@@ -226,6 +229,7 @@ public class MainActivity extends Activity{
     	
     	mStartTest=(Button)findViewById(R.id.test_start);  	
     	mModeChange=(Button)findViewById(R.id.mode_change);
+    	mModeChange.setVisibility(View.INVISIBLE);
     	//mLinkWanAgain=(Button)findViewById(R.id.test_con_wifi);
     	//mReloadTest=(Button)findViewById(R.id.reloadtestitem);
     	//mActiveMachine=(Button)findViewById(R.id.active_machine);
@@ -333,6 +337,13 @@ public class MainActivity extends Activity{
 			}
 		});
     	
+    	mTestStandardUsb.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				mIntent = new Intent(MainActivity.this, StandardUsbActivity.class);
+				startActivity(mIntent);
+			}
+		});
+    	
     	mTestSD.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				mIntent = new Intent(MainActivity.this, sdcardactivity.class);
@@ -370,13 +381,14 @@ public class MainActivity extends Activity{
     	
     	mModeChange.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL) {
-					showDialog(DIALOG_ADMINSETTINGS);
-				}else {
-					FileOperate.changeMode();
-					ChagngeModeTest();
-				}
-				
+//				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL) {
+//					showDialog(DIALOG_ADMINSETTINGS);
+//				}else {
+//					FileOperate.changeMode();
+//					ChagngeModeTest();
+//				}
+				FileOperate.changeMode();
+				ChagngeModeTest();
 			}
 		});
     	
@@ -418,12 +430,13 @@ public class MainActivity extends Activity{
         	
 		}else {
 			setContentView(R.layout.main);
+			
             initButton();   
                
         	FileOperate.setCurmode(true);
         	FileOperate.curTestItem=0;
 		}
-    	 	
+    	
     	refreashTestItemLayout();
     	onStart();
     	
@@ -434,6 +447,7 @@ public class MainActivity extends Activity{
 			//mModeShow.setText(R.string.to_one_mode);
 			setTitle(R.string.to_one_mode);
 		}
+    	
     }
     
     public void reStartTest(){
@@ -555,24 +569,25 @@ public class MainActivity extends Activity{
 				v=mTestOtg;
 			}else if(i==FileOperate.TestItemUsb){
 				v=mTestUsb;
+			}else if(i==FileOperate.TestItemStandardUsb){
+				v=mTestStandardUsb;
 			}else if(i==FileOperate.TestItemSd){
 				v=mTestSD;
 			}else if (i==FileOperate.TestItemClose) {
 				v=mTestclose;
-			}/*else if (i==FileOperate.TestItemCpu){
+			}else if (i==FileOperate.TestItemCpu){
 				v=mGetCpuid;
-			}*/
+			}
     		
     		switch (FileOperate.getIndexValue(i)) {
     		
 			case 0:{
-	
-				/*if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL) {
-					v.setEnabled(false);
-				}else {
-					v.setEnabled(true);
-				}*/
-				
+//				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL) {
+//					v.setEnabled(false);
+//				}else {
+//					v.setEnabled(true);
+//				}
+								
 				break;
 				}
 			case 1:{
@@ -615,7 +630,7 @@ public class MainActivity extends Activity{
 				//mAlertpass.dismiss();
 				dismissDialog(DIALOG_ADMINSETTINGS);
 				ChagngeModeTest();
-				
+		    	
 				
 			}else {
 				showDialog(DIALOG_ERROR);
@@ -886,6 +901,12 @@ public class MainActivity extends Activity{
 				noexistitem.add(mTestUsb);
 			}
 			
+			if (FileOperate.existTestItem("StandardUsb")) {
+				//existitem.add(mTestUsb);
+			}else {
+				noexistitem.add(mTestStandardUsb);
+			}
+			
 			if (FileOperate.existTestItem("Sd")) {
 				//existitem.add(mTestSD);
 			}else {
@@ -936,6 +957,8 @@ public class MainActivity extends Activity{
     				existitem.add(mTestOtg);
     			}else if (curString.equals("Usb")) {
     				existitem.add(mTestUsb);
+    			}else if (curString.equals("StandardUsb")) {
+    				existitem.add(mTestStandardUsb);
     			}else if (curString.equals("Sd")) {
     				existitem.add(mTestSD);
     			}else if (curString.equals("Sleep-Awake")) {

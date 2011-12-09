@@ -86,8 +86,10 @@ public class MiniUsbActivity extends Activity {
 						 FileOperate.setCurTest(true);
 						 finish();
 						 
-						 Intent mIntent = new Intent(MiniUsbActivity.this, sdcardactivity.class);
-							startActivity(mIntent);
+						 if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
+								Intent mIntent = FileOperate.getCurIntent(getApplicationContext(),"Usb");
+								startActivity(mIntent);
+							}
 					 }else {
 						//²»ºÏ¸ñ
 					}
