@@ -58,7 +58,9 @@ public class TestKey extends Activity{
 				
 				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
 					Intent mIntent = FileOperate.getCurIntent(TestKey.this,"Key");
-					startActivity(mIntent);
+					if (mIntent != null) {
+						startActivity(mIntent);
+					}
 				}
 			}
 		});
@@ -76,11 +78,19 @@ public class TestKey extends Activity{
 		}
 		
 	}
+	
+
+	// ÆÁ±ÎHome¼ü
+	 @Override
+	 public void onAttachedToWindow() {
+	 this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
+	 super.onAttachedToWindow();
+	 }
 
 	 @Override
 	    public boolean onKeyDown(int keyCode, KeyEvent event) {
 		 String string=null;
-		 
+		 	 
 		 switch (keyCode) {
 		case KeyEvent.KEYCODE_A:{
 			string=getResources().getString(R.string.keycode_a);
@@ -121,8 +131,11 @@ public class TestKey extends Activity{
 		case KeyEvent.KEYCODE_SEARCH:{
 			string=getResources().getString(R.string.keycode_search);
 			break;
-			}
-		
+			}	
+		case KeyEvent.KEYCODE_HOME:{
+			string=getResources().getString(R.string.keycode_home);
+			break;
+			}		
 		default:
 			break;
 		}

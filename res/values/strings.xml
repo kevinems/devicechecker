@@ -180,6 +180,7 @@
     <string name="keycode_mute">静音</string>
     <string name="keycode_menu">Menu</string>
     <string name="keycode_back">Back</string>
+    <string name="keycode_home">Home</string>
     <string name="keycode_search">搜索</string>
      
      <string name="connect_service">开始连接服务器,请稍等!</string>

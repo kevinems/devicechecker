@@ -1,21 +1,15 @@
 package smit.com.util;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.LinkedList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,8 +17,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xmlpull.v1.XmlSerializer;
 
 import smit.com.factorytest.CameraActivity;
 import smit.com.factorytest.CameraSubActivity;
@@ -34,9 +26,7 @@ import smit.com.factorytest.MediaPlayerVideo;
 import smit.com.factorytest.MediaRecoderactivity;
 import smit.com.factorytest.MiniUsbActivity;
 import smit.com.factorytest.MusicPlayActivity;
-import smit.com.factorytest.OtgActivity;
 import smit.com.factorytest.R;
-import smit.com.factorytest.RtcActivity;
 import smit.com.factorytest.SleepWakeActivity;
 import smit.com.factorytest.StandardUsbActivity;
 import smit.com.factorytest.TestColor;
@@ -46,34 +36,16 @@ import smit.com.factorytest.TestVibrator;
 import smit.com.factorytest.WifiActivity;
 import smit.com.factorytest.getLincenseActivity;
 import smit.com.factorytest.sdcardactivity;
-import smit.com.factorytest.R.string;
-
-import android.R.bool;
-import android.R.integer;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageParser.NewPermissionInfo;
-import android.content.res.AssetFileDescriptor;
-import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
-import android.os.SystemProperties;
 import android.util.Log;
-import android.util.Xml;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -127,9 +99,9 @@ public class FileOperate {
     									"Camera","CameraSub","Otg", "Usb", "StandardUsb", "Sd","Sleep-Awake"/*,"GetCpuID"*/};
     
     //当前需要测试的项目
-    public static String []curtestItem={"Screen_Color","Camera","CameraSub","Key","GSensor","Vibrator",
+    public static String []curtestItem={"Screen_Color","Camera","CameraSub","GSensor","Vibrator",
 		"Video","HDMI","Record",/*"Otg",*/"Usb", "StandardUsb", "Sd",
-		"Sleep-Awake","Wifi"/*,"GetCpuID"*/};
+		"Sleep-Awake","Wifi","Key"/*,"GetCpuID"*/};
 	
 	public static int CHECK_NULL=0;
 	public static int CHECK_SUCCESS=1;
