@@ -65,7 +65,7 @@ public class FileOperate {
 	
 	private static String Tag="FileOperate";
 	private static byte[] buffer = new byte[100];
-	public static int testCount=18;
+	public static int testCount=19;
 	public static int curTestItem=0;
 	public static boolean testmode=false;		//true 是测试模式
 	
@@ -87,6 +87,7 @@ public class FileOperate {
     public static final int TestItemSd=15;
 	public static final int TestItemClose=16;
 	public static final int TestItemCpu=17;
+	public static final int TestItemBattery=18;
 	
 	
 	
@@ -96,12 +97,12 @@ public class FileOperate {
     
     public static String []TestItemStr={"Wifi","Screen_Color","Key","Gps","GSensor",
     									"Vibrator","Audio","Video","Record","HDMI",
-    									"Camera","CameraSub","Otg", "Usb", "StandardUsb", "Sd","Sleep-Awake"/*,"GetCpuID"*/};
+    									"Camera","CameraSub","Otg", "Usb", "StandardUsb", "Sd","Sleep-Awake", "Battery"/*,"GetCpuID"*/};
     
     //当前需要测试的项目
     public static String []curtestItem={"Screen_Color","Camera","CameraSub","GSensor","Vibrator",
 		"Video","HDMI","Record",/*"Otg",*/"Usb", "StandardUsb", "Sd",
-		"Sleep-Awake","Wifi","Key"/*,"GetCpuID"*/};
+		"Sleep-Awake","Battery","Wifi","Key"/*,"GetCpuID"*/};
 	
 	public static int CHECK_NULL=0;
 	public static int CHECK_SUCCESS=1;

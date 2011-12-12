@@ -10,7 +10,7 @@
     <string name="to_one_mode">单项测试模式</string>
     <string name="to_factory_mode">工厂测试模式</string>
     <string name="to_change_mode">切换模式</string>
-    <string name="cur_version">版本:</string>
+    <string name="cur_version">版本号:</string>
     <string name="input_password">请输入密码:</string>
     <string name="but_ok">确定</string>
     <string name="but_cancel">取消</string>
@@ -182,7 +182,18 @@
     <string name="keycode_back">Back</string>
     <string name="keycode_home">Home</string>
     <string name="keycode_search">搜索</string>
-     
+    
+    <string name="test_battery">电池测试</string>       
+    <string name="battery_info_status_label" msgid="8109155295509700309">"电池状态："</string>
+    <string name="battery_info_scale_label" msgid="3649763192389778437">"电池电量："</string>
+    <string name="battery_info_status_unknown" msgid="196130600938058547">"未知"</string>
+    <string name="battery_info_status_charging" msgid="1705179948350365604">"正在充电"</string>
+    <string name="battery_info_status_charging_ac" msgid="5874340256342956252">"（交流电）"</string>
+    <string name="battery_info_status_charging_usb" msgid="4059070156126770959">"(USB 绑定选项)"</string>
+    <string name="battery_info_status_discharging" msgid="6222697503392774475">"正在放电"</string>
+    <string name="battery_info_status_not_charging" msgid="2820070506621483576">"未在充电"</string>
+    <string name="battery_info_status_full" msgid="2824614753861462808">"已满"</string>
+
      <string name="connect_service">开始连接服务器,请稍等!</string>
      <string name="download_testitem">开始更新测试项,请稍等!</string>
      <string name="wifi_error">WIFI连接失败,请检查设备是否正常</string>

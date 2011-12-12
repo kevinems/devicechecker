@@ -72,6 +72,8 @@ public class MainActivity extends Activity{
 	private Button mTestclose=null;
 	
 	private Button mGetCpuid=null;
+	private Button mTestBattery=null;
+	
 	private TextView mVersion = null;
 	
 	//private Button mTestRtc = null;
@@ -194,7 +196,8 @@ public class MainActivity extends Activity{
 
 
 	private void DisplayVersion() {
-		mVersion.setText("°æ±¾ºÅ£º" + getAppVersionName(getApplicationContext()));
+		mVersion.setText(getString(R.string.cur_version) + getAppVersionName(getApplicationContext()));
+		
 	}
     
    
@@ -223,6 +226,7 @@ public class MainActivity extends Activity{
     	mTestStandardUsb=(Button)findViewById(R.id.test_standard_usb);
     	mTestSD=(Button)findViewById(R.id.test_sd);
     	mTestclose = (Button)findViewById(R.id.test_close);	
+    	mTestBattery = (Button)findViewById(R.id.test_battery);	
     	//mTestRtc = (Button)findViewById(R.id.test_Rtc);
     	mGetCpuid=(Button)findViewById(R.id.test_cpuid);
     	
@@ -367,6 +371,12 @@ public class MainActivity extends Activity{
 			}
 		});
     	    
+    	mTestBattery.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				mIntent = new Intent(MainActivity.this, TestBatteryActivity.class);
+				startActivity(mIntent);
+			}
+		});
     	
     	mStartTest.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -578,6 +588,8 @@ public class MainActivity extends Activity{
 				v=mTestclose;
 			}else if (i==FileOperate.TestItemCpu){
 				v=mGetCpuid;
+			}else if (i==FileOperate.TestItemBattery){
+				v=mTestBattery;
 			}
     		
     		switch (FileOperate.getIndexValue(i)) {
@@ -925,6 +937,12 @@ public class MainActivity extends Activity{
 			}else {
 				noexistitem.add(mGetCpuid);
 			}
+			
+			if (FileOperate.existTestItem("Battery")) {
+				//existitem.add(mTestclose);
+			}else {
+				noexistitem.add(mTestBattery);
+			}
     		
     		for (int i = 0; i < FileOperate.getTestItemCount(); i++) {
     			String curString=FileOperate.getCurTestItem(i);
@@ -966,6 +984,8 @@ public class MainActivity extends Activity{
     				existitem.add(mTestclose);
     			}else if (curString.equals("GetCpuID")){
     				existitem.add(mGetCpuid);
+    			}else if (curString.equals("Battery")){
+    				existitem.add(mTestBattery);
     			}
 			}
     		
