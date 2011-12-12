@@ -29,6 +29,7 @@ import smit.com.factorytest.MusicPlayActivity;
 import smit.com.factorytest.R;
 import smit.com.factorytest.SleepWakeActivity;
 import smit.com.factorytest.StandardUsbActivity;
+import smit.com.factorytest.TestBatteryActivity;
 import smit.com.factorytest.TestColor;
 import smit.com.factorytest.TestGSensor;
 import smit.com.factorytest.TestKey;
@@ -596,6 +597,9 @@ public class FileOperate {
 		}
 		else if(curTestItemStr.equals("Sleep-Awake")){
 			mIntent=new Intent(mContext.getApplicationContext(), SleepWakeActivity.class);
+		}
+		else if(curTestItemStr.equals("Battery")){
+			mIntent=new Intent(mContext.getApplicationContext(), TestBatteryActivity.class);
 		}
 		else if(curTestItemStr.equals("GetCpuID")){
 			mIntent=new Intent(mContext.getApplicationContext(), getLincenseActivity.class);

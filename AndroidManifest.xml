@@ -161,7 +161,7 @@ run in system must signed in a special system-->
           android:theme="@style/activityTitlebarRed"/>
           
         <activity android:name=".TestBatteryActivity" 
-          android:label="@string/get_cpuid" 
+          android:label="@string/test_battery" 
           android:screenOrientation="nosensor"
           android:theme="@style/activityTitlebarRed"/>
         
