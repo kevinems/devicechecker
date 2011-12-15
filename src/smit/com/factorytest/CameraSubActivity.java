@@ -28,6 +28,7 @@ public class CameraSubActivity extends Activity implements SurfaceHolder.Callbac
 	    
 		private Button 				mYes=null;
 		private Button 				mNo=null;
+		private Button				mCamera=null;
 		TextView isTakepic;
 		
 		boolean startpic=false;
@@ -73,6 +74,17 @@ public class CameraSubActivity extends Activity implements SurfaceHolder.Callbac
 	    				 
 	    				 Intent mIntent = FileOperate.getCurIntent(CameraSubActivity.this,"CameraSub");
 						 if (mIntent!=null) {
+							 if (mHandler!=null) {	//release resource to avoid force close
+									
+									mHandler.removeCallbacks(progressDismiss);
+									mHandler=null;
+								}
+								
+								if (m_camera!=null) {
+									  m_camera.stopPreview();
+							          m_camera.release();
+							          m_camera = null;         
+								}
 		    				 startActivity(mIntent);
 						}
 					}     		
@@ -82,6 +94,17 @@ public class CameraSubActivity extends Activity implements SurfaceHolder.Callbac
 				}  	
 	        	}
 	        });
+	        
+	        mCamera = (Button)findViewById(R.id.test_camera);
+	        mCamera.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					mCamera.setVisibility(View.GONE);
+					takePicture();  
+				}
+			});
 	        
 	        isTakepic=(TextView)findViewById(R.id.istakepic);
 	        
@@ -177,7 +200,7 @@ public class CameraSubActivity extends Activity implements SurfaceHolder.Callbac
             	}
 			}
                  
-            startCameraTest();
+//            startCameraTest();
 	    }
 	    
 	    public void takePicture() 

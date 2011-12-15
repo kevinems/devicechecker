@@ -46,6 +46,21 @@
 		
 		<LinearLayout 
 		android:orientation="vertical"
+		android:layout_width="@dimen/test_item_bottom_button_width"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/test_item_button_magin_left"
+        >	  		 
+  		 <Button android:id="@+id/test_camera" 
+		android:layout_width="@dimen/test_item_bottom_button_width"
+			android:layout_height="@dimen/test_item_bottom_button_heith"
+			android:text="@string/camera_control"
+			android:textSize="@dimen/test_item_tips_text_size"
+			android:background="@color/yellow"
+			android:gravity="center" android:layout_weight="1" />
+        </LinearLayout>
+			
+	    <LinearLayout 
+		android:orientation="vertical"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:gravity="right"

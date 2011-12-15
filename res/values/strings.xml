@@ -152,7 +152,8 @@
 	<string name="test_camera">后Camera测试</string>
 	<string name="test_cameraSub">前Camera测试</string>
 	<string name="takepic">请对准物体,马上开始拍照</string>
-	<string name="istakepic">正在拍照,请稍等......</string>
+	<string name="istakepic">预览中，按拍照按键拍照</string>
+	<string name="camera_control">拍照</string>
 	
 	<string name="test_gps">Gps测试</string>
 	<string name="test_gps_prn">PRN</string>

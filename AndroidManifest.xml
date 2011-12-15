@@ -4,7 +4,7 @@
 run in system must signed in a special system-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="smit.com.factorytest"
-      android:versionName="1.1" android:versionCode="2">
+      android:versionCode="3" android:versionName="1.2">
     <application android:icon="@drawable/icon" 
     			 android:label="@string/app_name"
     			 android:screenOrientation="nosensor"

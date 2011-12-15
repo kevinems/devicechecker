@@ -19,7 +19,7 @@ public class MiniUsbActivity extends Activity {
 	Usb mUsb;
 	int curStatus=1;   //1¼ì²â²åÈë 2ÊÇ¼ì²â°Î³ö
 	
-	//private Button mYes=null;
+	private Button mYes=null;
 	private Button mNo=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +36,20 @@ public class MiniUsbActivity extends Activity {
 		
 		mUsbTips.setText(R.string.usb_test_hinta);
 		
-		//mYes=(Button)findViewById(R.id.but_ok);
+		mYes=(Button)findViewById(R.id.but_ok);
 		mNo=(Button)findViewById(R.id.but_nook);
-		/*mYes.setOnClickListener(new View.OnClickListener() {
+		mYes.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				setValue(1);
-				FileOperate.setCurTest(true);
 				finish();
+				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
+					Intent mIntent = FileOperate.getCurIntent(MiniUsbActivity.this,"Usb");
+					if (mIntent != null) {
+						startActivity(mIntent);
+					}
+				}
 			}
-		});*/
+		});
 		
 		mNo.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

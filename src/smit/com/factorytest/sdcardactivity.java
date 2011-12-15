@@ -34,7 +34,7 @@ public class sdcardactivity extends Activity {
 	SDCard m_SdCard;
 	int curStatus = 1; // 1¼ì²â²åÈë 2ÊÇ¼ì²â°Î³ö
 
-	// private Button mYes=null;
+	private Button mYes=null;
 	private Button mNo = null;
 
 	private AlertDialog progressAlert;
@@ -53,6 +53,22 @@ public class sdcardactivity extends Activity {
 		mSdTips = (TextView) findViewById(R.id.sdtips);
 
 		mSdTips.setText(R.string.sd_test_hinta);
+		
+		mYes=(Button)findViewById(R.id.but_ok);
+		
+		mYes.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {			
+				setValue(1);
+				finish();
+				
+				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
+					Intent mIntent = FileOperate.getCurIntent(sdcardactivity.this,"Sd");
+					if (mIntent != null) {
+						startActivity(mIntent);
+					}
+				}
+			}
+		});
 
 		mNo = (Button) findViewById(R.id.but_nook);
 

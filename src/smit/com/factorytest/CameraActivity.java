@@ -28,6 +28,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback{
 	    
 		private Button 				mYes=null;
 		private Button 				mNo=null;
+		private Button				mCamera=null;
 		TextView isTakepic;
 		
 		boolean startpic=false;
@@ -92,6 +93,17 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback{
 				}  	
 	        	}
 	        });
+	        
+	        mCamera = (Button)findViewById(R.id.test_camera);
+	        mCamera.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					mCamera.setVisibility(View.GONE);
+					takePicture();  
+				}
+			});
 	        
 	        isTakepic=(TextView)findViewById(R.id.istakepic);
 	        
@@ -189,7 +201,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback{
             	}
 			}
                  
-            startCameraTest();
+//            startCameraTest();
 	    }
 	    
 	    public void takePicture() 
