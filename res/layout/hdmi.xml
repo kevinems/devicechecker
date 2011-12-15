@@ -47,6 +47,26 @@
 		
 		<LinearLayout 
 		android:orientation="vertical"
+		android:layout_width="@dimen/test_item_bottom_button_width"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/test_item_button_magin_left"
+        >	
+         <TextView
+   		android:layout_width="fill_parent"
+   		android:layout_height="wrap_content"
+   		android:textSize="@dimen/test_item_tips_text_size"
+   		android:text="@string/voice_control"
+   		android:textColor="@color/yellow"
+   		>
+  		 </TextView>
+		<SeekBar   
+        android:id="@+id/hdmiseekBar"   
+        android:layout_height="wrap_content"   
+        android:layout_width="fill_parent"/>
+        </LinearLayout>
+			
+	    <LinearLayout 
+		android:orientation="vertical"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:gravity="right"

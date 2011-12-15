@@ -26,7 +26,7 @@
      <string name="audio_test">音频测试</string>
      <string name="video_test">视频测试</string>
      <string name="record_test">录音测试</string>
-     <string name="HDMI_test">HDMI测试</string>
+     <string name="HDMI_test">视频HDMI测试</string>
      <string name="Wifi_test">Wifi测试</string>
      <string name="close_test">挂机唤醒测试</string>
      <string name="RTC_test">RTC测试</string>
@@ -92,7 +92,7 @@
     <string name="hdmiopenscess">打开HDMI成功</string>
 	<string name="hdmiclosescess">关闭HDMI成功</string>
 	<string name="hdmineedopen">请先打开HDMI</string>
-	<string name="hdmiin">请插上HDMI接口</string>
+	<string name="hdmiin">1.检测喇叭发音是否正常。\r\n2.插入耳机，检测耳机发音是否正常。\r\n3.请插上HDMI接口</string>
 	
 	<string name="sleepwake">短按开关键，将机器挂起，唤醒，观察机器电流是否在范围内。</string>
 

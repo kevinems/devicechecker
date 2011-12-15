@@ -102,7 +102,7 @@ public class FileOperate {
     
     //当前需要测试的项目
     public static String []curtestItem={"Screen_Color","Camera","CameraSub","GSensor","Vibrator",
-		"Video","HDMI","Record",/*"Otg",*/"Usb", "StandardUsb", "Sd",
+		/*"Video",*/"HDMI","Record",/*"Otg",*/"Usb", "StandardUsb", "Sd",
 		"Sleep-Awake","Battery","Wifi","Key"/*,"GetCpuID"*/};
 	
 	public static int CHECK_NULL=0;
@@ -606,8 +606,6 @@ public class FileOperate {
 		}else {
 			
 		}
-    	
-
     	
     	return mIntent;
 	}

@@ -4,14 +4,10 @@ import java.io.File;
 import java.io.FileDescriptor;
 
 import smit.com.util.FileOperate;
-import smit.com.util.ParseSeverData;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.ComponentName;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
-import android.content.DialogInterface.OnKeyListener;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -20,24 +16,18 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaPlayer.OnVideoSizeChangedListener;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.PowerManager;
-import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 
 public class HDMIActivity extends Activity implements
@@ -63,6 +53,9 @@ OnPreparedListener, OnVideoSizeChangedListener, SurfaceHolder.Callback{
 	
 	private Button mYes=null;
 	private Button mNo=null;
+	private SeekBar mSeekBar;
+	AudioManager mAudioManager;
+	int maxVolume;
 	
 	private AlertDialog progressAlert;
 	boolean checkOk=false;	//是否是成功
@@ -109,6 +102,30 @@ OnPreparedListener, OnVideoSizeChangedListener, SurfaceHolder.Callback{
 				finish();
 			}
 		});
+		
+		mSeekBar=(SeekBar)findViewById(R.id.hdmiseekBar);
+		mSeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {  
+            @Override  
+            public void onProgressChanged(SeekBar seekBar,int progress,boolean fromTouch) {
+            	int volume=(progress*maxVolume)/100;
+            	mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume, 0);
+            }  
+            @Override  
+            public void onStartTrackingTouch(SeekBar seekBar) {  
+                  
+            }  
+            @Override  
+            public void onStopTrackingTouch(SeekBar seekBar) {  
+                  
+            }  
+  
+        }); 
+		
+		mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+    	maxVolume=mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		int curVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+    	mSeekBar.setProgress(curVolume*100/(maxVolume+1));
+		
 		if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
 			FileOperate.setIndexValue(FileOperate.TestItemHDMI, FileOperate.CHECK_FAILURE);
 			FileOperate.writeToFile(this);
@@ -205,12 +222,47 @@ OnPreparedListener, OnVideoSizeChangedListener, SurfaceHolder.Callback{
 	        playVideoEx(path);
 	    }
 
-	    @Override
-	    protected void onPause() {
-	        super.onPause();
-	        releaseMediaPlayer();
-	        doCleanUp();
-	    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        releaseMediaPlayer();
+        doCleanUp();
+    }
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+	 String string=null;
+	 int mcurProgress;
+	 switch (keyCode) {
+	
+	case KeyEvent.KEYCODE_VOLUME_DOWN:{
+		mcurProgress=mSeekBar.getProgress();
+		mcurProgress-=6;
+		if (mcurProgress>=0) {
+			mSeekBar.setProgress(mcurProgress);
+		}else {
+			mSeekBar.setProgress(0);
+		}
+		
+		break;
+		}
+	case KeyEvent.KEYCODE_VOLUME_UP:{
+		mcurProgress=mSeekBar.getProgress();
+		mcurProgress+=6;
+		if (mcurProgress<=99) {
+			mSeekBar.setProgress(mcurProgress);
+		}else {
+			mSeekBar.setProgress(99);
+		}	
+		break;
+		}
+	
+	default:
+		break;
+	}
+	 
+     return super.onKeyDown(keyCode, event);
+    }
 
 	    @Override
 	    protected void onDestroy() {
