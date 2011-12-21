@@ -20,6 +20,7 @@ import org.w3c.dom.NodeList;
 
 import smit.com.factorytest.CameraActivity;
 import smit.com.factorytest.CameraSubActivity;
+import smit.com.factorytest.CheckSumActivity;
 import smit.com.factorytest.GpsActivity;
 import smit.com.factorytest.HDMIActivity;
 import smit.com.factorytest.MediaPlayerVideo;
@@ -66,7 +67,7 @@ public class FileOperate {
 	
 	private static String Tag="FileOperate";
 	private static byte[] buffer = new byte[100];
-	public static int testCount=19;
+	public static int testCount=20;
 	public static int curTestItem=0;
 	public static boolean testmode=false;		//true 是测试模式
 	
@@ -89,8 +90,7 @@ public class FileOperate {
 	public static final int TestItemClose=16;
 	public static final int TestItemCpu=17;
 	public static final int TestItemBattery=18;
-	
-	
+	public static final int TestItemCheckSum=19;
 	
 	public static final int TestItemRTC=100;
     
@@ -98,12 +98,12 @@ public class FileOperate {
     
     public static String []TestItemStr={"Wifi","Screen_Color","Key","Gps","GSensor",
     									"Vibrator","Audio","Video","Record","HDMI",
-    									"Camera","CameraSub","Otg", "Usb", "StandardUsb", "Sd","Sleep-Awake", "Battery"/*,"GetCpuID"*/};
+    									"Camera","CameraSub","Otg", "Usb", "StandardUsb", "Sd","Sleep-Awake", "Battery", "CheckSum"/*,"GetCpuID"*/};
     
     //当前需要测试的项目
     public static String []curtestItem={"Screen_Color","Camera","CameraSub","GSensor","Vibrator",
 		/*"Video",*/"HDMI","Record",/*"Otg",*/"Usb", "StandardUsb", "Sd",
-		"Sleep-Awake","Battery","Wifi","Key"/*,"GetCpuID"*/};
+		"Sleep-Awake","Battery","Wifi","CheckSum","Key"/*,"GetCpuID"*/};
 	
 	public static int CHECK_NULL=0;
 	public static int CHECK_SUCCESS=1;
@@ -603,6 +603,9 @@ public class FileOperate {
 		}
 		else if(curTestItemStr.equals("GetCpuID")){
 			mIntent=new Intent(mContext.getApplicationContext(), getLincenseActivity.class);
+		}
+		else if(curTestItemStr.equals("CheckSum")){
+			mIntent=new Intent(mContext.getApplicationContext(), CheckSumActivity.class);
 		}else {
 			
 		}

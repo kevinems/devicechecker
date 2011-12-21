@@ -73,6 +73,7 @@ public class MainActivity extends Activity{
 	
 	private Button mGetCpuid=null;
 	private Button mTestBattery=null;
+	private Button mTestCheckSum=null;
 	
 	private TextView mVersion = null;
 	
@@ -229,6 +230,7 @@ public class MainActivity extends Activity{
     	mTestBattery = (Button)findViewById(R.id.test_battery);	
     	//mTestRtc = (Button)findViewById(R.id.test_Rtc);
     	mGetCpuid=(Button)findViewById(R.id.test_cpuid);
+    	mTestCheckSum=(Button)findViewById(R.id.test_checksum);
     	
     	
     	mStartTest=(Button)findViewById(R.id.test_start);  	
@@ -377,6 +379,14 @@ public class MainActivity extends Activity{
 				startActivity(mIntent);
 			}
 		});
+    	
+    	mTestCheckSum.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				mIntent = new Intent(MainActivity.this, CheckSumActivity.class);
+				startActivity(mIntent);
+			}
+		});
+    	
     	
     	mStartTest.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -590,6 +600,8 @@ public class MainActivity extends Activity{
 				v=mGetCpuid;
 			}else if (i==FileOperate.TestItemBattery){
 				v=mTestBattery;
+			}else if (i==FileOperate.TestItemCheckSum){
+				v=mTestCheckSum;
 			}
     		
     		switch (FileOperate.getIndexValue(i)) {
@@ -943,6 +955,12 @@ public class MainActivity extends Activity{
 			}else {
 				noexistitem.add(mTestBattery);
 			}
+			
+    		if (FileOperate.existTestItem("CheckSum")) {
+				//existitem.add(mTestclose);
+			}else {
+				noexistitem.add(mTestCheckSum);
+			}
     		
     		for (int i = 0; i < FileOperate.getTestItemCount(); i++) {
     			String curString=FileOperate.getCurTestItem(i);
@@ -986,6 +1004,8 @@ public class MainActivity extends Activity{
     				existitem.add(mGetCpuid);
     			}else if (curString.equals("Battery")){
     				existitem.add(mTestBattery);
+    			}else if (curString.equals("CheckSum")){
+    				existitem.add(mTestCheckSum);
     			}
 			}
     		

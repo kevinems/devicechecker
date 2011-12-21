@@ -161,6 +161,9 @@
     <string name="test_gps_notice">PRN SNR 有值为合格</string>
     <string name="test_gps_testing">正在检测Gps设备,请稍等</string>
     
+    <string name="checksum">checksum</string>
+    
+    
     <string name="test_otg">Otg连接测试</string>
     <string name="test_otg_hand_in">请插入Otg设备,插入后请稍等!</string>
     <string name="test_otg_hang_out">请拔出Otg设备</string>
