@@ -103,7 +103,7 @@ public class FileOperate {
     //当前需要测试的项目
     public static String []curtestItem={"Screen_Color","Camera","CameraSub","GSensor","Vibrator",
 		/*"Video",*/"HDMI","Record",/*"Otg",*/"Usb", "StandardUsb", "Sd",
-		"Sleep-Awake","Battery","Wifi","CheckSum","Key"/*,"GetCpuID"*/};
+		"Battery","Wifi","Key","Sleep-Awake","CheckSum"/*,"GetCpuID"*/};
 	
 	public static int CHECK_NULL=0;
 	public static int CHECK_SUCCESS=1;
