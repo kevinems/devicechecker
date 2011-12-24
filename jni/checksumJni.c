@@ -31,11 +31,13 @@
 #define ERR_READLISTFILEERR		4
 #define ERR_RESFILEERR				5
 #define ERR_TOTALSUM					6
+#define FILE_PATH_LENGTH      200
 
 #define	TextMaxSize 				512*2
 
-#define FILELIST_C_PATH				"/config/__chksum.$$$"
+#define FILELIST_C_PATH				"/config/M16/__chksum.$$$"
 #define FILELIST_D_PATH				"/data/M16/__chksum.$$$"
+
 
 typedef struct tagCheckSumInfo
 {
@@ -56,6 +58,8 @@ typedef struct tagCheckSumInfo
     
     jclass classTmp;
 		jmethodID getUTFFileName;
+		
+		jbyteArray byte_data;
 } CheckSumInfo;
 
 BOOL CalcFunc(JNIEnv *env, char *pListFile, char *pResult,int type);
@@ -214,6 +218,7 @@ BOOL CalcFunc(JNIEnv *env, char *pListFile, char *pResult,int type)
 		
         g_CheckSumInfo.getUTFFileName = (*env)->GetStaticMethodID(env
 											,g_CheckSumInfo.classTmp,"getUTF8ByteArray","([BI)V");
+				g_CheckSumInfo.byte_data = (*env)->NewByteArray(env,FILE_PATH_LENGTH);	
 				
 		    while ( CheckSumGetPathAndValue(env, &pListBuffer, currFilePath, szValue ,type) )
 		    {
@@ -364,8 +369,6 @@ BOOL CheckSumGetPathAndValue(JNIEnv *env, INT8 **pListBuffer, UINT8 *currFilePat
     jstring	str = NULL;
     jboolean isCopy;
     char *DstPath = NULL;
-
-    jbyteArray byte_data;
     char *pFileName;
     
 		memset(currFilePath,0,512);
@@ -382,16 +385,12 @@ BOOL CheckSumGetPathAndValue(JNIEnv *env, INT8 **pListBuffer, UINT8 *currFilePat
     strncat( currFilePath, *pListBuffer, pathLen );
 	  
     CheckSumTranslateFilePath(currFilePath,pathLen);
-    
-	 
 		if(g_CheckSumInfo.getUTFFileName == NULL)
 		{
 			LOGI_D("GET STATIC METHOD ERRO!");
 		}
-		byte_data = (*env)->NewByteArray(env,pathLen);
-  	(*env)->SetByteArrayRegion(env,byte_data,0,pathLen,(char *)currFilePath);
-		
-    (*env)->CallStaticVoidMethod(env,g_CheckSumInfo.classTmp,g_CheckSumInfo.getUTFFileName,byte_data,type);
+  	(*env)->SetByteArrayRegion(env,g_CheckSumInfo.byte_data,0,FILE_PATH_LENGTH,(char *)currFilePath);		
+    (*env)->CallStaticVoidMethod(env,g_CheckSumInfo.classTmp,g_CheckSumInfo.getUTFFileName,g_CheckSumInfo.byte_data,type);
 		//LOGI_D("------FILENAME:%s",g_CheckSumInfo.fileName);
 		
 		//get value string
@@ -405,7 +404,7 @@ BOOL CheckSumGetPathAndValue(JNIEnv *env, INT8 **pListBuffer, UINT8 *currFilePat
     cLocat = strchr( *pListBuffer, '\n' );
     cLocat++;
     *pListBuffer = cLocat;
-		(*env)->ReleaseByteArrayElements(env,byte_data,(char*)jbyteArrayToChar(env,byte_data),0);
+		//(*env)->ReleaseByteArrayElements(env,byte_data,(char*)jbyteArrayToChar(env,byte_data),0);
     return true;
 }
 

@@ -30,11 +30,11 @@ public class CheckSumActivity extends Activity {
 
 	static Handler handler_refesh;
 	static int ret_type = 0;
-	private boolean thread_flag = true;;
+	private boolean thread_flag = true;  
 	static String str_filename = " ";
 	static int flag = 0;
 	static int file_type = 0;
-    /** Called when the activity is first created. */
+    /** Called when the activity is first created. */  
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,12 +102,38 @@ public class CheckSumActivity extends Activity {
 			  }
        };
     } 
+    public byte[] checkResultGetString(byte[] b)
+    {
+    	byte[] b_ret = new byte[b.length];
+    	boolean flag = false;
+    	int index = 0;
+
+    	for(int i =0;i < b.length;i++)
+    	{
+    		if(b[i] == '/')
+    		{
+    			flag = true;
+    		}
+    		if(flag)
+    		{
+    			b_ret[index] = b[i];
+    			b[i] =' ';
+    			index ++;
+    		}
+    	}
+    	b[b.length - 1] = '\n';
+    	b_ret[index] = '\n';
+    	return b_ret;
+    }
 	public void refreshContent(int type) throws UnsupportedEncodingException
 	{ 
 		if(ret_type == 0)
 		{
+			byte[] b = checkResultGetString(byte_data);
 			String str = new String(byte_data,"gb2312");
-			ShowResult(str);
+			String str_ex = new String(b);
+			
+			ShowResult(str + str_ex);
 			if(file_type == 1)
 			{
 				text_tag.setText("计算完成，系统文件总数：" +Integer.toString(count_flag_sys) + "个，" + "预装资料文件总数："
@@ -141,14 +167,32 @@ public class CheckSumActivity extends Activity {
 			text_tag.setText("CheckSum 计算终止！"); 
 		} 
 	}
+	public static int getByteArrayLength(byte[] b) {
+		// TODO Auto-generated method stub
+		int i; 
+    	for(i = 0; i<b.length;i++) 
+    	{
+    		if(b[i] ==0)
+    		{
+    			break;
+    		}
+    	}
+    	return i;
+	}
 	public static  void getUTF8ByteArray(byte[] fileName,int type)
 	{
-		String str = ""; 
+		String str = "";
+		int len = 0;
 		try {
 			str = new String(fileName,"gb2312");
 		} catch (UnsupportedEncodingException e) {  
 			// TODO Auto-generated catch block
 			e.printStackTrace(); 
+		}
+		len = getByteArrayLength(fileName);
+		if(len < str.length())
+		{
+			str = str.substring(0,len);
 		}
 		ret_type = 3; 
 		if(type == 1)
