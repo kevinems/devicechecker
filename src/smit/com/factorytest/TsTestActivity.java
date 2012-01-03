@@ -3,6 +3,7 @@ package smit.com.factorytest;
 import java.util.ArrayList;
 
 import smit.com.factorytest.R;
+import smit.com.util.FileOperate;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -67,12 +68,12 @@ public class TsTestActivity extends Activity
 		btn_layout.setLayoutParams(btn_layout_param);
 		
 		/* cancel button */
-		RelativeLayout.LayoutParams btn_cancel_param = new RelativeLayout.LayoutParams(100, LayoutParams.WRAP_CONTENT);
+		RelativeLayout.LayoutParams btn_cancel_param = new RelativeLayout.LayoutParams(120, LayoutParams.WRAP_CONTENT);
 		btn_cancel_param.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);		
 		btn_layout.addView(btn_cancel, btn_cancel_param);
 		
 		/* ok button */
-		RelativeLayout.LayoutParams btn_ok_param = new RelativeLayout.LayoutParams(100, LayoutParams.WRAP_CONTENT);
+		RelativeLayout.LayoutParams btn_ok_param = new RelativeLayout.LayoutParams(120, LayoutParams.WRAP_CONTENT);
 		btn_ok_param.addRule(RelativeLayout.ALIGN_TOP, ID_BTN_CANCEL);
 		btn_ok_param.addRule(RelativeLayout.LEFT_OF, ID_BTN_CANCEL);
 		btn_layout.addView(btn_ok, btn_ok_param);
@@ -93,8 +94,17 @@ public class TsTestActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				setResult(RESULT_OK, new Intent());
+				//setResult(RESULT_OK, new Intent());
+				//finish();
+				setValue(1);
 				finish();
+				
+				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
+					Intent mIntent = FileOperate.getCurIntent(TsTestActivity.this,"TouchScreen");
+					if (mIntent != null) {
+						startActivity(mIntent);
+					}
+				}
 			}
 		};
 
@@ -103,7 +113,9 @@ public class TsTestActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				setResult(RESULT_CANCELED, new Intent());
+				//setResult(RESULT_CANCELED, new Intent());
+				//finish();
+				setValue(2);
 				finish();
 			}
 		};
@@ -147,7 +159,7 @@ public class TsTestActivity extends Activity
 			
 			mTargetPaint = new Paint();
 			mTargetPaint.setAntiAlias(false);
-			mTargetPaint.setARGB(128, 0, 0, 255);
+			mTargetPaint.setARGB(128, 0, 255, 0);
 		}
 
 		@Override
@@ -223,5 +235,18 @@ public class TsTestActivity extends Activity
 			invalidate();
 			return true;
 		}
+	}
+	
+	private void setValue(int value){
+		FileOperate.setIndexValue(FileOperate.TestItemTouchScreen, value);
+		FileOperate.writeToFile(this);
+		
+		//ParseSeverData.startUpTestItemThread("Key");
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
 	}
 }

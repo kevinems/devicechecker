@@ -355,6 +355,16 @@
     android:visibility="gone" 
     />
     
+    <Button
+	android:id="@+id/test_touch_screen"
+    android:layout_width="@dimen/main_menu_button_width"
+    android:layout_height="wrap_content" 
+    android:layout_marginBottom="@dimen/main_menu_button_margin_bottom"
+    android:textSize="@dimen/main_menu_text_size"
+    android:text="@string/touch_screen"
+    android:visibility="gone" 
+    />
+    
      <Button
 	android:id="@+id/test_network"
     android:layout_width="@dimen/main_menu_button_width"

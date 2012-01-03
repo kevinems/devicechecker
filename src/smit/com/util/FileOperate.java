@@ -35,6 +35,7 @@ import smit.com.factorytest.TestColor;
 import smit.com.factorytest.TestGSensor;
 import smit.com.factorytest.TestKey;
 import smit.com.factorytest.TestVibrator;
+import smit.com.factorytest.TsTestActivity;
 import smit.com.factorytest.WifiActivity;
 import smit.com.factorytest.getLincenseActivity;
 import smit.com.factorytest.sdcardactivity;
@@ -67,7 +68,7 @@ public class FileOperate {
 	
 	private static String Tag="FileOperate";
 	private static byte[] buffer = new byte[100];
-	public static int testCount=20;
+	public static int testCount=21;
 	public static int curTestItem=0;
 	public static boolean testmode=false;		//true 是测试模式
 	
@@ -91,6 +92,7 @@ public class FileOperate {
 	public static final int TestItemCpu=17;
 	public static final int TestItemBattery=18;
 	public static final int TestItemCheckSum=19;
+	public static final int TestItemTouchScreen=20;
 	
 	public static final int TestItemRTC=100;
     
@@ -98,10 +100,10 @@ public class FileOperate {
     
     public static String []TestItemStr={"Wifi","Screen_Color","Key","Gps","GSensor",
     									"Vibrator","Audio","Video","Record","HDMI",
-    									"Camera","CameraSub","Otg", "Usb", "StandardUsb", "Sd","Sleep-Awake", "Battery", "CheckSum"/*,"GetCpuID"*/};
+    									"Camera","CameraSub","Otg", "Usb", "StandardUsb", "Sd","Sleep-Awake", "Battery", "CheckSum", "TouchScreen" /*,"GetCpuID"*/};
     
     //当前需要测试的项目
-    public static String []curtestItem={"Screen_Color","Camera","CameraSub","GSensor","Vibrator",
+    public static String []curtestItem={"Screen_Color", "TouchScreen", "Camera","CameraSub","GSensor","Vibrator",
 		/*"Video",*/"HDMI","Record",/*"Otg",*/"Usb", "StandardUsb", "Sd",
 		"Battery","Wifi","Key","Sleep-Awake","CheckSum"/*,"GetCpuID"*/};
 	
@@ -605,7 +607,9 @@ public class FileOperate {
 			mIntent=new Intent(mContext.getApplicationContext(), getLincenseActivity.class);
 		}
 		else if(curTestItemStr.equals("CheckSum")){
-			mIntent=new Intent(mContext.getApplicationContext(), CheckSumActivity.class);
+			mIntent=new Intent(mContext.getApplicationContext(), CheckSumActivity.class);}
+		else if(curTestItemStr.equals("TouchScreen")){
+			mIntent=new Intent(mContext.getApplicationContext(), TsTestActivity.class);
 		}else {
 			
 		}

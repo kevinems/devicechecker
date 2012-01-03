@@ -133,10 +133,11 @@
 	<string name="test_brightness_height">亮度高</string>
 	
 	<string name="success_tips">成功校正触摸屏</string>
-	<string name="tstest_tips">请测试触摸屏，通过请点击确认，重新校正请点击取消</string>
+	<string name="touch_screen">触摸屏测试\r\n[贴片时不用测]</string>
+	<string name="tstest_tips">请在触摸屏上滑动测试，</string>
 	<string name="try_again_tips">请再试一次</string>
-	<string name="btn_ok_text">确认</string>
-	<string name="btn_cancel_text">取消</string>
+	<string name="btn_ok_text">合格</string>
+	<string name="btn_cancel_text">不合格</string>
 	
 	<string name="check_ok">合格</string>
 	<string name="check_nook">不合格</string>

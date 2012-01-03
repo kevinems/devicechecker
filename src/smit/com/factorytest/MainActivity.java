@@ -74,6 +74,7 @@ public class MainActivity extends Activity{
 	private Button mGetCpuid=null;
 	private Button mTestBattery=null;
 	private Button mTestCheckSum=null;
+	private Button mTestTouchScreen=null;
 	
 	private TextView mVersion = null;
 	
@@ -231,6 +232,7 @@ public class MainActivity extends Activity{
     	//mTestRtc = (Button)findViewById(R.id.test_Rtc);
     	mGetCpuid=(Button)findViewById(R.id.test_cpuid);
     	mTestCheckSum=(Button)findViewById(R.id.test_checksum);
+    	mTestTouchScreen=(Button)findViewById(R.id.test_touch_screen);
     	
     	
     	mStartTest=(Button)findViewById(R.id.test_start);  	
@@ -373,9 +375,9 @@ public class MainActivity extends Activity{
 			}
 		});
     	    
-    	mTestBattery.setOnClickListener(new View.OnClickListener() {
+    	mTestTouchScreen.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, TestBatteryActivity.class);
+				mIntent = new Intent(MainActivity.this, TsTestActivity.class);
 				startActivity(mIntent);
 			}
 		});
@@ -387,6 +389,12 @@ public class MainActivity extends Activity{
 			}
 		});
     	
+    	mTestBattery.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				mIntent = new Intent(MainActivity.this, TsTestActivity.class);
+				startActivity(mIntent);
+			}
+		});
     	
     	mStartTest.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -602,6 +610,8 @@ public class MainActivity extends Activity{
 				v=mTestBattery;
 			}else if (i==FileOperate.TestItemCheckSum){
 				v=mTestCheckSum;
+			}else if (i==FileOperate.TestItemTouchScreen){
+				v=mTestTouchScreen;
 			}
     		
     		switch (FileOperate.getIndexValue(i)) {
@@ -962,6 +972,12 @@ public class MainActivity extends Activity{
 				noexistitem.add(mTestCheckSum);
 			}
     		
+    		if (FileOperate.existTestItem("TouchScreen")) {
+				//existitem.add(mTestclose);
+			}else {
+				noexistitem.add(mTestTouchScreen);
+			}
+    		
     		for (int i = 0; i < FileOperate.getTestItemCount(); i++) {
     			String curString=FileOperate.getCurTestItem(i);
     			
@@ -1006,12 +1022,14 @@ public class MainActivity extends Activity{
     				existitem.add(mTestBattery);
     			}else if (curString.equals("CheckSum")){
     				existitem.add(mTestCheckSum);
+    			}else if (curString.equals("TouchScreen")){
+    				existitem.add(mTestTouchScreen);
     			}
 			}
     		
 			
 			for (int i = 0; i < existitem.size(); i++) {
-				switch (i/5) {
+				switch (i/6) {
 				case 0:
 				{
 					existitem.get(i).setVisibility(View.VISIBLE);

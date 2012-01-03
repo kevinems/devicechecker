@@ -72,11 +72,6 @@ public class TestKey extends Activity{
 			}
 		});
 		
-		if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-			FileOperate.setIndexValue(FileOperate.TestItemKey, FileOperate.CHECK_FAILURE);
-			FileOperate.writeToFile(this);
-		}
-		
 	}
 	
 
