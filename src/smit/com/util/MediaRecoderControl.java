@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import smit.com.factorytest.R;
 
 import android.content.Context;
+import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.MediaRecorder;
 import android.os.Environment;
@@ -22,15 +23,20 @@ public class MediaRecoderControl {
 	public MediaRecoderControl(Context context)
 	{
 		mContext=context;
-		
 	}
 	public void init() throws Exception {
         try {
         	mMediaRecorder = new MediaRecorder();
         	mMediaRecorder.reset();
         	mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        	mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        	mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+//        	mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+//        	mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        	//mMediaRecorder.setAudioChannels(AudioFormat.CHANNEL_CONFIGURATION_STEREO);
+        	
+        	mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+        	mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+        	//mMediaRecorder.setAudioEncodingBitRate(44100);
+//        	mMediaRecorder.setAudioSamplingRate(44100);
         	
         	
         	/*if (file == null) {
