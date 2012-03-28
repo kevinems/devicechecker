@@ -39,6 +39,7 @@ public class TestColor extends Activity {
 	      getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 	      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);      
 			
+	      TextView mTextView = new TextView(this);
 //	      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 //			if(getRequestedOrientation()
@@ -66,16 +67,13 @@ public class TestColor extends Activity {
 		
 		mYes.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if (mNum<=7) {
-					toNextTest();
-				}else {
-					finish();
-					setValue(FileOperate.CHECK_SUCCESS);
-					if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-						Intent mIntent = FileOperate.getCurIntent(TestColor.this,"Screen_Color");
-						 if (mIntent!=null) {
-							 startActivity(mIntent);
-						}
+				
+				finish();
+				setValue(FileOperate.CHECK_SUCCESS);
+				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
+					Intent mIntent = FileOperate.getCurIntent(TestColor.this,"Screen_Color");
+					 if (mIntent!=null) {
+						 startActivity(mIntent);
 					}
 				}		
 			}
@@ -176,6 +174,7 @@ public class TestColor extends Activity {
 			displayToast(R.string.test_brightness_height);
 			mYes.setVisibility(View.VISIBLE);
 			mNo.setVisibility(View.VISIBLE);
+			mNo.setBackgroundColor(Color.RED);
 		}
 		
 		mNum ++;
