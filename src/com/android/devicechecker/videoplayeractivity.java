@@ -79,10 +79,10 @@ public class videoplayeractivity extends Activity {
     	
     	String SdStateString =android.os.Environment.getExternalStorageState();
     	String path=null;
-    	//��
+    	//读
 		if(SdStateString.equals(android.os.Environment.MEDIA_MOUNTED))
 		{		
-			//����
+			//创建
 			 File SDFile = android.os.Environment.getExternalStorageDirectory();
 			 path = SDFile.getAbsolutePath()+ File.separator+"test.mp4";
 			 File myFile=new File(path);

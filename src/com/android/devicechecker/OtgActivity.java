@@ -24,7 +24,7 @@ public class OtgActivity extends Activity{
 	 	private static final String TAG = "OtcActivityDemo";
 	 	//private Button mYes=null;
 	 	private Button mNo=null;
-		int curStatus=1;   //1������ 2�Ǽ��γ�
+		int curStatus=1;   //1检测插入 2是检测拔出
 		TextView mOtgTips,mOtgStatus;
 		private static final int STORAGE_CNT = 2;
 		private static final String VOL_NAME[] = {"scsi_sda","scsi_sdb"};
@@ -32,7 +32,7 @@ public class OtgActivity extends Activity{
 		private  BroadcastReceiver mReceiver;
 			
 		private AlertDialog progressAlert;
-		boolean checkOk=false;	//�Ƿ��ǳɹ�
+		boolean checkOk=false;	//是否是成功
 	
 	private void setValue(int value){
 		FileOperate.setIndexValue(FileOperate.TestItemOtg, value);
@@ -48,7 +48,7 @@ public class OtgActivity extends Activity{
 	    win.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);     
         setContentView(R.layout.test_otc);
         
-        //0 Ĭ�� 1host 2slave
+        //0 默认 1host 2slave
         Settings.System.putInt(getContentResolver(),"otg_setting", 1);
         
         mOtgTips=(TextView)findViewById(R.id.otgtips);
@@ -88,7 +88,7 @@ public class OtgActivity extends Activity{
 		        	String str = intent.getAction();
 		        	String str1=intent.getData().getPath();
 
-		        	//����ӿڿ��ܲ�һ����ע��
+		        	//这里接口可能不一样，请注意
 		        	Log.e(TAG,"++++++++++++++++++++++++++++"+"str1"+"++++++++++++++++++++++++");	
 		        	if ((str1.equals("/sda1") || str1.equals("/sda2"))  //8900 is /sda1 /sda2 8803 is /mnt/sdcard/scsi_sda1
 						|| (str1.equals("/mnt/sdcard/scsi_sda1") || str1.equals("/mnt/sdcard/scsi_sda2"))) {

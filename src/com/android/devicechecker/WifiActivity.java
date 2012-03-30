@@ -62,8 +62,8 @@ public class WifiActivity extends Activity implements OnClickListener{
 	private final int CHECK_CONNECT = 0x200;
 	private final int CHECK_DISCONNECT=0x201;
 	private final int CHECK_TEST_NET=0x202;
-	private int connetcount, netWan = 0; // ���Ӽ���,ȡ�������
-    private int searchcount=0;   		//����TTPP-LLIIKK����
+	private int connetcount, netWan = 0; // 杩炴帴璁℃暟,鍙栫綉缁滄暟鎹�
+    private int searchcount=0;   		//鎼滅储TTPP-LLIIKK璁℃暟
 	private String noticeString;
 	
 	private int curStatus;
@@ -96,7 +96,7 @@ public class WifiActivity extends Activity implements OnClickListener{
 	WifiReceiver receiverWifi;
 	private IntentFilter mIntentFilter;
 	
-	boolean checkOk=false;	//�Ƿ��ǳɹ�
+	boolean checkOk=false;	//
 
 	private Handler mpopnetmoviehand = new Handler() {
 		public void handleMessage(Message msg) {
@@ -333,6 +333,43 @@ public class WifiActivity extends Activity implements OnClickListener{
 			mpopnetmoviehand.removeCallbacks(mRunnable);
 		}
 	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		if (timer != null) {
+			timer.cancel();
+			timer = null;
+		}
+		if (progressAlert != null) {
+			progressAlert.dismiss();
+			progressAlert = null;
+		}
+		if (thread != null) {
+			thread.stopThread();
+//			thread.stop();
+			thread.interrupt();
+		}
+
+	}
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+
+		if (progressAlert != null) {
+			progressAlert.dismiss();
+			progressAlert = null;
+
+		}
+		if (thread != null) {
+			thread.stopThread();
+			thread.stop();
+		}
+
+	}
 	
 	@Override
 	protected void onResume() {
@@ -420,7 +457,7 @@ public class WifiActivity extends Activity implements OnClickListener{
 			}
 		}
     	
-    	//����10��
+    	//鎼滅储10娆�
     	searchcount++;
     	if(index==count&&searchcount<=10){
     		mpopnetmoviehand.postDelayed(mRunnable, 2000);
@@ -495,7 +532,7 @@ public class WifiActivity extends Activity implements OnClickListener{
 	
 	}
 	
-	//��ʼ����wifi
+	//寮�杩炴帴wifi
 	private void startwificonnect() {
 		if (!checkWifiIscon()) {
 			searchcount=0;
@@ -511,14 +548,14 @@ public class WifiActivity extends Activity implements OnClickListener{
 			  TimerTask task = new TimerTask(){
 			        public void run() {
 				// TODO Auto-generated method stub
-				// �������̰߳�ȫ��ҳ��ĸ�����ŵ����߳���
+				// 鐢变簬涓荤嚎绋嬪畨鍏紝椤甸潰鐨勬洿鏂伴渶鏀惧埌涓荤嚎绋嬩腑
 				Message message = new Message();
 				message.what = CHECK_CONNECT;
 				mpopnetmoviehand.sendMessage(message);
 			}
 		};
-		timer.schedule(task, 1000 * 2, 1000 * 2);// timer�����������һ��ʹ�� ��������������
-													// ��Ȼtimerֻ��һ��
+		timer.schedule(task, 1000 * 2, 1000 * 2);// timer蹇呴』鍜屼换鍔″湪涓�捣浣跨敤 蹇呴』璁句笁涓弬鏁扮殑
+													// 涓嶇劧timer鍙潵涓�
 		connetcount = 0;
 
 		LayoutInflater inflater = LayoutInflater.from(this);
@@ -551,7 +588,7 @@ public class WifiActivity extends Activity implements OnClickListener{
 		});
 	}
 	
-	//��ʼ�Ͽ�wifi
+	//寮�鏂紑wifi
 	private void startdisconnectWifi(){
 		disconnectWifi();
 		
@@ -563,13 +600,13 @@ public class WifiActivity extends Activity implements OnClickListener{
 			  TimerTask task = new TimerTask(){
 			        public void run() {
 			            // TODO Auto-generated method stub
-			            //�������̰߳�ȫ��ҳ��ĸ�����ŵ����߳���
+			            //鐢变簬涓荤嚎绋嬪畨鍏紝椤甸潰鐨勬洿鏂伴渶鏀惧埌涓荤嚎绋嬩腑
 			            Message message = new Message();      
 			            message.what = CHECK_DISCONNECT;      
 			            mpopnetmoviehand.sendMessage(message);    
 			        }
 			    }; 
-			   timer.schedule(task, 1000*2, 1000*2);//timer�����������һ��ʹ��  �������������� ��Ȼtimerֻ��һ��
+			   timer.schedule(task, 1000*2, 1000*2);//timer蹇呴』鍜屼换鍔″湪涓�捣浣跨敤  蹇呴』璁句笁涓弬鏁扮殑 涓嶇劧timer鍙潵涓�
 			   connetcount=0;
 		
 		LayoutInflater inflater = LayoutInflater.from(this);
@@ -635,7 +672,7 @@ public void onClick(View v) {
 	   mWifiInfo = mWifiManager.getConnectionInfo();
 	   if (mWifiInfo!=null) {
 		appname=mWifiInfo.getSSID();
-		macaddr=mWifiInfo.getMacAddress(); //����mac��ַ
+		macaddr=mWifiInfo.getMacAddress(); //鏈哄櫒mac鍦板潃
 			ipaddrInt = mWifiInfo.getIpAddress();
 			ipaddrStr = intToIp(ipaddrInt);
 			if (appname != null && macaddr != null
@@ -659,7 +696,7 @@ public void onClick(View v) {
 	           byte[] bytes = ipInBigInt.toByteArray();
 	           byte[] unsignedBytes = bytes;
 	    
-	           // ȥ����λ
+	           // 鍘婚櫎绗﹀彿浣�
 	           try {
 	               String ip = InetAddress.getByAddress(unsignedBytes).toString();
 	               return ip.substring(ip.indexOf('/') + 1).trim();
@@ -675,7 +712,7 @@ public void onClick(View v) {
 
 
    
-   //�õ�����������Ϣ
+   //寰楀埌杩炴帴缃戠粶淇℃伅
    private String getNetworkInfo(){
 
 	   String appname=null,macaddr=null,ipaddrStr=null,apsingalStr=null,linktimeStr=null;
@@ -694,7 +731,7 @@ public void onClick(View v) {
 			appname = getResources().getString(R.string.apname)
 					+ mWifiInfo.getSSID();
 			macaddr = "\n" + getResources().getString(R.string.mac_addr)
-					+ mWifiInfo.getMacAddress(); // ����mac��ַ
+					+ mWifiInfo.getMacAddress(); // 鏈哄櫒mac鍦板潃
 			ipaddrInt = mWifiInfo.getIpAddress();
 			ipaddrStr = "\n" + getResources().getString(R.string.ip_addr)
 					+ intToIp(ipaddrInt);
@@ -719,41 +756,7 @@ public void onClick(View v) {
 		return (noticeString);
 	}
 
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
 
-		if (progressAlert != null) {
-			progressAlert.dismiss();
-			progressAlert = null;
-
-		}
-		if (thread != null) {
-			thread.stopThread();
-			thread.stop();
-		}
-
-	}
-
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		if (timer != null) {
-			timer.cancel();
-			timer = null;
-		}
-		if (progressAlert != null) {
-			progressAlert.dismiss();
-			progressAlert = null;
-		}
-		if (thread != null) {
-			thread.stopThread();
-			thread.stop();
-		}
-
-	}
 
 	private void handleScanResultsAvailable() {
 		synchronized (this) {
@@ -817,7 +820,7 @@ public void onClick(View v) {
 					map.put("ItemLink", "");
 				}else {
 					if (mWifiInfo.getSSID().equals(ap.getHumanReadableSsid())) {
-						map.put("ItemLink", "������");
+						map.put("ItemLink", "已连接");
 					}else {
 						map.put("ItemLink", "");
 					}	
@@ -837,15 +840,15 @@ public void onClick(View v) {
 			}
 		}
 
-		// �����������Item�Ͷ�̬�����Ӧ��Ԫ��
-		SimpleAdapter listItemAdapter = new SimpleAdapter(this, listItem,// ���Դ
-				R.layout.wifilistitem,// ListItem��XMLʵ��
-				// ��̬������ImageItem��Ӧ������
+		//
+		SimpleAdapter listItemAdapter = new SimpleAdapter(this, listItem,// 鏁版嵁婧�
+				R.layout.wifilistitem,//
+				//
 				new String[] { "ItemScript","ItemLink", "encrypt", "signal" },
-				// ImageItem��XML�ļ������һ��ImageView,����TextView ID
+				// 
 				new int[] { R.id.title,R.id.linkstatus, R.id.encrypt, R.id.signal });
 
-		// ��Ӳ�����ʾ
+		//
 		 mListView.setAdapter(listItemAdapter);
 
 	}
@@ -918,7 +921,7 @@ public void onClick(View v) {
 	}
 	
 	
-	// ������ȡxml����߳�
+	//
 	public static class getXmlThread extends Thread {
 
 		public URL mUrl;
@@ -943,7 +946,7 @@ public void onClick(View v) {
 					mHandle.sendMessage(m);
 				}
 			};
-			timer2.schedule(timeTask, 5000);// ����֪ͨ���߳������ȡ��
+			timer2.schedule(timeTask, 5000);	//
 
 		}
 
@@ -966,7 +969,7 @@ public void onClick(View v) {
 			}
 		}
 
-		// �õ����
+		//
 		public static InputSource getInputSource() {
 			return is;
 		}

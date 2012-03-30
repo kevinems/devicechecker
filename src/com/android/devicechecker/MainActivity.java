@@ -54,6 +54,7 @@ public class MainActivity extends Activity{
 
 	private Button mTestWifi= null;
 	private Button mTestLcd = null;
+	private Button mTestLed = null;
 	private Button mTestKey = null;
 	private Button mTestGps = null;
 	private Button mTestGSeneor = null;
@@ -65,16 +66,11 @@ public class MainActivity extends Activity{
 	private Button mTestHDMI= null;
 	
 	private Button mTestCamera=null;
-	private Button mTestCameraSub=null;
 	private Button mTestOtg=null;
 	private Button mTestUsb=null;
-	private Button mTestStandardUsb=null;
-	private Button mTestSD = null;
-	private Button mTestclose=null;
-	
+	private Button mTestSD = null;	
 	private Button mGetCpuid=null;
 	private Button mTestBattery=null;
-	private Button mTestCheckSum=null;
 	private Button mTestTouchScreen=null;
 	
 	private TextView mVersion = null;
@@ -86,8 +82,8 @@ public class MainActivity extends Activity{
 	private Button mStartTest=null;
 	private Button mModeChange=null;
 	//private Button mLinkWanAgain=null;  		//
-    //private Button mReloadTest=null; 	//��ȡ������
-    //private Button mActiveMachine=null; //����
+    //private Button mReloadTest=null; 	//重取测试项
+    //private Button mActiveMachine=null; //激活
 	public LinkedList<Button> existitem=new LinkedList<Button>();
 	public LinkedList<Button> noexistitem=new LinkedList<Button>();
 	
@@ -95,43 +91,43 @@ public class MainActivity extends Activity{
     private AlertDialog.Builder mBuilderpass;
     private AlertDialog mAlertpass;
     private AlertDialog progressAlert;
-	public final static int DIALOG_ADMINSETTINGS=1;			//������������
-	public final static int DIALOG_ERROR=2;					//��������ʧ��
-	public final static int DIALOG_CONNECT_WIFI=3;			//����wifi
-	public final static int DIALOG_WIFI_ERROR=4;			//WIFI����ʧ��
-	public final static int DIALOG_GET_ID=5;				//ȡid
-	public final static int DIALOG_ID_NOINVALID=6;  		//���Ϸ�
-	public final static int DIALOG_GET_TEST_ITEM=7; 		//ȡ������
-	public final static int DIALOG_GET_TEST_ERROR=8; 		//ȡ������ʧ��
-	public final static int DIALOG_UP_TEST_STATUS=9;		//�ϴ�����״̬
-	public final static int DIALOG_UP_TEST_STATUS_ERROR=10; //�ϴ�����״̬ʧ��
-	public final static int DIALOG_UP_LOG=11;				//�ϴ�log
-	public final static int DIALOG_UP_LOG_ERROR=12;  		//�ϴ�logʧ��
-	public final static int DIALOG_START_ACTIVE=13;			//��ʼ����
-	public final static int DIALOG_START_ACTIVE_ERROR=14;  	//����ʧ��
-	public final static int DIALOG_ACTIVE_CONFRIM=15;       // ����ȷ��
-	public final static int DIALOG_ACTIVE_CONFRIM_ERROR=16;       // ����ȷ��
-	public final static int DIALOG_QUIT=17;					//ȷ���˳�
+	public final static int DIALOG_ADMINSETTINGS=1;			//弹出输入密码
+	public final static int DIALOG_ERROR=2;					//输入密码失败
+	public final static int DIALOG_CONNECT_WIFI=3;			//连接wifi
+	public final static int DIALOG_WIFI_ERROR=4;			//WIFI连接失败
+	public final static int DIALOG_GET_ID=5;				//取id
+	public final static int DIALOG_ID_NOINVALID=6;  		//不合法
+	public final static int DIALOG_GET_TEST_ITEM=7; 		//取测试项
+	public final static int DIALOG_GET_TEST_ERROR=8; 		//取测试项失败
+	public final static int DIALOG_UP_TEST_STATUS=9;		//上传测试状态
+	public final static int DIALOG_UP_TEST_STATUS_ERROR=10; //上传测试状态失败
+	public final static int DIALOG_UP_LOG=11;				//上传log
+	public final static int DIALOG_UP_LOG_ERROR=12;  		//上传log失败
+	public final static int DIALOG_START_ACTIVE=13;			//开始激活
+	public final static int DIALOG_START_ACTIVE_ERROR=14;  	//激活失败
+	public final static int DIALOG_ACTIVE_CONFRIM=15;       // 激活确认
+	public final static int DIALOG_ACTIVE_CONFRIM_ERROR=16;       // 激活确认
+	public final static int DIALOG_QUIT=17;					//确认退出
 	
 	public static final String PSK = "PSK";
 	public static final String WEP = "WEP";
 	public static final String EAP = "EAP";
 	public static final String OPEN = "Open";
 	
-	Timer mTimer;      //���
+	Timer mTimer;      //检测
 	TimerTask mTask;
 	
 	private WifiManager mWifiManager;
     private WifiInfo mWifiInfo;
-    private int connetcount=0;   		//���Ӽ���
-    private int UpOrDownDataTime=10;	//�ϴ����������ʱ��
-    private int searchcount=0;   		//����TTPP-LLIIKK����
+    private int connetcount=0;   		//连接计数
+    private int UpOrDownDataTime=10;	//上传或下载数据时间
+    private int searchcount=0;   		//搜索TTPP-LLIIKK计数
     private UpTestItem mThread;
  	private InputSource isSource =null;
  	private String retStr=null;
  	private int nRet;
     
-    //��ʾ��Ϣ���� ��ť
+    //提示信息文字 按钮
     TextView mTipsText;
     Button mTipsButton;
     
@@ -214,6 +210,7 @@ public class MainActivity extends Activity{
     	
     	mTestWifi = (Button)findViewById(R.id.test_wifi);
     	mTestLcd = (Button)findViewById(R.id.test_lcd);
+    	mTestLed = (Button)findViewById(R.id.test_led);
     	mTestKey = (Button)findViewById(R.id.test_key);
     	mTestGps = (Button)findViewById(R.id.test_gps);
     	mTestGSeneor = (Button)findViewById(R.id.test_GSensor);
@@ -223,16 +220,12 @@ public class MainActivity extends Activity{
     	mTestRecoder = (Button)findViewById(R.id.test_record);
     	mTestHDMI = (Button)findViewById(R.id.test_HDMI); 
     	mTestCamera=(Button)findViewById(R.id.test_carema); 	
-    	mTestCameraSub=(Button)findViewById(R.id.test_caremaSub); 
     	mTestOtg=(Button)findViewById(R.id.test_otg);
     	mTestUsb=(Button)findViewById(R.id.test_usb);
-    	mTestStandardUsb=(Button)findViewById(R.id.test_standard_usb);
     	mTestSD=(Button)findViewById(R.id.test_sd);
-    	mTestclose = (Button)findViewById(R.id.test_close);	
     	mTestBattery = (Button)findViewById(R.id.test_battery);	
     	//mTestRtc = (Button)findViewById(R.id.test_Rtc);
     	mGetCpuid=(Button)findViewById(R.id.test_cpuid);
-    	mTestCheckSum=(Button)findViewById(R.id.test_checksum);
     	mTestTouchScreen=(Button)findViewById(R.id.test_touch_screen);
     	
     	
@@ -261,6 +254,13 @@ public class MainActivity extends Activity{
     	mTestLcd.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				mIntent = new Intent(MainActivity.this, TestColor.class);
+				startActivity(mIntent);
+			}
+		});
+    	
+    	mTestLed.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				mIntent = new Intent(MainActivity.this, testLed.class);
 				startActivity(mIntent);
 			}
 		});
@@ -326,13 +326,6 @@ public class MainActivity extends Activity{
 			}
 		});
     	
-    	mTestCameraSub.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, CameraSubActivity.class);
-				startActivity(mIntent);
-			}
-		});
-    	
     	mTestOtg.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				mIntent = new Intent(MainActivity.this, OtgActivity.class);
@@ -347,13 +340,6 @@ public class MainActivity extends Activity{
 			}
 		});
     	
-    	mTestStandardUsb.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, StandardUsbActivity.class);
-				startActivity(mIntent);
-			}
-		});
-    	
     	mTestSD.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				mIntent = new Intent(MainActivity.this, sdcardactivity.class);
@@ -361,12 +347,7 @@ public class MainActivity extends Activity{
 			}
 		});
     	
-    	mTestclose.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, SleepWakeActivity.class);
-				startActivity(mIntent);
-			}
-		});
+
     	mGetCpuid.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -383,16 +364,9 @@ public class MainActivity extends Activity{
 			}
 		});
     	
-    	mTestCheckSum.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, CheckSumActivity.class);
-				startActivity(mIntent);
-			}
-		});
-    	
     	mTestBattery.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, TsTestActivity.class);
+				mIntent = new Intent(MainActivity.this, TestBatteryActivity.class);
 				startActivity(mIntent);
 			}
 		});
@@ -489,16 +463,12 @@ public class MainActivity extends Activity{
                
         	FileOperate.setCurmode(true);
         	FileOperate.curTestItem=0;
-        	FileOperate.restartTest(this);
-        	
-        	
+        	FileOperate.restartTest(this);   	
         	
         	//mIntent = new Intent(MainActivity.this, WifiActivity.class);
         	mIntent=FileOperate.getCurIntent(MainActivity.this,null);
     		startActivity(mIntent);
 		}else {
-			//setContentView(R.layout.main);
-            //initButton();   
             FileOperate.CreateFile(this);
             FileOperate.readFromFile(this);
                
@@ -575,6 +545,8 @@ public class MainActivity extends Activity{
 				v=mTestWifi;
 			}else if (i==FileOperate.TestItemColor) {
 				v=mTestLcd;
+			}else if (i==FileOperate.TestItemLed) {
+				v=mTestLed;
 			}else if (i==FileOperate.TestItemKey) {
 				v=mTestKey;
 			}else if (i==FileOperate.TestItemGps){
@@ -593,24 +565,16 @@ public class MainActivity extends Activity{
 				v=mTestHDMI;
 			}else if(i==FileOperate.TestItemCamera){
 				v=mTestCamera;
-			}else if(i==FileOperate.TestItemCameraSub){
-				v=mTestCameraSub;
 			}else if(i==FileOperate.TestItemOtg){
 				v=mTestOtg;
 			}else if(i==FileOperate.TestItemUsb){
 				v=mTestUsb;
-			}else if(i==FileOperate.TestItemStandardUsb){
-				v=mTestStandardUsb;
 			}else if(i==FileOperate.TestItemSd){
 				v=mTestSD;
-			}else if (i==FileOperate.TestItemClose) {
-				v=mTestclose;
 			}else if (i==FileOperate.TestItemCpu){
 				v=mGetCpuid;
 			}else if (i==FileOperate.TestItemBattery){
 				v=mTestBattery;
-			}else if (i==FileOperate.TestItemCheckSum){
-				v=mTestCheckSum;
 			}else if (i==FileOperate.TestItemTouchScreen){
 				v=mTestTouchScreen;
 			}
@@ -650,7 +614,7 @@ public class MainActivity extends Activity{
     	
     	//openLoginDlg(DIALOG_UP_TEST_STATUS);
     	
-    	/*//��ʼ����
+    	/*//开始激活
     	if (FileOperate.testAllSuccess()) {
     		
 		}  	*/
@@ -768,13 +732,13 @@ public class MainActivity extends Activity{
 			  TimerTask task = new TimerTask(){
 			        public void run() {
 			            // TODO Auto-generated method stub
-			            //�������̰߳�ȫ��ҳ��ĸ�����ŵ����߳���
+			            //由于主线程安全，页面的更新需放到主线程中
 			            Message message = new Message();      
 			            message.what = ParseSeverData.CONNECT_WIFI;      
 			            mhHandler.sendMessage(message);    
 			        }
 			    }; 
-			    mTimer.schedule(task, 1000*2, 1000*2);//timer�����������һ��ʹ��  �������������� ��Ȼtimerֻ��һ��
+			    mTimer.schedule(task, 1000*2, 1000*2);//timer必须和任务在一起使用  必须设三个参数的 不然timer只来一次
 			    connetcount=0;
 		}else if (id==DIALOG_WIFI_ERROR) {
 			LayoutInflater inflater = LayoutInflater.from(this);
@@ -818,7 +782,7 @@ public class MainActivity extends Activity{
     	return dialog;
     }
     
-    //�رս�ȶԻ���
+	//关闭进度对话框
     public void closeProgressAlert(){
     	
     	if (progressAlert!=null) {
@@ -842,7 +806,7 @@ public class MainActivity extends Activity{
     }
     
     
-    //������ʾ�������
+  //更新显示测试项布局
     public void refreashTestItemLayout(){
     		
     		existitem.clear();
@@ -862,6 +826,12 @@ public class MainActivity extends Activity{
 				//existitem.add(mTestLcd);
 			}else {
 				noexistitem.add(mTestLcd);
+			}
+			
+			if (FileOperate.existTestItem("Led")) {
+				//existitem.add(mTestLcd);
+			}else {
+				noexistitem.add(mTestLed);
 			}
 			
 			if (FileOperate.existTestItem("Key")) {
@@ -918,12 +888,6 @@ public class MainActivity extends Activity{
 				noexistitem.add(mTestCamera);
 			}
 			
-			if (FileOperate.existTestItem("CameraSub")) {
-				//existitem.add(mTestCamera);
-			}else {
-				noexistitem.add(mTestCameraSub);
-			}
-			
 			if (FileOperate.existTestItem("Otg")) {
 				//existitem.add(mTestOtg);
 			}else {
@@ -935,23 +899,11 @@ public class MainActivity extends Activity{
 			}else {
 				noexistitem.add(mTestUsb);
 			}
-			
-			if (FileOperate.existTestItem("StandardUsb")) {
-				//existitem.add(mTestUsb);
-			}else {
-				noexistitem.add(mTestStandardUsb);
-			}
-			
+					
 			if (FileOperate.existTestItem("Sd")) {
 				//existitem.add(mTestSD);
 			}else {
 				noexistitem.add(mTestSD);
-			}
-			
-			if (FileOperate.existTestItem("Sleep-Awake")) {
-				//existitem.add(mTestclose);
-			}else {
-				noexistitem.add(mTestclose);
 			}
 			
 			if (FileOperate.existTestItem("GetCpuID")) {
@@ -964,12 +916,6 @@ public class MainActivity extends Activity{
 				//existitem.add(mTestclose);
 			}else {
 				noexistitem.add(mTestBattery);
-			}
-			
-    		if (FileOperate.existTestItem("CheckSum")) {
-				//existitem.add(mTestclose);
-			}else {
-				noexistitem.add(mTestCheckSum);
 			}
     		
     		if (FileOperate.existTestItem("TouchScreen")) {
@@ -985,6 +931,8 @@ public class MainActivity extends Activity{
     				existitem.add(mTestWifi);
     			}else if (curString.equals("Screen_Color")) {
     				existitem.add(mTestLcd);
+    			}else if (curString.equals("Led")) {
+    				existitem.add(mTestLed);
     			}else if (curString.equals("Key")) {
     				existitem.add(mTestKey);
     			}else if (curString.equals("Gps")) {
@@ -1004,24 +952,16 @@ public class MainActivity extends Activity{
     				existitem.add(mTestHDMI);
     			}else if (curString.equals("Camera")) {
     				existitem.add(mTestCamera);
-    			}else if (curString.equals("CameraSub")) {
-    				existitem.add(mTestCameraSub);
     			}else if (curString.equals("Otg")) {
     				existitem.add(mTestOtg);
     			}else if (curString.equals("Usb")) {
     				existitem.add(mTestUsb);
-    			}else if (curString.equals("StandardUsb")) {
-    				existitem.add(mTestStandardUsb);
     			}else if (curString.equals("Sd")) {
     				existitem.add(mTestSD);
-    			}else if (curString.equals("Sleep-Awake")) {
-    				existitem.add(mTestclose);
     			}else if (curString.equals("GetCpuID")){
     				existitem.add(mGetCpuid);
     			}else if (curString.equals("Battery")){
     				existitem.add(mTestBattery);
-    			}else if (curString.equals("CheckSum")){
-    				existitem.add(mTestCheckSum);
     			}else if (curString.equals("TouchScreen")){
     				existitem.add(mTestTouchScreen);
     			}
@@ -1029,7 +969,7 @@ public class MainActivity extends Activity{
     		
 			
 			for (int i = 0; i < existitem.size(); i++) {
-				switch (i/10) {
+				switch (i/6) {
 				case 0:
 				{
 					existitem.get(i).setVisibility(View.VISIBLE);
@@ -1062,7 +1002,7 @@ public class MainActivity extends Activity{
     
     
     
-    //wifi�ӿ�
+    //wifi鎺ュ彛
     public void setWifi(){
 		WifiManager wifiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);
 		wifiManager.setWifiEnabled(true);	
@@ -1122,7 +1062,7 @@ public class MainActivity extends Activity{
 			}
 		}
     	
-    	//����10��
+    	//搜索10次
     	searchcount++;
     	if(index==count&&searchcount<=10){
     		mhHandler.postDelayed(mRunnable, 2000);
@@ -1192,7 +1132,7 @@ public class MainActivity extends Activity{
  	   mWifiInfo = mWifiManager.getConnectionInfo();
  	   if (mWifiInfo!=null) {
  		appname=mWifiInfo.getSSID();
- 		macaddr=mWifiInfo.getMacAddress(); //����mac��ַ
+ 		macaddr=mWifiInfo.getMacAddress(); //机器mac地址
  		ipaddrInt=mWifiInfo.getIpAddress();
  		ipaddrStr=intToIp(ipaddrInt);
  		if (appname!=null && macaddr!=null && (!ipaddrStr.equals("0.0.0.0"))) {
@@ -1235,7 +1175,7 @@ public class MainActivity extends Activity{
 	}
 	
     
-    //����wifi״̬
+    //设置wifi状态
     private void setWifiStatus(){
     	int[] SINGAL_LEVEL = { R.drawable.stat_sys_wifi_signal_0,
 				R.drawable.stat_sys_wifi_signal_1,
@@ -1283,7 +1223,7 @@ public class MainActivity extends Activity{
     }
     
     /**  
-     * ���ص�ǰ����汾��  
+     * 返回当前程序版本名  
      */  
     public static String getAppVersionName(Context context) {   
         String versionName = "";   

@@ -16,7 +16,7 @@ public class SDCard{
 	 private OnListener mListener;  
 	 private Context mContext;	
 	 public interface OnListener{    	
-	        public void onSDCardChanged(int nState);//1 Ϊ���ӣ�0Ϊ�Ͽ�
+	        public void onSDCardChanged(int nState);//1 为连接，0为断开
 	 }  
 	 
 
@@ -72,16 +72,16 @@ public class SDCard{
 		}
 		 
 	 }
-	 //д����
+	 //写测试
 	 public void SDCardWriteTest(String FileName,String data) throws Exception
 	 {
 		    String SdStateString =android.os.Environment.getExternalStorageState();
-			// ӵ�пɶ���дȨ��
+			// 拥有可读可写权限
 			 if(SdStateString.equals(android.os.Environment.MEDIA_MOUNTED))
 			 {
 				try{
 			
-				 //����
+				 //创建
 				 File SDFile = android.os.Environment.getExternalStorageDirectory();
 				 File myFile=new File(SDFile.getAbsolutePath()+ File.separator+FileName);
 				 if(myFile.exists())
@@ -92,7 +92,7 @@ public class SDCard{
 				 myFile.createNewFile();
 				 
 				 
-				 //д���
+				 //写数据
 				 String szOutText=data;
 				 FileOutputStream outputStream=new FileOutputStream(myFile);
 				 outputStream.write(szOutText.getBytes());
@@ -108,16 +108,16 @@ public class SDCard{
 			 }
 			 
 	 }
-	 //������
+	 //读测试
 	 public String  SDCardReadTest(String FileName) throws Exception
 	 {
 		 String data=null;
 		 String SdStateString =android.os.Environment.getExternalStorageState();
-		//��
+		//读
 			if(SdStateString.equals(android.os.Environment.MEDIA_MOUNTED_READ_ONLY))
 			{
 				
-				//����
+				//创建
 				 File SDFile = android.os.Environment.getExternalStorageDirectory();
 				 File myFile=new File(SDFile.getAbsolutePath()+ File.separator+FileName);
 				
@@ -143,7 +143,7 @@ public class SDCard{
 			return data;
 			 
 	 }
-	 //Io��д����
+	 //Io读写测试
 	 public  boolean SDCardIOTest(String data) throws Exception
 	 {
 		 try {
@@ -166,27 +166,27 @@ public class SDCard{
 		 return false;
 		 
 	 }
-	 //��ȡ���Ĵ�С
+	 //获取卡的大小
 	 public long SDCardSizeTest() 
 	 {
-		 // ȡ��SDCard��ǰ��״̬
+		 // 取得SDCard当前的状态
 		 String sDcString = android.os.Environment.getExternalStorageState();
 		 if (sDcString.equals(android.os.Environment.MEDIA_MOUNTED)) 
 		 {
-		// ȡ��sdcard�ļ�·��	 
+		// 取得sdcard文件路径	 
 		File pathFile = android.os.Environment.getExternalStorageDirectory();
 		android.os.StatFs statfs = new android.os.StatFs(pathFile.getPath());
-		// ��ȡSDCard��BLOCK����
+		// 获取SDCard上BLOCK总数
 		long nTotalBlocks = statfs.getBlockCount();
-		// ��ȡSDCard��ÿ��block��SIZE
+		// 获取SDCard上每个block的SIZE
 		long nBlocSize = statfs.getBlockSize();
-		// ��ȡ�ɹ�����ʹ�õ�Block������
+		// 获取可供程序使用的Block的数量
 		long nAvailaBlock = statfs.getAvailableBlocks();
-		// ��ȡʣ�µ�����Block������(����Ԥ����һ������޷�ʹ�õĿ�)
+		// 获取剩下的所有Block的数量(包括预留的一般程序无法使用的块)
 		long nFreeBlock = statfs.getFreeBlocks();
-		// ����SDCard ��������СMB
+		// 计算SDCard 总容量大小MB
 		long nSDTotalSize = nTotalBlocks * nBlocSize / 1024 / 1024;
-		// ���� SDCard ʣ���СMB
+		// 计算 SDCard 剩余大小MB
 		long nSDFreeSize = nAvailaBlock * nBlocSize / 1024 / 1024;
 		return nSDFreeSize;
 	    }// end of if

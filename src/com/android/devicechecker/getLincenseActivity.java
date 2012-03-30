@@ -169,7 +169,7 @@ public class getLincenseActivity extends Activity {
 		}
 	}
 
-	// ���õ�ǰ�ļ�
+	// 设置当前文件
 	private int setCurwriteFile() {
 		try {
 			if ((!fileisExist(LICENSE_PATH1)) && (!fileisExist(LICENSE_PATH2))) {

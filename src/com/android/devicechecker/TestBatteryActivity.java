@@ -28,7 +28,7 @@ public class TestBatteryActivity extends Activity{
 	private TextView mStatus = null;
 	private TextView mLevel = null;
 	
-	boolean checkOk=false;	//�Ƿ��ǳɹ�
+	boolean checkOk=false;	//是否是成功
 	
 	private PreferenceManager mPreferenceManager;
 	@Override

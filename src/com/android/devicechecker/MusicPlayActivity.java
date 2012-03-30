@@ -54,7 +54,7 @@ public class MusicPlayActivity extends Activity {
 	private static final int CHECK_SEEKBAR=0x1;
 	
 	private AlertDialog progressAlert;
-	boolean checkOk=false;	//�Ƿ��ǳɹ�
+	boolean checkOk=false;	//是否是成功
 	private void setValue(int value){
 		FileOperate.setIndexValue(FileOperate.TestItemAudio, value);
 		FileOperate.writeToFile(this);
@@ -149,13 +149,13 @@ public class MusicPlayActivity extends Activity {
 		  TimerTask task = new TimerTask(){
 		        public void run() {
 		            // TODO Auto-generated method stub
-		            //�������̰߳�ȫ��ҳ��ĸ�����ŵ����߳���
+		            //由于主线程安全，页面的更新需放到主线程中
 		            Message message = new Message();      
 		            message.what = CHECK_SEEKBAR;      
 		            handler.sendMessage(message);    
 		        }
 		    }; 
-		   timer.schedule(task, 1000*1, 1000*1);//timer�����������һ��ʹ��  �������������� ��Ȼtimerֻ��һ��
+		   timer.schedule(task, 1000*1, 1000*1);//timer必须和任务在一起使用  必须设三个参数的 不然timer只来一次
 	}
 	
 	public void setSeekBarpos(SeekBar seekBar){
@@ -238,7 +238,7 @@ public class MusicPlayActivity extends Activity {
 			mYes.setText(R.string.check_ok);
 			MultiPlayer.setdefVolume();
 			
-			//��ʼ�����
+			//开始检测耳机
 			mHeadSet=new HeadSet(getApplicationContext());
 			mHeadSet.Start();
 			m_HeadSetListerer = new HeadSet.OnListener(){

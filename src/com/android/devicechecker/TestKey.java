@@ -38,7 +38,7 @@ public class TestKey extends Activity{
 	private Button mNo=null;
 	
 	private AlertDialog progressAlert;
-	boolean checkOk=false;	//�Ƿ��ǳɹ�
+	boolean checkOk=false;	//是否是成功
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -76,7 +76,7 @@ public class TestKey extends Activity{
 	}
 	
 
-	// ����Home��
+	// 屏蔽Home键
 	 @Override
 	 public void onAttachedToWindow() {
 	 this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);

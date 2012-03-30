@@ -368,7 +368,7 @@ public class RtcActivity extends Activity{
 		resolver.delete(CONTENT_URI_MESSAGE, "appcls = ?", new String[]{"22"});
 	}
 	
-	//�õ���ǰʱ��
+	//得到当前时间
 	private String GetCurTime() {
 		
 		ContentResolver cv = getContentResolver();

@@ -208,7 +208,7 @@ class Base64 {
 	  }
 	  
 	  public static void main(String[] args) {
-	        String codeStr = "锟叫伙拷锟斤拷锟今共和癸拷";
+		    String codeStr = "中华人民共和国";
 	        byte[] codeByteArr = codeStr.getBytes();
 	        byte[] encodeByteArr = Base64.encode(codeByteArr);
 	        String encodeStr = new String(encodeByteArr);

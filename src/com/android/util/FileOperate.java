@@ -18,28 +18,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.android.devicechecker.CameraActivity;
-import com.android.devicechecker.CameraSubActivity;
-import com.android.devicechecker.CheckSumActivity;
-import com.android.devicechecker.GpsActivity;
-import com.android.devicechecker.HDMIActivity;
-import com.android.devicechecker.MediaPlayerVideo;
-import com.android.devicechecker.MediaRecoderactivity;
-import com.android.devicechecker.MiniUsbActivity;
-import com.android.devicechecker.MusicPlayActivity;
-import com.android.devicechecker.R;
-import com.android.devicechecker.SleepWakeActivity;
-import com.android.devicechecker.StandardUsbActivity;
-import com.android.devicechecker.TestBatteryActivity;
-import com.android.devicechecker.TestColor;
-import com.android.devicechecker.TestGSensor;
-import com.android.devicechecker.TestKey;
-import com.android.devicechecker.TestVibrator;
-import com.android.devicechecker.TsTestActivity;
-import com.android.devicechecker.WifiActivity;
-import com.android.devicechecker.getLincenseActivity;
-import com.android.devicechecker.sdcardactivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -53,12 +31,31 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.devicechecker.CameraActivity;
+import com.android.devicechecker.GpsActivity;
+import com.android.devicechecker.HDMIActivity;
+import com.android.devicechecker.MediaPlayerVideo;
+import com.android.devicechecker.MediaRecoderactivity;
+import com.android.devicechecker.MiniUsbActivity;
+import com.android.devicechecker.MusicPlayActivity;
+import com.android.devicechecker.R;
+import com.android.devicechecker.TestBatteryActivity;
+import com.android.devicechecker.TestColor;
+import com.android.devicechecker.TestGSensor;
+import com.android.devicechecker.TestKey;
+import com.android.devicechecker.TestVibrator;
+import com.android.devicechecker.TsTestActivity;
+import com.android.devicechecker.WifiActivity;
+import com.android.devicechecker.getLincenseActivity;
+import com.android.devicechecker.sdcardactivity;
+import com.android.devicechecker.testLed;
+
 public class FileOperate {
-	private static String FILE_DIR ="data/data/smit.com.factorytest/files/log.bin";	
-	private static String FILE_DIR2 ="data/data/smit.com.factorytest/files/testvideo.3gp";
-	private static String FILE_PATH ="log.bin";		//�Լ�����log
-	private static String FILE_PATH_XML ="data/data/smit.com.factorytest/files/log.xml";//���������log
-	private static String TEST_ITEM_FILE ="data/data/smit.com.factorytest/files/testitemfile.xml";//�������ļ�
+	private static String FILE_DIR ="data/data/com.android.util/files/log.bin";	
+	public static String FILE_RECORD_AUDIO ="record_audio.3gp";		//record file created in record test
+	private static String FILE_PATH ="log.bin";		//log file
+	private static String FILE_PATH_XML ="data/data/com.android.util/files/log.xml";//浼犵粰鏈嶅姟鍣╨og
+	private static String TEST_ITEM_FILE ="data/data/com.android.util/files/testitemfile.xml";//娴嬭瘯椤规枃浠�
 	private static final String PRODUCT_PATH="/test_config.xml"; 
 	public static final String sdCradPathTelechips=Environment.getExternalStorageDirectory()+"/tflash/";
 	//public static final String sdCradPathNv=Environment.getExternalStorageDirectory()+"/extsd/";
@@ -71,7 +68,7 @@ public class FileOperate {
 	private static byte[] buffer = new byte[100];
 	public static int testCount=21;
 	public static int curTestItem=0;
-	public static boolean testmode=false;		//true �ǲ���ģʽ
+	public static boolean testmode=false;		//true 鏄祴璇曟ā寮�
 	
 	public static final int TestItemWifi=0;
 	public static final int TestItemColor=1;
@@ -94,19 +91,20 @@ public class FileOperate {
 	public static final int TestItemBattery=18;
 	public static final int TestItemCheckSum=19;
 	public static final int TestItemTouchScreen=20;
+	public static final int TestItemLed=21;
 	
 	public static final int TestItemRTC=100;
     
 	
     
-    public static String []TestItemStr={"Wifi","Screen_Color","Key","Gps","GSensor",
+    public static String []TestItemStr={"Wifi","Screen_Color", "Led", "Key","Gps","GSensor",
     									"Vibrator","Audio","Video","Record","HDMI",
-    									"Camera","CameraSub","Otg", "Usb", "StandardUsb", "Sd","Sleep-Awake", "Battery", "CheckSum", "TouchScreen" /*,"GetCpuID"*/};
+    									"Camera","Otg"/*, "Usb", "Sd"*/, "Battery", "TouchScreen" /*,"GetCpuID"*/};
     
-    //��ǰ��Ҫ���Ե���Ŀ
-    public static String []curtestItem={"Screen_Color", "TouchScreen", "Camera","CameraSub","GSensor","Vibrator",
-		/*"Video",*/"HDMI","Record",/*"Otg",*/"Usb", "StandardUsb", "Sd",
-		"Battery","Wifi","Key","Sleep-Awake","CheckSum"/*,"GetCpuID"*/};
+    //褰撳墠闇�娴嬭瘯鐨勯」鐩�
+    public static String []curtestItem={"Screen_Color", "Led", "TouchScreen", "Camera","GSensor","Vibrator",
+		/*"Video",*/"HDMI","Record",/*"Otg",*//*"Usb", "Sd",*/
+		"Battery","Wifi","Key"/*,"GetCpuID"*/};
 	
 	public static int CHECK_NULL=0;
 	public static int CHECK_SUCCESS=1;
@@ -119,12 +117,12 @@ public class FileOperate {
 	public static int TEST_MODE_ITEM=1;
 	public static int curStatus=TEST_MODE_ALL;
 	
-	//�̶�ip
+	//鍥哄畾ip
 	public static  String AP_NAME="\"TTPP-LLIINNKK\"";
 	//public static  String AP_PASSWORD="12341234";
 	public static  String AP_PASSWORD="43214321";
 	
-	//�ϴ�������
+	//涓婁紶娴嬭瘯椤�
 	public static final int DIALOG_UP_TEST_ITEM=0x100;
 	
 	public static Intent mIntent;
@@ -172,7 +170,7 @@ public class FileOperate {
 		return 0;
 	}
 	
-	//�Ƿ����ȫ���ɹ�
+	//鏄惁娴嬭瘯鍏ㄩ儴鎴愬姛
 	public static boolean testAllSuccess(){
 		int i=0,count=TestInfoInfo.size(),index;
 		
@@ -193,7 +191,7 @@ public class FileOperate {
 	
 	
 	
-	//״̬ת��Ϊ��
+	//鐘舵�杞寲涓轰覆
 	public static String testStatusToStr(int status){
 		if (status==CHECK_SUCCESS) {
 			return CHECK_SUCCESS_STR;
@@ -204,7 +202,7 @@ public class FileOperate {
 		}
 	}
 	
-	//�õ���״̬
+	//寰楀埌鎬荤姸鎬�
 	public static int getTestSttus(){
 		int currstatus,count=TestInfoInfo.size();
 		for (int i = 0; i < count; i++) {
@@ -234,7 +232,7 @@ public class FileOperate {
 		return curTestItem;
 	}
 	
-	//flag ��Ϊ��
+	//flag 鐪熶负鍔�
 	public static void setCurTest(boolean flag){
 		if (flag) {
 			if (curTestItem<(testCount-1)) {
@@ -308,7 +306,7 @@ public class FileOperate {
     }
     
   
-    //���������������xml
+    //璇诲嚭浼犵粰鏈嶅姟鍣ㄧ殑xml
     public static String ReadXML(){
     	InputStream is=null;
     	 byte[] data=new byte[1000];
@@ -333,7 +331,7 @@ public class FileOperate {
     }
     
     
-    //������ȡ���
+    //鎺у埗鍣ㄥ彇鏁版嵁
     public static String runCmd(String cmd, boolean respond)
 	{
 		StringBuffer result = new StringBuffer();
@@ -390,7 +388,7 @@ public class FileOperate {
 		}
 	}
     
-    //����ģʽ
+    //涓ょ妯″紡
     static public int getCurMode(){
     	return curStatus;
     }
@@ -404,7 +402,7 @@ public class FileOperate {
     
     
     
-  //д������xml�ļ�   �ӷ������õ���
+  //鍐欐祴璇曢」xml鏂囦欢   浠庢湇鍔″櫒寰楀埌鐨�
     public static void WriteTestItemXML(String str){
     	
     	File existFile = new File(TEST_ITEM_FILE);
@@ -441,7 +439,7 @@ public class FileOperate {
         } 	
     }
     
-    //����дItem�ļ�
+    //娴嬭瘯鍐橧tem鏂囦欢
     public static void TestWriteFile(String str){
     	String string=str;
     	//string="<global><item>Wifi</item><item>Screen_Color</item><item>GSensor</item><item>Audio</item></global>";  	
@@ -470,7 +468,7 @@ public class FileOperate {
      		
      		TestInfoInfo.clear();
      			
-     		for (int i = 0; i < itemcount; i++) {//����item
+     		for (int i = 0; i < itemcount; i++) {//鎵�湁item
      			Node item = n.item(i);			
      			sNodeName=item.getChildNodes().item(0).getNodeValue(); 	
      			TestInfoInfo.add(sNodeName);
@@ -480,7 +478,7 @@ public class FileOperate {
 			Log.e(Tag, "====xml parse error===="+e.toString());
 		}		
     }
-    //�治���ڲ����ļ�
+    //瀛樹笉瀛樺湪娴嬭瘯鏂囦欢
     public static boolean isExistTestItemFile(){
     	File TestItemFile = new File(TEST_ITEM_FILE);	
     	if (TestItemFile.exists()) {
@@ -490,7 +488,7 @@ public class FileOperate {
 		}	
     }
     
-    //�õ�������
+    //寰楀埌娴嬭瘯椤�
     public static String getCurTestItem(int index){
     	if(TestInfoInfo!=null){
     		return TestInfoInfo.get(index);
@@ -499,7 +497,7 @@ public class FileOperate {
 		}
     }
     
-    //�õ����Ը���
+    //寰楀埌娴嬭瘯涓暟
     public static int getTestItemCount(){
     	if(TestInfoInfo!=null){
     		return TestInfoInfo.size();
@@ -508,7 +506,7 @@ public class FileOperate {
 		}
     }
     
-    //�õ���һ�������
+    //寰楀埌涓嬩竴椤规祴璇曢」
     static public String getNextTestStr(String curTestItemStr){
     	int i=0;
     	int count=getTestItemCount();
@@ -528,7 +526,7 @@ public class FileOperate {
 			return TestInfoInfo.get(i+1);
 		}
     }
-    //����һ�����   curTestItemStrΪ�ղ��һ��
+    //鍒颁笅涓�」娴嬭瘯   curTestItemStr涓虹┖娴嬬涓�」
     public static Intent getCurIntent(Context mContext, String curTestItemStr){
     	String str; 
     	
@@ -550,7 +548,7 @@ public class FileOperate {
     	
     }
     	
-    //�õ�������intent
+    //寰楀埌娴嬭瘯椤筰ntent
     public static Intent getItemIntent(Context mContext, String curTestItemStr){
     	mIntent=null;
     	
@@ -558,6 +556,8 @@ public class FileOperate {
     		mIntent=new Intent(mContext.getApplicationContext(), WifiActivity.class);
 		}else if(curTestItemStr.equals("Screen_Color")){
 			mIntent=new Intent(mContext.getApplicationContext(), TestColor.class);
+		}else if(curTestItemStr.equals("Led")){
+			mIntent=new Intent(mContext.getApplicationContext(), testLed.class);
 		}else if(curTestItemStr.equals("Key")){
 			mIntent=new Intent(mContext.getApplicationContext(), TestKey.class);
 		}else if(curTestItemStr.equals("Gps")){
@@ -583,23 +583,11 @@ public class FileOperate {
 		else if(curTestItemStr.equals("Camera")){
 			mIntent=new Intent(mContext.getApplicationContext(), CameraActivity.class);
 		}
-		else if(curTestItemStr.equals("CameraSub")){
-			mIntent=new Intent(mContext.getApplicationContext(), CameraSubActivity.class);
-		}
-//		else if(curTestItemStr.equals("Otg")){
-//			mIntent=new Intent(mContext.getApplicationContext(), OtgActivity.class);
-//		}
 		else if(curTestItemStr.equals("Usb")){
 			mIntent=new Intent(mContext.getApplicationContext(), MiniUsbActivity.class);
 		}
-		else if(curTestItemStr.equals("StandardUsb")){
-			mIntent=new Intent(mContext.getApplicationContext(), StandardUsbActivity.class);
-		}
 		else if(curTestItemStr.equals("Sd")){
 			mIntent=new Intent(mContext.getApplicationContext(), sdcardactivity.class);
-		}
-		else if(curTestItemStr.equals("Sleep-Awake")){
-			mIntent=new Intent(mContext.getApplicationContext(), SleepWakeActivity.class);
 		}
 		else if(curTestItemStr.equals("Battery")){
 			mIntent=new Intent(mContext.getApplicationContext(), TestBatteryActivity.class);
@@ -607,8 +595,6 @@ public class FileOperate {
 		else if(curTestItemStr.equals("GetCpuID")){
 			mIntent=new Intent(mContext.getApplicationContext(), getLincenseActivity.class);
 		}
-		else if(curTestItemStr.equals("CheckSum")){
-			mIntent=new Intent(mContext.getApplicationContext(), CheckSumActivity.class);}
 		else if(curTestItemStr.equals("TouchScreen")){
 			mIntent=new Intent(mContext.getApplicationContext(), TsTestActivity.class);
 		}else {
@@ -620,7 +606,7 @@ public class FileOperate {
    
     
     
-    //�������Ƿ����
+    //娴嬭瘯椤规槸鍚﹀瓨鍦�
     public static boolean existTestItem(String str){
     	int i=0;
     	int count=getTestItemCount();
@@ -641,7 +627,7 @@ public class FileOperate {
 		}
     }
     
-    //��ʱ����
+    //瓒呮椂閿欒
     public static void UpErrorTips(Context mContext){
     		ConnectivityManager conMan = (ConnectivityManager) mContext.getSystemService(mContext.CONNECTIVITY_SERVICE);
     		NetworkInfo.State wifi = (conMan

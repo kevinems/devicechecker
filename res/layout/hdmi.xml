@@ -39,7 +39,7 @@
         >
 			
 		<Button android:id="@+id/but_nook" 
-			android:layout_width="@dimen/test_item_bottom_button_width"
+			android:layout_width="@dimen/test_item_bottom_button_width2"
 			android:layout_height="@dimen/test_item_bottom_button_heith"
 			android:text="@string/check_nook"
 				android:textSize="@dimen/test_item_tips_text_size"
@@ -48,7 +48,7 @@
 		
 		<LinearLayout 
 		android:orientation="vertical"
-		android:layout_width="@dimen/test_item_bottom_button_width"
+		android:layout_width="@dimen/test_item_bottom_button_width2"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="@dimen/test_item_button_magin_left"
         >	
@@ -73,7 +73,7 @@
 		android:gravity="right"
         >		
 		<Button android:id="@+id/but_ok" 
-			android:layout_width="@dimen/test_item_bottom_button_width"
+			android:layout_width="@dimen/test_item_bottom_button_width2"
 			android:layout_height="@dimen/test_item_bottom_button_heith"
 			android:text="@string/check_ok"		
 			android:textSize="@dimen/test_item_tips_text_size"

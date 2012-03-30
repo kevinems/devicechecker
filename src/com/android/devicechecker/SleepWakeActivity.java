@@ -36,7 +36,7 @@ public class SleepWakeActivity extends Activity implements OnClickListener{
 	private Button mNo=null;
 	
 	private AlertDialog progressAlert;
-	boolean checkOk=false;	//�Ƿ��ǳɹ�
+	boolean checkOk=false;	//是否是成功
 	
 	private static final int WIFI_WAIT=0x20;
 	private static final int Check_Time=1000;

@@ -39,7 +39,7 @@ public class JudgeTestResult extends Activity implements OnClickListener{
 
         
         RadioButton rb=(RadioButton)findViewById(R.id.off);
-        rb.setOnCheckedChangeListener(new OnCheckedChangeListener(){ //ΪRadioButton��Ӽ����������ص�ҵ�����
+        rb.setOnCheckedChangeListener(new OnCheckedChangeListener(){ //为RadioButton添加监听器及开关灯业务代码
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 				setBulbState(!isChecked);
@@ -55,11 +55,11 @@ public class JudgeTestResult extends Activity implements OnClickListener{
 	}
 	
 	   public void setBulbState(boolean state){
-       	//����ͼƬ״̬
+       	//设置图片状态
    		RadioButton rb=(RadioButton)findViewById(R.id.off);
    		rb.setChecked(!state);
    		rb=(RadioButton)findViewById(R.id.on);
-   		rb.setChecked(state);							//���õ�ѡ��ť״̬
+   		rb.setChecked(state);							//设置单选按钮状态
        }
 	
 }

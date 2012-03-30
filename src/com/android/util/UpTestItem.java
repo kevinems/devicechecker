@@ -21,7 +21,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-//�ύһ������������߳�   ��ȡ��״̬�������߳�
+//提交一个个测试项交互线程   把取的状态传给主线程
 public  class UpTestItem extends Thread {
 
 	public 		URL 			mUrl;
@@ -55,13 +55,13 @@ public  class UpTestItem extends Thread {
 	             int responseCode=response.getStatusLine().getStatusCode();
 	             if (responseCode==HttpURLConnection.HTTP_OK) {
 	            	 Log.e("UpTestItem", "333333333333333333333333");
-	            	 //����ȷ��Ӧʱ�������
+	            	 //当正确响应时处理数据
 			           String readLine;
 			           BufferedReader responseReader;          
 			           HttpEntity httpEntity = response.getEntity();
-			           //��H�з���ʵ��ת��Ϊ������
+			           //将H中返回实体转化为输入流
 			           
-			           //������Ӧ�����������������Ӧ������ı���һ��
+			           //处理响应流，必须与服务器响应流输出的编码一致
 			           responseReader = new BufferedReader(new InputStreamReader(httpEntity.getContent(), "UTF-8"));
 			           while ((readLine = responseReader.readLine()) != null) {
 			               sb.append(readLine).append("\n");
@@ -77,17 +77,17 @@ public  class UpTestItem extends Thread {
 	             
 	            getString=null;
 	 	        getString=sb.toString();           
-	 			if (mTimer!=null) {      //ȡ��������Ϸ���
+	 			if (mTimer!=null) {      //取到数据马上返回
 	 				mTimer.cancel();
 	 				mTimer=null;
 	 			}
 	 			Message m =new Message();
 	 			m.what=msg; 				
 	 			m.arg1=getUpItemStatus();
-	 			if (postString!=null) {//����������ʹ���
+	 			if (postString!=null) {//传参数进来就传回
 	 				m.obj=postString;
 	 			}else {
-	 				m.obj=getString;  //���򴫷������������
+	 				m.obj=getString;  //否则传服务器传回数据
 	 			}
 	 			
 	 			Log.e(Tag, "===To Message to Ui Thread===");
@@ -124,7 +124,7 @@ public  class UpTestItem extends Thread {
 					mMainHandle.sendMessage(m);
 				}
 			};
-		mTimer.schedule(timeTask,TimeOut);//֪ͨ���߳������ȡ�� 		
+		mTimer.schedule(timeTask,TimeOut);//通知主线程数据已取完 		
 	
 	}
 	
@@ -147,7 +147,7 @@ public  class UpTestItem extends Thread {
 			mTimer=null;
 		}
 	}   	
-	//�õ����
+	//得到数据
 	public  String getDate()
 	{
 		return getString;

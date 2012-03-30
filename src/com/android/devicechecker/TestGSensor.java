@@ -42,7 +42,7 @@ public class TestGSensor extends Activity implements OnShakeListener{
 	private Button mNo=null;
 	
 	private AlertDialog progressAlert;
-	boolean checkOk=false;	//�Ƿ��ǳɹ�
+	boolean checkOk=false;	//是否是成功
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

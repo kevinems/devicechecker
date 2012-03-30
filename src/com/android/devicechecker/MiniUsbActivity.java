@@ -18,7 +18,7 @@ public class MiniUsbActivity extends Activity {
 	TextView mUsbTextView,mUsbTips;
 	Usb.OnListener m_UsbListerer;
 	Usb mUsb;
-	int curStatus=1;   //1������ 2�Ǽ��γ�
+	int curStatus=1;   //1检测插入 2是检测拔出
 	
 	private Button mYes=null;
 	private Button mNo=null;
@@ -87,7 +87,7 @@ public class MiniUsbActivity extends Activity {
 				 {
 					 if (curStatus==2) {
 						 mUsbTextView.setText(R.string.usb_test_out);
-						 //�ϸ�
+						 //合格
 						 setValue(1);
 						 FileOperate.setCurTest(true);
 						 finish();
@@ -97,7 +97,7 @@ public class MiniUsbActivity extends Activity {
 								startActivity(mIntent);
 							}
 					 }else {
-						//���ϸ�
+						//不合格
 					}
 					 
 				 }

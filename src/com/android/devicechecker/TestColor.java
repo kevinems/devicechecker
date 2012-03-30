@@ -1,6 +1,7 @@
 package com.android.devicechecker;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -26,12 +27,12 @@ public class TestColor extends Activity {
 	
 	private TextView mText1 = null;
 
+	private Toast mToast = null;
 	
 	private int mNum = 0;
 	
-	boolean checkOk=false;	//�Ƿ��ǳɹ�
-	
-	private Toast mToast = null;
+	private AlertDialog progressAlert;
+	boolean checkOk=false;	//是否是成功
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

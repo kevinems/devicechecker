@@ -24,10 +24,12 @@
     <dimen name="test_item_padding_top">20dp</dimen>
     <dimen name="test_item_tips_text_size">30dp</dimen>
     <dimen name="test_item_tips_text_small_size">20dp</dimen>
-     <dimen name="test_item_tips_text_big_size">100dp</dimen>
-    <dimen name="test_item_bottom_button_width">200dp</dimen>
+    <dimen name="test_item_tips_text_big_size">100dp</dimen>
+    <dimen name="test_item_bottom_button_width2">100dp</dimen>
+    <dimen name="test_item_bottom_button_width">100dp</dimen>
     <dimen name="test_item_bottom_button_heith">100dp</dimen>
-    <dimen name="test_item_button_text_size">50dp</dimen>
+    <dimen name="test_item_button_text_size">20dp</dimen>
+    <dimen name="test_item_button_text_size2">20dp</dimen>
     <dimen name="test_item_button_height">150dp</dimen>
     <dimen name="test_item_button_paddingBottom">20dp</dimen>
     <dimen name="test_item_button_magin_left">50dp</dimen>

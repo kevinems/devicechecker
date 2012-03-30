@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetricsInt;
 import android.os.Bundle;
@@ -55,9 +56,11 @@ public class TsTestActivity extends Activity
         btn_ok = new Button(this);
         btn_ok.setText(R.string.btn_ok_text);
         btn_ok.setId(ID_BTN_OK);
+        btn_ok.setBackgroundColor(Color.GREEN);
         btn_cancel = new Button(this);
         btn_cancel.setText(R.string.btn_cancel_text);
         btn_cancel.setId(ID_BTN_CANCEL);
+        btn_cancel.setBackgroundColor(Color.RED);
 
 		/* main layout */
         RelativeLayout layout = new RelativeLayout(this);
@@ -68,16 +71,16 @@ public class TsTestActivity extends Activity
 		RelativeLayout.LayoutParams btn_layout_param = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 		btn_layout.setLayoutParams(btn_layout_param);
 		
-		/* cancel button */
-		RelativeLayout.LayoutParams btn_cancel_param = new RelativeLayout.LayoutParams(120, LayoutParams.WRAP_CONTENT);
-		btn_cancel_param.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);		
-		btn_layout.addView(btn_cancel, btn_cancel_param);
-		
 		/* ok button */
-		RelativeLayout.LayoutParams btn_ok_param = new RelativeLayout.LayoutParams(120, LayoutParams.WRAP_CONTENT);
-		btn_ok_param.addRule(RelativeLayout.ALIGN_TOP, ID_BTN_CANCEL);
-		btn_ok_param.addRule(RelativeLayout.LEFT_OF, ID_BTN_CANCEL);
+		RelativeLayout.LayoutParams btn_ok_param = new RelativeLayout.LayoutParams(200, LayoutParams.WRAP_CONTENT);
+		btn_ok_param.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);	
 		btn_layout.addView(btn_ok, btn_ok_param);
+		
+		/* cancel button */
+		RelativeLayout.LayoutParams btn_cancel_param = new RelativeLayout.LayoutParams(200, LayoutParams.WRAP_CONTENT);
+		btn_cancel_param.addRule(RelativeLayout.ALIGN_TOP, ID_BTN_CANCEL);
+		btn_cancel_param.addRule(RelativeLayout.LEFT_OF, ID_BTN_CANCEL);	
+		btn_layout.addView(btn_cancel, btn_cancel_param);
 
 		/* sub layout */
 		RelativeLayout.LayoutParams layout_param = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
@@ -95,8 +98,6 @@ public class TsTestActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				//setResult(RESULT_OK, new Intent());
-				//finish();
 				setValue(1);
 				finish();
 				
@@ -114,8 +115,6 @@ public class TsTestActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				//setResult(RESULT_CANCELED, new Intent());
-				//finish();
 				setValue(2);
 				finish();
 			}
@@ -241,8 +240,6 @@ public class TsTestActivity extends Activity
 	private void setValue(int value){
 		FileOperate.setIndexValue(FileOperate.TestItemTouchScreen, value);
 		FileOperate.writeToFile(this);
-		
-		//ParseSeverData.startUpTestItemThread("Key");
 	}
 	
 	@Override

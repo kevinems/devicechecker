@@ -41,7 +41,7 @@ public class GSensor implements SensorEventListener {
     }  
    
   
-    //����
+    //启动
     public void resume() {  
         mSensorMgr = (SensorManager) mContext  .getSystemService(Context.SENSOR_SERVICE);  
         if (mSensorMgr == null) {  
@@ -58,7 +58,7 @@ public class GSensor implements SensorEventListener {
         }  
     }  
   
-    //�ر�
+    //关闭
     public void pause() {  
         if (mSensorMgr != null) {  
             mSensorMgr.unregisterListener(this);  

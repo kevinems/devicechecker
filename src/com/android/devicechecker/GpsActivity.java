@@ -135,17 +135,17 @@ public class GpsActivity extends Activity implements OnItemClickListener,OnItemL
 
          public void onGpsStatusChanged(int event) {
              Log.w(TAG, "now gps status changed" + event);
-             GpsStatus status = mLocationManager.getGpsStatus(null); // ȡ��ǰ״̬
+             GpsStatus status = mLocationManager.getGpsStatus(null); // 取当前状态
              
              bindApplications(event, status);
-         } // GPS״̬�仯ʱ�Ļص������������ź�ǿ�ȵ�
+         } // GPS状态变化时的回调，如卫星数，信号强度等
     };
 	
     private final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             Log.w("xieyan", "now location changed");
             updateWithNewLocation(location);
-        } // ��γ�ȱ仯ʱ�Ļص�
+        } // 经纬度变化时的回调
         
         public void onProviderDisabled(String provider) {
             Log.w("xieyan", "now provider disable");
@@ -166,12 +166,12 @@ public class GpsActivity extends Activity implements OnItemClickListener,OnItemL
 		 String provider = mLocationManager.GPS_PROVIDER;
          Location location = mLocationManager.getLastKnownLocation(provider);
          mLocationManager.requestLocationUpdates(provider, 2000, 10,
-                  locationListener);  // 2��һ�Σ���ʼ����gps���
-         mLocationManager.addGpsStatusListener(statusListener); // ע��״̬��Ϣ�ص�
+                  locationListener);  // 2秒一次，开始接听gps数据
+         mLocationManager.addGpsStatusListener(statusListener); // 注册状态信息回调
          updateWithNewLocation(location);
 	 }
 	 
-	 //gps����
+	 //gps开关
 	 private void toggleGPS() {
 			Intent gpsIntent = new Intent();
 			gpsIntent.setClassName("com.android.settings",
@@ -238,7 +238,7 @@ public class GpsActivity extends Activity implements OnItemClickListener,OnItemL
 	 private void updateWithNewLocation(Location location) {
         /* if (location != null) {
              double lat = location.getLatitude();
-             double lng = location.getLongitude();     // ȡ��γ��
+             double lng = location.getLongitude();     // 取经纬度
              TextView latView = (TextView) findViewById(R.id.TextViewLng);
              TextView lngView = (TextView) findViewById(R.id.TextViewLat);
              latView.setText(getString(R.string.latitude)

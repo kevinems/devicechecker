@@ -192,7 +192,7 @@
     android:layout_height="wrap_content" 
     android:layout_marginBottom="@dimen/main_menu_button_margin_bottom"
     android:textSize="@dimen/main_menu_text_size"
-    android:enabled="true" 
+    android:state_enabled="true" 
     android:text="@string/test_vibrator"
     android:visibility="gone"
     />
@@ -256,22 +256,11 @@
     android:layout_height="wrap_content" 
     android:layout_marginBottom="@dimen/main_menu_button_margin_bottom"
     android:textSize="@dimen/main_menu_text_size"
-    android:enabled="true" 
+    android:state_enabled="true" 
     android:text="@string/test_camera"
     android:visibility="gone"
     />
-    
-    <Button
-	android:id="@+id/test_caremaSub"
-    android:layout_width="@dimen/main_menu_button_width"
-    android:layout_height="wrap_content" 
-    android:layout_marginBottom="@dimen/main_menu_button_margin_bottom"
-    android:textSize="@dimen/main_menu_text_size"
-    android:enabled="true" 
-    android:text="@string/test_cameraSub"
-    android:visibility="gone"
-    />
-    
+        
     <Button
 	android:id="@+id/test_otg"
     android:layout_width="@dimen/main_menu_button_width"
@@ -366,12 +355,13 @@
     />
     
      <Button
-	android:id="@+id/test_network"
+	android:id="@+id/test_led"
     android:layout_width="@dimen/main_menu_button_width"
     android:layout_height="wrap_content" 
     android:layout_marginBottom="@dimen/main_menu_button_margin_bottom"
     android:textSize="@dimen/main_menu_text_size"
-    android:enabled="false"
+    android:text="@string/test_led"
+    android:state_enabled="false"
     android:visibility="gone" 
     />
     

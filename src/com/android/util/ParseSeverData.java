@@ -49,7 +49,7 @@ import android.util.Xml;
 public class ParseSeverData {
 	public static String Checkid = null; // checkid
 	public static String snCode = null; // sncode
-	public static String getMac = ""; // ����mac
+	public static String getMac = ""; // 分配mac
 	private static String Tag = "ParseSeverData";
 	public static final String ServerIp = "192.168.0.193:8080";
 
@@ -57,8 +57,8 @@ public class ParseSeverData {
 	public static final int SUCCESS_CODE = 200;
 	public static final int ERROR_CODE_NO_DATA = 0x100;
 
-	public final static int CONNECT_WIFI = 0x100; // ����wifi
-	public final static int GET_CHECK_ID = 0x101; // ȡcheck id
+	public final static int CONNECT_WIFI = 0x100; // 连接wifi
+	public final static int GET_CHECK_ID = 0x101; // 取check id
 
 	private static String SAVE_INFO = "data/data/smit.com.factorytest/files/saveinfo.xml";
 
@@ -66,7 +66,7 @@ public class ParseSeverData {
 
 	public static LinkedList<UpTestItem> upItemAllThread = new LinkedList<UpTestItem>();
 
-	// �ص������ϴ����߳�
+	// 关掉测试上传项线程
 	public static void CloseAllThread() {
 		while (upItemAllThread.size() > 0) {
 			UpTestItem item = upItemAllThread.get(0);
@@ -81,7 +81,7 @@ public class ParseSeverData {
 	}
 
 
-	// encoded��16���ƴ� 16�����ַ�תΪ10�����ַ�
+	// encoded是16进制串 16进制字符串转为10进制字符串
 	public static byte[] fromHexString(final String encoded) {
 		if ((encoded.length() % 2) != 0)
 			throw new IllegalArgumentException(

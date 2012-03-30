@@ -86,7 +86,7 @@ public class MediaPlayerVideo extends Activity implements
 	int maxVolume;
 	
 	private AlertDialog progressAlert;
-	boolean checkOk=false;	//�Ƿ��ǳɹ�
+	boolean checkOk=false;	//是否是成功
 	
 	private void setValue(int value){
 		FileOperate.setIndexValue(FileOperate.TestItemVideo, value);

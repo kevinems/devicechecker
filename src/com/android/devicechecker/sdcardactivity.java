@@ -33,13 +33,13 @@ public class sdcardactivity extends Activity {
 	TextView mSdSizeTextView;
 	SDCard.OnListener m_sdListerer;
 	SDCard m_SdCard;
-	int curStatus = 1; // 1������ 2�Ǽ��γ�
+	int curStatus = 1; // 1检测插入 2是检测拔出
 
 	private Button mYes=null;
 	private Button mNo = null;
 
 	private AlertDialog progressAlert;
-	boolean checkOk = false; // �Ƿ��ǳɹ�
+	boolean checkOk = false; // 是否是成功
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +159,7 @@ public class sdcardactivity extends Activity {
 								startActivity(mIntent);
 							}
 						} else {
-							// ���ϸ�
+							// 不合格
 						}
 					}
 				}

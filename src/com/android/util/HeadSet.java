@@ -14,7 +14,7 @@ public class HeadSet{
 	 private OnListener mListener;  
 	 private Context mContext;	
 	 public interface OnListener{    	
-	        public void onHeadSetChanged(int nState);//1 Ϊ���ӣ�0Ϊ�Ͽ�
+	        public void onHeadSetChanged(int nState);//1 为连接，0为断开
 	 }  
 	 
 

@@ -59,7 +59,7 @@ OnPreparedListener, OnVideoSizeChangedListener, SurfaceHolder.Callback{
 	int maxVolume;
 	
 	private AlertDialog progressAlert;
-	boolean checkOk=false;	//�Ƿ��ǳɹ�
+	boolean checkOk=false;	//是否是成功
 	
 	private void setValue(int value){
 		FileOperate.setIndexValue(FileOperate.TestItemHDMI, value);
@@ -79,7 +79,7 @@ OnPreparedListener, OnVideoSizeChangedListener, SurfaceHolder.Callback{
         holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         
         
-        Settings.System.putInt(getContentResolver(), "output_select", 1);//��hdmi
+        Settings.System.putInt(getContentResolver(), "output_select", 1);//打开hdmi
         
         mYes=(Button)findViewById(R.id.but_ok);
 		mNo=(Button)findViewById(R.id.but_nook);
@@ -270,7 +270,7 @@ OnPreparedListener, OnVideoSizeChangedListener, SurfaceHolder.Callback{
 	        super.onDestroy();
 	        releaseMediaPlayer();
 	        doCleanUp();
-	        Settings.System.putInt(getContentResolver(), "output_select", 0);//�ر�hdmi	
+	        Settings.System.putInt(getContentResolver(), "output_select", 0);//关闭hdmi	
 	    }
 	    
 		@Override

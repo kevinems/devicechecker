@@ -5,14 +5,11 @@ package com.android.util;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
-
-import android.R.integer;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
-import android.os.PowerManager;
 import android.util.Log;
 
 

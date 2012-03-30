@@ -22,7 +22,7 @@ public class headsetactivity extends Activity {
 	//private Button mYes=null;
 	private Button mNo=null;
 	
-	int curStatus=1;   //1������ 2�Ǽ��γ�
+	int curStatus=1;   //1检测插入 2是检测拔出
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub	
@@ -74,7 +74,7 @@ public class headsetactivity extends Activity {
 					 
 					 if (curStatus==2) {
 						 mHeadTips.setText(R.string.usb_test_out);
-						 //�ϸ�
+						 //合格
 						 setValue(1);
 						 FileOperate.setCurTest(true);
 						 finish();
@@ -82,7 +82,7 @@ public class headsetactivity extends Activity {
 						 Intent mIntent = new Intent(headsetactivity.this, MusicPlayActivity.class);
 							startActivity(mIntent);
 					 }else {
-						//���ϸ�
+						//不合格
 					}
 				 }
 			 }
