@@ -13,7 +13,7 @@
   android:paddingLeft="@dimen/test_item_padding_left"
   android:paddingTop="@dimen/test_item_padding_top"
   android:gravity="top"
-  android:text="@string/vibrator_notice"
+  android:text="@string/test_led_notice"
   android:textColor="#ffff00">
   </TextView>
   

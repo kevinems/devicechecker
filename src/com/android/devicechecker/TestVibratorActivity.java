@@ -32,7 +32,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class TestVibrator extends Activity{
+public class TestVibratorActivity extends Activity{
 	private static final String TAG = "TestGSensor";
 	
 	private Button mYes=null;
@@ -42,7 +42,7 @@ public class TestVibrator extends Activity{
 	private int noldsattus;
 	
 	private AlertDialog progressAlert;
-	boolean checkOk=false;	//是否是成功
+	boolean checkOk=false;	//
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,7 +60,7 @@ public class TestVibrator extends Activity{
 				finish();
 				
 				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-					Intent mIntent = FileOperate.getCurIntent(TestVibrator.this,"Vibrator");
+					Intent mIntent = FileOperate.getCurIntent(TestVibratorActivity.this,"Vibrator");
 					 if (mIntent!=null) {
 						 startActivity(mIntent);
 					}

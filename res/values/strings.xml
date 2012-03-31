@@ -8,7 +8,13 @@
     
     <!-- TestColor -->
     <string name="next_tips">点击屏幕进入下一步</string>
-        
+    
+    <!-- TestLed  -->
+    <string name="test_led_notice">Led灯亮起为合格\r\n\r\n一些刷了第三方ROM，有LED灯增强控制功能的机器可能会导致在此测试单元LED灯不会亮起，不用担心，直接跳过</string>
+    
+    <!-- TestCamera  -->
+    <string name="test_camera_tips">按menu键可以切换摄像头</string>
+    
     <string name="start_test">开始测试</string>
     <string name="see_log">查看测试结果</string>
     <string name="test_notice">测试需知:\r\n绿色代表该项合格,红色代笔不合格,灰色代表还没有测试,白色代表当前测试项.</string>  

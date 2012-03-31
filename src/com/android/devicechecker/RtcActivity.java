@@ -171,7 +171,7 @@ public class RtcActivity extends Activity{
 			finish();
 			
 			
-			 Intent mIntent = new Intent(RtcActivity.this, CameraActivity.class);
+			 Intent mIntent = new Intent(RtcActivity.this, testCameraActivity.class);
 				startActivity(mIntent);
 
 		}else {

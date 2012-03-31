@@ -31,7 +31,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.devicechecker.CameraActivity;
+import com.android.devicechecker.testCameraActivity;
 import com.android.devicechecker.GpsActivity;
 import com.android.devicechecker.HDMIActivity;
 import com.android.devicechecker.MediaPlayerVideo;
@@ -43,7 +43,7 @@ import com.android.devicechecker.TestBatteryActivity;
 import com.android.devicechecker.TestColor;
 import com.android.devicechecker.TestGSensor;
 import com.android.devicechecker.TestKey;
-import com.android.devicechecker.TestVibrator;
+import com.android.devicechecker.TestVibratorActivity;
 import com.android.devicechecker.TsTestActivity;
 import com.android.devicechecker.WifiActivity;
 import com.android.devicechecker.getLincenseActivity;
@@ -66,9 +66,9 @@ public class FileOperate {
 	
 	private static String Tag="FileOperate";
 	private static byte[] buffer = new byte[100];
-	public static int testCount=21;
+	public static int testCount=22;
 	public static int curTestItem=0;
-	public static boolean testmode=false;		//true 鏄祴璇曟ā寮�
+	public static boolean testmode=false;		//true
 	
 	public static final int TestItemWifi=0;
 	public static final int TestItemColor=1;
@@ -94,15 +94,17 @@ public class FileOperate {
 	public static final int TestItemLed=21;
 	
 	public static final int TestItemRTC=100;
+	
+	public static final String TEST_LED_STRING = "Led";
     
 	
     
-    public static String []TestItemStr={"Wifi","Screen_Color", "Led", "Key","Gps","GSensor",
+    public static String []TestItemStr={"Wifi","Screen_Color", TEST_LED_STRING, "Key","Gps","GSensor",
     									"Vibrator","Audio","Video","Record","HDMI",
     									"Camera","Otg"/*, "Usb", "Sd"*/, "Battery", "TouchScreen" /*,"GetCpuID"*/};
     
     //褰撳墠闇�娴嬭瘯鐨勯」鐩�
-    public static String []curtestItem={"Screen_Color", "Led", "TouchScreen", "Camera","GSensor","Vibrator",
+    public static String []curtestItem={"Screen_Color", TEST_LED_STRING, "TouchScreen", "Camera","GSensor","Vibrator",
 		/*"Video",*/"HDMI","Record",/*"Otg",*//*"Usb", "Sd",*/
 		"Battery","Wifi","Key"/*,"GetCpuID"*/};
 	
@@ -566,7 +568,7 @@ public class FileOperate {
 			mIntent=new Intent(mContext.getApplicationContext(), TestGSensor.class);
 		}	
 		else if(curTestItemStr.equals("Vibrator")){
-			mIntent=new Intent(mContext.getApplicationContext(), TestVibrator.class);
+			mIntent=new Intent(mContext.getApplicationContext(), TestVibratorActivity.class);
 		}
 		else if(curTestItemStr.equals("Audio")){
 			mIntent=new Intent(mContext.getApplicationContext(), MusicPlayActivity.class);
@@ -581,7 +583,7 @@ public class FileOperate {
 			mIntent=new Intent(mContext.getApplicationContext(), HDMIActivity.class);
 		}	
 		else if(curTestItemStr.equals("Camera")){
-			mIntent=new Intent(mContext.getApplicationContext(), CameraActivity.class);
+			mIntent=new Intent(mContext.getApplicationContext(), testCameraActivity.class);
 		}
 		else if(curTestItemStr.equals("Usb")){
 			mIntent=new Intent(mContext.getApplicationContext(), MiniUsbActivity.class);

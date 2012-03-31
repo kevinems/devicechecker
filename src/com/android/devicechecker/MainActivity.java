@@ -288,7 +288,7 @@ public class MainActivity extends Activity{
     	
     	mTestVibrator.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, TestVibrator.class);
+				mIntent = new Intent(MainActivity.this, TestVibratorActivity.class);
 				startActivity(mIntent);
 			}
 		});
@@ -321,7 +321,7 @@ public class MainActivity extends Activity{
     	
     	mTestCamera.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, CameraActivity.class);
+				mIntent = new Intent(MainActivity.this, testCameraActivity.class);
 				startActivity(mIntent);
 			}
 		});
@@ -488,12 +488,12 @@ public class MainActivity extends Activity{
 		}
     }
     
-    @Override
-    public void onBackPressed() {
-    	// TODO Auto-generated method stub
-    	//super.onBackPressed();
-    	showDialog(DIALOG_QUIT);
-    }
+//    @Override
+//    public void onBackPressed() {
+//    	// TODO Auto-generated method stub
+//    	//super.onBackPressed();
+//    	showDialog(DIALOG_QUIT);
+//    }
     
     @Override
     protected void onDestroy() {

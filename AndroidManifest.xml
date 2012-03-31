@@ -51,6 +51,9 @@ run in system must signed in a special system-->
 		<uses-permission android:name="android.permission.RECORD_AUDIO"/>
 		<uses-permission android:name="android.permission.DEVICE_POWER"/>
 		<uses-permission android:name="android.permission.CAMERA"/>
+		<uses-permission android:name="android.permission.FLASHLIGHT" />
+        <uses-feature android:name="android.hardware.camera" />
+        <uses-feature android:name="android.hardware.camera.autofocus" />
 		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 		<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
 		<uses-permission android:name="android.permission.VIBRATE"></uses-permission>
@@ -167,7 +170,7 @@ run in system must signed in a special system-->
          android:theme="@style/activityTitlebarRed">                
         </activity>
         
-        <activity android:name=".CameraActivity"
+        <activity android:name=".testCameraActivity"
          android:label="@string/test_camera"
          android:screenOrientation="landscape"
          android:theme="@style/activityTitlebarRed">                
@@ -197,7 +200,7 @@ run in system must signed in a special system-->
          android:theme="@style/activityTitlebarRed">                
         </activity>
         
-         <activity android:name=".TestVibrator"
+         <activity android:name=".TestVibratorActivity"
          android:label="@string/test_vibrator"
          android:screenOrientation="nosensor"
          android:theme="@style/activityTitlebarRed">                
@@ -228,6 +231,7 @@ run in system must signed in a special system-->
           android:screenOrientation="nosensor"
           android:theme="@style/activityTitlebarRed"/>
         
+        <receiver android:name=".receiver.NotificationReceiver" />
     </application>
     
 </manifest> 
