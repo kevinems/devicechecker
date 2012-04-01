@@ -20,8 +20,6 @@ import org.w3c.dom.NodeList;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
@@ -31,31 +29,29 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.devicechecker.testCameraActivity;
 import com.android.devicechecker.GpsActivity;
 import com.android.devicechecker.HDMIActivity;
-import com.android.devicechecker.MediaPlayerVideo;
-import com.android.devicechecker.MediaRecoderactivity;
+import com.android.devicechecker.testRecord;
 import com.android.devicechecker.MiniUsbActivity;
-import com.android.devicechecker.MusicPlayActivity;
 import com.android.devicechecker.R;
 import com.android.devicechecker.TestBatteryActivity;
-import com.android.devicechecker.TestColor;
 import com.android.devicechecker.TestGSensor;
 import com.android.devicechecker.TestKey;
+import com.android.devicechecker.testLcd;
 import com.android.devicechecker.TestVibratorActivity;
 import com.android.devicechecker.TsTestActivity;
 import com.android.devicechecker.WifiActivity;
 import com.android.devicechecker.getLincenseActivity;
 import com.android.devicechecker.sdcardactivity;
+import com.android.devicechecker.testCameraActivity;
 import com.android.devicechecker.testLed;
 
 public class FileOperate {
-	private static String FILE_DIR ="data/data/com.android.util/files/log.bin";	
+	private static String FILE_DIR ="data/data/com.android.devicechecker/files/log.bin";	//log file
 	public static String FILE_RECORD_AUDIO ="record_audio.3gp";		//record file created in record test
 	private static String FILE_PATH ="log.bin";		//log file
-	private static String FILE_PATH_XML ="data/data/com.android.util/files/log.xml";//浼犵粰鏈嶅姟鍣╨og
-	private static String TEST_ITEM_FILE ="data/data/com.android.util/files/testitemfile.xml";//娴嬭瘯椤规枃浠�
+	private static String FILE_PATH_XML ="data/data/com.android.devicechecker/files/log.xml";//
+	private static String TEST_ITEM_FILE ="data/data/com.android.devicechecker/files/testitemfile.xml";//
 	private static final String PRODUCT_PATH="/test_config.xml"; 
 	public static final String sdCradPathTelechips=Environment.getExternalStorageDirectory()+"/tflash/";
 	//public static final String sdCradPathNv=Environment.getExternalStorageDirectory()+"/extsd/";
@@ -71,7 +67,7 @@ public class FileOperate {
 	public static boolean testmode=false;		//true
 	
 	public static final int TestItemWifi=0;
-	public static final int TestItemColor=1;
+	public static final int TestItemLcd=1;
 	public static final int TestItemKey=2;
 	public static final int TestItemGps=3;
 	public static final int TestItemGSensor=4;
@@ -96,17 +92,13 @@ public class FileOperate {
 	public static final int TestItemRTC=100;
 	
 	public static final String TEST_LED_STRING = "Led";
+	public static final String TEST_LCD_STRING = "Lcd";
     
-	
-    
-    public static String []TestItemStr={"Wifi","Screen_Color", TEST_LED_STRING, "Key","Gps","GSensor",
-    									"Vibrator","Audio","Video","Record","HDMI",
-    									"Camera","Otg"/*, "Usb", "Sd"*/, "Battery", "TouchScreen" /*,"GetCpuID"*/};
-    
-    //褰撳墠闇�娴嬭瘯鐨勯」鐩�
-    public static String []curtestItem={"Screen_Color", TEST_LED_STRING, "TouchScreen", "Camera","GSensor","Vibrator",
+    //to control which item will be display on main activity.
+	//the string sequence decide the sequence of the item display on the main activity.
+    public static String []curtestItem={TEST_LCD_STRING, TEST_LED_STRING, "TouchScreen", "Camera","GSensor","Vibrator",
 		/*"Video",*/"HDMI","Record",/*"Otg",*//*"Usb", "Sd",*/
-		"Battery","Wifi","Key"/*,"GetCpuID"*/};
+		"Battery"/*,"Wifi"*/,"Key"/*,"GetCpuID"*/};
 	
 	public static int CHECK_NULL=0;
 	public static int CHECK_SUCCESS=1;
@@ -124,7 +116,7 @@ public class FileOperate {
 	//public static  String AP_PASSWORD="12341234";
 	public static  String AP_PASSWORD="43214321";
 	
-	//涓婁紶娴嬭瘯椤�
+	//
 	public static final int DIALOG_UP_TEST_ITEM=0x100;
 	
 	public static Intent mIntent;
@@ -161,39 +153,7 @@ public class FileOperate {
 		buffer[index]=(byte)value;
 	}
 	
-	
-	public static int getCurIndex(String str){
-		for (int i = 0; i < testCount; i++) {
-			if (str.equals(TestItemStr[i])) {
-				return i;
-			}
-		}
-		
-		return 0;
-	}
-	
-	//鏄惁娴嬭瘯鍏ㄩ儴鎴愬姛
-	public static boolean testAllSuccess(){
-		int i=0,count=TestInfoInfo.size(),index;
-		
-		for (; i < count; i++) {
-			index=getCurIndex(TestInfoInfo.get(i));
-			if (getIndexValue(index)==1) {
-				continue;
-			}else {
-				break;
-			}
-		}
-		if (i>=count) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	
-	
-	//鐘舵�杞寲涓轰覆
+	//
 	public static String testStatusToStr(int status){
 		if (status==CHECK_SUCCESS) {
 			return CHECK_SUCCESS_STR;
@@ -203,25 +163,7 @@ public class FileOperate {
 			return CHECK_NULL_STR;
 		}
 	}
-	
-	//寰楀埌鎬荤姸鎬�
-	public static int getTestSttus(){
-		int currstatus,count=TestInfoInfo.size();
-		for (int i = 0; i < count; i++) {
-			currstatus=getIndexValue(getCurIndex(TestInfoInfo.get(i)));
-			if(currstatus==CHECK_NULL){
-				return CHECK_FAILURE;
-			}else if (currstatus==CHECK_FAILURE) {
-				return currstatus;
-			}else {
-				continue;
-			}
-		}
 		
-		return CHECK_SUCCESS;
-	}
-	
-	
 	public static boolean getCurmode(){
 		return testmode;
 	}
@@ -296,7 +238,7 @@ public class FileOperate {
            FileInputStream fis = mContext.openFileInput(FILE_PATH);
            
            fis.read( buffer );
-           System.out.println( new String(buffer) );
+//           System.out.println( new String(buffer) );
            fis.close();
        } catch (FileNotFoundException e) {
            // TODO Auto-generated catch block
@@ -499,7 +441,7 @@ public class FileOperate {
 		}
     }
     
-    //寰楀埌娴嬭瘯涓暟
+    //
     public static int getTestItemCount(){
     	if(TestInfoInfo!=null){
     		return TestInfoInfo.size();
@@ -528,7 +470,7 @@ public class FileOperate {
 			return TestInfoInfo.get(i+1);
 		}
     }
-    //鍒颁笅涓�」娴嬭瘯   curTestItemStr涓虹┖娴嬬涓�」
+    //
     public static Intent getCurIntent(Context mContext, String curTestItemStr){
     	String str; 
     	
@@ -556,8 +498,8 @@ public class FileOperate {
     	
     	if (curTestItemStr.equals("Wifi")) {
     		mIntent=new Intent(mContext.getApplicationContext(), WifiActivity.class);
-		}else if(curTestItemStr.equals("Screen_Color")){
-			mIntent=new Intent(mContext.getApplicationContext(), TestColor.class);
+		}else if(curTestItemStr.equals(FileOperate.TEST_LCD_STRING)){
+			mIntent=new Intent(mContext.getApplicationContext(), testLcd.class);
 		}else if(curTestItemStr.equals("Led")){
 			mIntent=new Intent(mContext.getApplicationContext(), testLed.class);
 		}else if(curTestItemStr.equals("Key")){
@@ -570,14 +512,8 @@ public class FileOperate {
 		else if(curTestItemStr.equals("Vibrator")){
 			mIntent=new Intent(mContext.getApplicationContext(), TestVibratorActivity.class);
 		}
-		else if(curTestItemStr.equals("Audio")){
-			mIntent=new Intent(mContext.getApplicationContext(), MusicPlayActivity.class);
-		}
-		else if(curTestItemStr.equals("Video")){
-			mIntent=new Intent(mContext.getApplicationContext(), MediaPlayerVideo.class);
-		}
 		else if(curTestItemStr.equals("Record")){
-			mIntent=new Intent(mContext.getApplicationContext(), MediaRecoderactivity.class);
+			mIntent=new Intent(mContext.getApplicationContext(), testRecord.class);
 		}
 		else if(curTestItemStr.equals("HDMI")){
 			mIntent=new Intent(mContext.getApplicationContext(), HDMIActivity.class);
@@ -628,24 +564,7 @@ public class FileOperate {
 			return true;
 		}
     }
-    
-    //瓒呮椂閿欒
-    public static void UpErrorTips(Context mContext){
-    		ConnectivityManager conMan = (ConnectivityManager) mContext.getSystemService(mContext.CONNECTIVITY_SERVICE);
-    		NetworkInfo.State wifi = (conMan
-    				.getNetworkInfo(ConnectivityManager.TYPE_WIFI)).getState();
-    		String string = wifi.toString();
-    		if (!string.equals("CONNECTED")){
-    			//Toast.makeText(mContext.getApplicationContext(), mContext.getResources().getString(R.string.wifi_disconnect), Toast.LENGTH_SHORT).show();
-    			MyToast(mContext,null,R.string.wifi_disconnect);
-    		}else {
-    			MyToast(mContext,null,R.string.service_app_error);
-    			//Toast.makeText(mContext.getApplicationContext(), mContext.getResources().getString(R.string.service_app_error), Toast.LENGTH_SHORT).show();
-			}
-    		
-    	
-    }
-    
+       
     public static void MyToast(Context mContext,String str,int mId){
     	LayoutInflater inflater = LayoutInflater.from(mContext);
     	View layout = inflater.inflate(R.layout.toast_tips, null);   

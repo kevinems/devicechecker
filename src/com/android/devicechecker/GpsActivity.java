@@ -123,11 +123,6 @@ public class GpsActivity extends Activity implements OnItemClickListener,OnItemL
 	        openGPSSettings();
 	        setGpsListten();
 	        startCameraGps();
-			if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-				FileOperate.setIndexValue(FileOperate.TestItemGps, FileOperate.CHECK_FAILURE);
-				FileOperate.writeToFile(this);
-			}
-
 	    }
 	 
 	 

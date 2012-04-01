@@ -59,7 +59,7 @@ public class videoplayeractivity extends Activity {
 				FileOperate.setCurTest(true);
 				finish();
 				
-				Intent mIntent = new Intent(videoplayeractivity.this, MediaRecoderactivity.class);
+				Intent mIntent = new Intent(videoplayeractivity.this, testRecord.class);
 				startActivity(mIntent);
 			}
 		});

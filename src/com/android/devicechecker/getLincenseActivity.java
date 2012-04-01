@@ -101,7 +101,6 @@ public class getLincenseActivity extends Activity {
 
 		mGetCpuId.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View arg0) {
 				if(sdcardIsMounted()){
 					if(machineCpuid.length()>0)
@@ -129,7 +128,6 @@ public class getLincenseActivity extends Activity {
 
 		mNo.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View arg0) {
 				setValue(FileOperate.CHECK_FAILURE);
 				finish();

@@ -106,16 +106,13 @@ OnPreparedListener, OnVideoSizeChangedListener, SurfaceHolder.Callback{
 		
 		mSeekBar=(SeekBar)findViewById(R.id.hdmiseekBar);
 		mSeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {  
-            @Override  
             public void onProgressChanged(SeekBar seekBar,int progress,boolean fromTouch) {
             	int volume=(progress*maxVolume)/100;
             	mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume, 0);
             }  
-            @Override  
             public void onStartTrackingTouch(SeekBar seekBar) {  
                   
             }  
-            @Override  
             public void onStopTrackingTouch(SeekBar seekBar) {  
                   
             }  
@@ -126,11 +123,6 @@ OnPreparedListener, OnVideoSizeChangedListener, SurfaceHolder.Callback{
     	maxVolume=mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 		int curVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
     	mSeekBar.setProgress(curVolume*100/(maxVolume+1));
-		
-		if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-			FileOperate.setIndexValue(FileOperate.TestItemHDMI, FileOperate.CHECK_FAILURE);
-			FileOperate.writeToFile(this);
-		}
     }
 
 	

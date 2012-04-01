@@ -66,13 +66,11 @@ public class GSensor implements SensorEventListener {
         }  
     }  
   
-    @Override  
     public void onAccuracyChanged(Sensor sensor, int accuracy) {  
           
     }  
   
     
-    @Override  
     public void onSensorChanged(SensorEvent event) {  
   
         if (event.sensor.getType() != Sensor.TYPE_ACCELEROMETER) {  

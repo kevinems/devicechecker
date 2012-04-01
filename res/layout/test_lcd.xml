@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/test_color_text1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffff0000" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/but_nook"
+            android:layout_width="@dimen/test_item_bottom_button_width"
+            android:layout_height="@dimen/test_item_bottom_button_heith"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="@string/check_nook"
+            android:textSize="@dimen/test_item_tips_text_size" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/but_ok"
+                android:layout_width="@dimen/test_item_bottom_button_width"
+                android:layout_height="@dimen/test_item_bottom_button_heith"
+                android:background="@color/green"
+                android:text="@string/check_ok"
+                android:textSize="@dimen/test_item_tips_text_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

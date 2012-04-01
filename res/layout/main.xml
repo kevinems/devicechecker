@@ -206,17 +206,7 @@
     android:textSize="@dimen/main_menu_text_size"
     android:visibility="gone"
     />  
-    
-     <Button
-	android:id="@+id/test_video"
-    android:layout_width="@dimen/main_menu_button_width"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/main_menu_button_margin_bottom" 
-    android:text="@string/video_test"
-    android:textSize="@dimen/main_menu_text_size"
-    android:visibility="gone"
-    />
-    
+        
     <Button
 	android:id="@+id/test_record"
     android:layout_width="@dimen/main_menu_button_width"

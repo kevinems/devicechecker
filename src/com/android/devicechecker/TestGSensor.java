@@ -86,10 +86,6 @@ public class TestGSensor extends Activity implements OnShakeListener{
 				finish();
 			}
 		});
-		if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-			FileOperate.setIndexValue(FileOperate.TestItemGSensor, FileOperate.CHECK_FAILURE);
-			FileOperate.writeToFile(this);
-		}
 	}
 
 	@Override
@@ -98,7 +94,6 @@ public class TestGSensor extends Activity implements OnShakeListener{
 		super.onStop();
 		
 	}
-	@Override
 	public void onSensorChanged(SensorEvent event) {		
 
 		System.out.println("onSensorChanged~!~!~!~!~!~!~!~!");
@@ -111,7 +106,6 @@ public class TestGSensor extends Activity implements OnShakeListener{
         mText3.setText("Z : " +  Float.toString(mLastZ));
 	}
 
-	@Override
 	public void onShake() {
 		// TODO Auto-generated method stub
 		

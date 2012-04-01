@@ -64,13 +64,7 @@ public class TestBatteryActivity extends Activity{
 				setValue(2);
 				finish();
 			}
-		});
-		
-		if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-			FileOperate.setIndexValue(FileOperate.TestItemBattery, FileOperate.CHECK_FAILURE);
-			FileOperate.writeToFile(this);
-		}
-		
+		});		
 	}
 		
 	private void setValue(int value){

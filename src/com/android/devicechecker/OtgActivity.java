@@ -62,13 +62,7 @@ public class OtgActivity extends Activity{
 				finish();
 				
 			}
-		});	
-		
-		if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-		FileOperate.setIndexValue(FileOperate.TestItemOtg, FileOperate.CHECK_FAILURE);
-		FileOperate.writeToFile(this);
-		}
-		
+		});					
 	}
 
 	 

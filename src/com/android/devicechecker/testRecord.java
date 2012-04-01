@@ -35,7 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
-public class MediaRecoderactivity extends Activity {
+public class testRecord extends Activity {
 	private static final String TAG = "MediaRecoderactivity";
 	MediaRecoderControl mMediaRecoder = null;
 	Button mButStartRecord;
@@ -89,7 +89,7 @@ public class MediaRecoderactivity extends Activity {
 
 				if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
 					Intent mIntent = FileOperate.getCurIntent(
-							MediaRecoderactivity.this, "Record");
+							testRecord.this, "Record");
 					if (mIntent != null) {
 						startActivity(mIntent);
 					}
@@ -106,17 +106,14 @@ public class MediaRecoderactivity extends Activity {
 
 		seekBar = (SeekBar) findViewById(R.id.seekBar);
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromTouch) {
 			}
 
-			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 
 			}
 
-			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 
 			}
@@ -125,7 +122,6 @@ public class MediaRecoderactivity extends Activity {
 
 		mSeekBar = (SeekBar) findViewById(R.id.seekBarvol);
 		mSeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromTouch) {
 				int volume = (progress * maxVolume) / 100;
@@ -133,12 +129,10 @@ public class MediaRecoderactivity extends Activity {
 						volume, 0);
 			}
 
-			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 
 			}
 
-			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 
 			}
@@ -151,11 +145,6 @@ public class MediaRecoderactivity extends Activity {
 		int curVolume = mAudioManager
 				.getStreamVolume(AudioManager.STREAM_MUSIC);
 		mSeekBar.setProgress(curVolume * 100 / (maxVolume + 1));
-		if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-			FileOperate.setIndexValue(FileOperate.TestItemRecord,
-					FileOperate.CHECK_FAILURE);
-			FileOperate.writeToFile(this);
-		}
 	}
 
 	private Handler mHandler = new Handler() {

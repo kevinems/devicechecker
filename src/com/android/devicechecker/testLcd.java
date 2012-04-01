@@ -1,98 +1,57 @@
 package com.android.devicechecker;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.opengl.Visibility;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.devicechecker.interfaces.ItestActTemplate;
 import com.android.util.FileOperate;
 import com.android.util.enhanceToast;
 
-public class TestColor extends Activity {
-	private static final String TAG = "TestColor";
+public class testLcd extends ItestActTemplate {
+	private static final String TAG = "TestLcd";
 
 	private Button mYes = null;
 	private Button mNo = null;
-
-	private TextView mText1 = null;
-
-	private Toast mToast = null;
-
+	private TextView mDisplayColor = null;	//for display color
 	private int mNum = 0;
-	
 	private enhanceToast mEnhanceToast;
-
-	private AlertDialog progressAlert;
 	boolean checkOk = false; //
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Log.i(TAG, "onCreate");
 
 		getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		TextView mTextView = new TextView(this);
+		setContentView(R.layout.test_lcd);
 
-		setContentView(R.layout.test_color);
-		
 		initView();
-		
-		
-		
-		if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-			FileOperate.setIndexValue(FileOperate.TestItemColor,
-					FileOperate.CHECK_FAILURE);
-			FileOperate.writeToFile(this);
-		}
 	}
 
 	private void initView() {
-		mText1 = (TextView) findViewById(R.id.test_color_text1);
+		mDisplayColor = (TextView) findViewById(R.id.test_color_text1);
 		mYes = (Button) findViewById(R.id.but_ok);
 		mNo = (Button) findViewById(R.id.but_nook);
 
 		mYes.setVisibility(View.GONE);
 		mNo.setVisibility(View.GONE);
+		
+		setYesBtnOnClickListener(mYes, FileOperate.TestItemLcd, FileOperate.TEST_LCD_STRING);
+		setNoBtnOnClickListener(mNo, FileOperate.TestItemLcd);
 
 		mEnhanceToast = new enhanceToast(this);
 		toNextTest();
-
-		mYes.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				finish();
-				setValue(FileOperate.CHECK_SUCCESS);
-				if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-					Intent mIntent = FileOperate.getCurIntent(TestColor.this,
-							"Screen_Color");
-					if (mIntent != null) {
-						startActivity(mIntent);
-					}
-				}
-			}
-		});
-
-		mNo.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				finish();
-				setValue(FileOperate.CHECK_FAILURE);
-			}
-		});
-
 	}
 
 	@Override
@@ -118,11 +77,6 @@ public class TestColor extends Activity {
 		return true;
 	}
 
-	private void setValue(int value) {
-		FileOperate.setIndexValue(FileOperate.TestItemColor, value);
-		FileOperate.writeToFile(this);
-	}
-
 	private void brightness(float f) {
 		WindowManager.LayoutParams lp = getWindow().getAttributes();
 		lp.screenBrightness = f;
@@ -132,37 +86,39 @@ public class TestColor extends Activity {
 	public void toNextTest() {
 
 		if (mNum == 0) {
-			mText1.setBackgroundColor(Color.RED);
+			mDisplayColor.setBackgroundColor(Color.RED);
 			mEnhanceToast.displayToast(getString(R.string.next_tips));
 		}
 		if (mNum == 1) {
-			mText1.setBackgroundColor(Color.GREEN);
+			mDisplayColor.setBackgroundColor(Color.GREEN);
 			mEnhanceToast.displayToast(getString(R.string.next_tips));
 		}
 		if (mNum == 2) {
-			mText1.setBackgroundColor(Color.BLUE);
+			mDisplayColor.setBackgroundColor(Color.BLUE);
 			mEnhanceToast.displayToast(getString(R.string.next_tips));
 		}
 		if (mNum == 3) {
-			mText1.setBackgroundColor(Color.BLACK);
+			mDisplayColor.setBackgroundColor(Color.BLACK);
 			mEnhanceToast.displayToast(getString(R.string.next_tips));
 		}
 		if (mNum == 4) {
-			mText1.setBackgroundColor(Color.WHITE);
+			mDisplayColor.setBackgroundColor(Color.WHITE);
 			mEnhanceToast.displayToast(getString(R.string.next_tips));
 		}
 		if (mNum == 5) {
-			mText1.setBackgroundColor(Color.WHITE);
+			mDisplayColor.setBackgroundColor(Color.WHITE);
 			mEnhanceToast.displayToast(getString(R.string.test_brightness_low));
 			brightness(0.1f);
 		}
 		if (mNum == 6) {
-			mEnhanceToast.displayToast(getString(R.string.test_brightness_middle));
+			mEnhanceToast
+					.displayToast(getString(R.string.test_brightness_middle));
 			brightness(0.5f);
 		}
 		if (mNum == 7) {
 			brightness(1.0f);
-			mEnhanceToast.displayToast(getString(R.string.test_brightness_height));
+			mEnhanceToast
+					.displayToast(getString(R.string.test_brightness_height));
 			mYes.setVisibility(View.VISIBLE);
 			mNo.setVisibility(View.VISIBLE);
 			mNo.setBackgroundColor(Color.RED);
@@ -170,13 +126,4 @@ public class TestColor extends Activity {
 
 		mNum++;
 	}
-
-	Handler mHandler = new Handler() {
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			}
-
-		}
-	};
-
 }

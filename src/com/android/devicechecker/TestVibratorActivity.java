@@ -82,10 +82,6 @@ public class TestVibratorActivity extends Activity{
                         : AudioManager.VIBRATE_SETTING_OFF);
         
         mVibrator.vibrate(60000);
-        if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-        	FileOperate.setIndexValue(FileOperate.TestItemVibrator, FileOperate.CHECK_FAILURE);
-        	FileOperate.writeToFile(this);
-        }
 	}
 	
 	@Override
