@@ -106,9 +106,10 @@
 		>
 	
 	<LinearLayout
+	android:baselineAligned="false"
 	android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     
     >
     
@@ -137,7 +138,7 @@
     android:layout_width="@dimen/main_menu_button_width"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/main_menu_button_margin_bottom" 
-    android:text="@string/LCD_test"
+    android:text="@string/btn_lcd_test"
     android:textSize="@dimen/main_menu_text_size"
     android:visibility="gone"
     />
@@ -325,16 +326,6 @@
     />
     
     <Button
-	android:id="@+id/test_checksum"
-    android:layout_width="@dimen/main_menu_button_width"
-    android:layout_height="wrap_content" 
-    android:layout_marginBottom="@dimen/main_menu_button_margin_bottom"
-    android:textSize="@dimen/main_menu_text_size"
-    android:text="@string/checksum"
-    android:visibility="gone" 
-    />
-    
-    <Button
 	android:id="@+id/test_touch_screen"
     android:layout_width="@dimen/main_menu_button_width"
     android:layout_height="wrap_content" 
@@ -358,26 +349,6 @@
       <Button
 	android:id="@+id/test_network"
     android:layout_width="@dimen/main_menu_button_width" 
-    android:layout_height="wrap_content" 
-    android:layout_marginBottom="@dimen/main_menu_button_margin_bottom"
-    android:textSize="@dimen/main_menu_text_size"
-    android:enabled="false" 
-    android:visibility="gone"
-    />
-    
-     <Button
-	android:id="@+id/test_network"
-    android:layout_width="@dimen/main_menu_button_width"
-    android:layout_height="wrap_content" 
-    android:layout_marginBottom="@dimen/main_menu_button_margin_bottom"
-    android:textSize="@dimen/main_menu_text_size"
-    android:enabled="false" 
-    android:visibility="gone"
-    />
-    
-     <Button
-	android:id="@+id/test_network"
-    android:layout_width="@dimen/main_menu_button_width"
     android:layout_height="wrap_content" 
     android:layout_marginBottom="@dimen/main_menu_button_margin_bottom"
     android:textSize="@dimen/main_menu_text_size"

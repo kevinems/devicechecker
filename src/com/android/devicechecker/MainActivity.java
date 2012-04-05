@@ -32,6 +32,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -178,6 +181,33 @@ public class MainActivity extends Activity {
 			setTitle(R.string.to_one_mode);
 		}
 
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+//		return super.onCreateOptionsMenu(menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main_menu, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		int mId = item.getItemId();
+		
+		switch (mId) {
+		case R.id.main_menu_about:
+			Intent mIntent = new Intent(getApplicationContext(), aboutActivity.class);
+			startActivity(mIntent);
+			break;
+
+		default:
+			break;
+		}
+		
+		return super.onOptionsItemSelected(item);
 	}
 
 	private void DisplayVersion() {

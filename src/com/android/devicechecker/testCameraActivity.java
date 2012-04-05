@@ -6,10 +6,13 @@ import java.util.List;
 import com.android.util.FileOperate;
 import com.android.util.enhanceToast;
 
+import android.R.bool;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.FeatureInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
@@ -106,7 +109,7 @@ public class testCameraActivity extends Activity {
 
 		/* set custom view */
 		setContentView(layout);
-		
+
 		mEnhanceToast = new enhanceToast(this);
 		mEnhanceToast.displayToast(getString(R.string.test_camera_tips));
 
@@ -210,7 +213,7 @@ public class testCameraActivity extends Activity {
 				parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
 				mCamera.setParameters(parameters);
 				mCamera.stopPreview();
-				
+
 				mPreview.setCamera(null);
 				mCamera.release();
 				mCamera = null;
@@ -219,15 +222,15 @@ public class testCameraActivity extends Activity {
 			// Acquire the next camera and request Preview to reconfigure
 			// parameters.
 			int cameraIdCurrent = (cameraCurrentlyLocked + 1) % numberOfCameras;
-			mCamera = Camera
-					.open(cameraIdCurrent);
+			mCamera = Camera.open(cameraIdCurrent);
 			cameraCurrentlyLocked = (cameraCurrentlyLocked + 1)
 					% numberOfCameras;
 
 			CameraInfo cameraInfo = new CameraInfo();
 
 			Camera.getCameraInfo(cameraIdCurrent, cameraInfo);
-			if (cameraInfo.facing == CameraInfo.CAMERA_FACING_BACK) {
+			if (cameraInfo.facing == CameraInfo.CAMERA_FACING_BACK
+					&& haveFlashLight()) {
 				Parameters parameters = mCamera.getParameters();
 				parameters.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
 				parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
@@ -243,173 +246,195 @@ public class testCameraActivity extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-}
 
-// ----------------------------------------------------------------------
-
-/**
- * A simple wrapper around a Camera and a SurfaceView that renders a centered
- * preview of the Camera to the surface. We need to center the SurfaceView
- * because not all devices have cameras that support preview sizes at the same
- * aspect ratio as the device's display.
- */
-class Preview extends ViewGroup implements SurfaceHolder.Callback {
-	private final String TAG = "Preview";
-
-	SurfaceView mSurfaceView;
-	SurfaceHolder mHolder;
-	Size mPreviewSize;
-	List<Size> mSupportedPreviewSizes;
-	Camera mCamera;
-
-	Preview(Context context) {
-		super(context);
-
-		mSurfaceView = new SurfaceView(context);
-		addView(mSurfaceView);
-
-		// Install a SurfaceHolder.Callback so we get notified when the
-		// underlying surface is created and destroyed.
-		mHolder = mSurfaceView.getHolder();
-		mHolder.addCallback(this);
-		mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-	}
-
-	public void setCamera(Camera camera) {
-		mCamera = camera;
-		if (mCamera != null) {
-			mSupportedPreviewSizes = mCamera.getParameters()
-					.getSupportedPreviewSizes();
-			requestLayout();
-		}
-	}
-
-	public void switchCamera(Camera camera) {
-		setCamera(camera);
-		try {
-			camera.setPreviewDisplay(mHolder);
-		} catch (IOException exception) {
-			Log.e(TAG, "IOException caused by setPreviewDisplay()", exception);
-		}
-		Camera.Parameters parameters = camera.getParameters();
-		parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
-		requestLayout();
-		camera.setParameters(parameters);
-	}
-
-	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		// We purposely disregard child measurements because act as a
-		// wrapper to a SurfaceView that centers the camera preview instead
-		// of stretching it.
-		final int width = resolveSize(getSuggestedMinimumWidth(),
-				widthMeasureSpec);
-		final int height = resolveSize(getSuggestedMinimumHeight(),
-				heightMeasureSpec);
-		setMeasuredDimension(width, height);
-
-		if (mSupportedPreviewSizes != null) {
-			mPreviewSize = getOptimalPreviewSize(mSupportedPreviewSizes, width,
-					height);
-		}
-	}
-
-	@Override
-	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		if (changed && getChildCount() > 0) {
-			final View child = getChildAt(0);
-
-			final int width = r - l;
-			final int height = b - t;
-
-			int previewWidth = width;
-			int previewHeight = height;
-			if (mPreviewSize != null) {
-				previewWidth = mPreviewSize.width;
-				previewHeight = mPreviewSize.height;
-			}
-
-			// Center the child SurfaceView within the parent.
-			if (width * previewHeight > height * previewWidth) {
-				final int scaledChildWidth = previewWidth * height
-						/ previewHeight;
-				child.layout((width - scaledChildWidth) / 2, 0,
-						(width + scaledChildWidth) / 2, height);
-			} else {
-				final int scaledChildHeight = previewHeight * width
-						/ previewWidth;
-				child.layout(0, (height - scaledChildHeight) / 2, width,
-						(height + scaledChildHeight) / 2);
+	// 以下代码判断手机是否带闪光灯
+	public boolean haveFlashLight() {
+		FeatureInfo[] feature = getApplicationContext().getPackageManager()
+				.getSystemAvailableFeatures();
+		for (FeatureInfo featureInfo : feature) {
+			if (PackageManager.FEATURE_CAMERA_FLASH.equals(featureInfo.name)) {
+				return true;
 			}
 		}
+		return false;
 	}
 
-	public void surfaceCreated(SurfaceHolder holder) {
-		// The Surface has been created, acquire the camera and tell it where
-		// to draw.
-		try {
+	// ----------------------------------------------------------------------
+
+	/**
+	 * A simple wrapper around a Camera and a SurfaceView that renders a
+	 * centered preview of the Camera to the surface. We need to center the
+	 * SurfaceView because not all devices have cameras that support preview
+	 * sizes at the same aspect ratio as the device's display.
+	 */
+	class Preview extends ViewGroup implements SurfaceHolder.Callback {
+		private final String TAG = "Preview";
+
+		SurfaceView mSurfaceView;
+		SurfaceHolder mHolder;
+		Size mPreviewSize;
+		List<Size> mSupportedPreviewSizes;
+		Camera mCamera;
+		Context mContext;
+
+		Preview(Context context) {
+			super(context);
+
+			mContext = context;
+			mSurfaceView = new SurfaceView(context);
+			addView(mSurfaceView);
+
+			// Install a SurfaceHolder.Callback so we get notified when the
+			// underlying surface is created and destroyed.
+			mHolder = mSurfaceView.getHolder();
+			mHolder.addCallback(this);
+			mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+		}
+
+		public void setCamera(Camera camera) {
+			mCamera = camera;
 			if (mCamera != null) {
-				mCamera.setPreviewDisplay(holder);
-			}
-		} catch (IOException exception) {
-			Log.e(TAG, "IOException caused by setPreviewDisplay()", exception);
-		}
-	}
-
-	public void surfaceDestroyed(SurfaceHolder holder) {
-		// Surface will be destroyed when we return, so stop the preview.
-		if (mCamera != null) {
-			mCamera.stopPreview();
-		}
-	}
-
-	private Size getOptimalPreviewSize(List<Size> sizes, int w, int h) {
-		final double ASPECT_TOLERANCE = 0.1;
-		double targetRatio = (double) w / h;
-		if (sizes == null)
-			return null;
-
-		Size optimalSize = null;
-		double minDiff = Double.MAX_VALUE;
-
-		int targetHeight = h;
-
-		// Try to find an size match aspect ratio and size
-		for (Size size : sizes) {
-			double ratio = (double) size.width / size.height;
-			if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE)
-				continue;
-			if (Math.abs(size.height - targetHeight) < minDiff) {
-				optimalSize = size;
-				minDiff = Math.abs(size.height - targetHeight);
+				mSupportedPreviewSizes = mCamera.getParameters()
+						.getSupportedPreviewSizes();
+				requestLayout();
 			}
 		}
 
-		// Cannot find the one match the aspect ratio, ignore the requirement
-		if (optimalSize == null) {
-			minDiff = Double.MAX_VALUE;
+		public void switchCamera(Camera camera) {
+			setCamera(camera);
+			try {
+				camera.setPreviewDisplay(mHolder);
+			} catch (IOException exception) {
+				Log.e(TAG, "IOException caused by setPreviewDisplay()",
+						exception);
+			}
+			Camera.Parameters parameters = camera.getParameters();
+			parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
+			requestLayout();
+			camera.setParameters(parameters);
+		}
+
+		@Override
+		protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+			// We purposely disregard child measurements because act as a
+			// wrapper to a SurfaceView that centers the camera preview instead
+			// of stretching it.
+			final int width = resolveSize(getSuggestedMinimumWidth(),
+					widthMeasureSpec);
+			final int height = resolveSize(getSuggestedMinimumHeight(),
+					heightMeasureSpec);
+			setMeasuredDimension(width, height);
+
+			if (mSupportedPreviewSizes != null) {
+				mPreviewSize = getOptimalPreviewSize(mSupportedPreviewSizes,
+						width, height);
+			}
+		}
+
+		@Override
+		protected void onLayout(boolean changed, int l, int t, int r, int b) {
+			if (changed && getChildCount() > 0) {
+				final View child = getChildAt(0);
+
+				final int width = r - l;
+				final int height = b - t;
+
+				int previewWidth = width;
+				int previewHeight = height;
+				if (mPreviewSize != null) {
+					previewWidth = mPreviewSize.width;
+					previewHeight = mPreviewSize.height;
+				}
+
+				// Center the child SurfaceView within the parent.
+				if (width * previewHeight > height * previewWidth) {
+					final int scaledChildWidth = previewWidth * height
+							/ previewHeight;
+					child.layout((width - scaledChildWidth) / 2, 0,
+							(width + scaledChildWidth) / 2, height);
+				} else {
+					final int scaledChildHeight = previewHeight * width
+							/ previewWidth;
+					child.layout(0, (height - scaledChildHeight) / 2, width,
+							(height + scaledChildHeight) / 2);
+				}
+			}
+		}
+
+		public void surfaceCreated(SurfaceHolder holder) {
+			// The Surface has been created, acquire the camera and tell it
+			// where
+			// to draw.
+			try {
+				if (mCamera != null) {
+					mCamera.setPreviewDisplay(holder);
+				}
+			} catch (IOException exception) {
+				Log.e(TAG, "IOException caused by setPreviewDisplay()",
+						exception);
+			}
+		}
+
+		public void surfaceDestroyed(SurfaceHolder holder) {
+			// Surface will be destroyed when we return, so stop the preview.
+			if (mCamera != null) {
+				mCamera.stopPreview();
+			}
+		}
+
+		private Size getOptimalPreviewSize(List<Size> sizes, int w, int h) {
+			final double ASPECT_TOLERANCE = 0.1;
+			double targetRatio = (double) w / h;
+			if (sizes == null)
+				return null;
+
+			Size optimalSize = null;
+			double minDiff = Double.MAX_VALUE;
+
+			int targetHeight = h;
+
+			// Try to find an size match aspect ratio and size
 			for (Size size : sizes) {
+				double ratio = (double) size.width / size.height;
+				if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE)
+					continue;
 				if (Math.abs(size.height - targetHeight) < minDiff) {
 					optimalSize = size;
 					minDiff = Math.abs(size.height - targetHeight);
 				}
 			}
+
+			// Cannot find the one match the aspect ratio, ignore the
+			// requirement
+			if (optimalSize == null) {
+				minDiff = Double.MAX_VALUE;
+				for (Size size : sizes) {
+					if (Math.abs(size.height - targetHeight) < minDiff) {
+						optimalSize = size;
+						minDiff = Math.abs(size.height - targetHeight);
+					}
+				}
+			}
+			return optimalSize;
 		}
-		return optimalSize;
+
+		public void surfaceChanged(SurfaceHolder holder, int format, int w,
+				int h) {
+			// Now that the size is known, set up the camera parameters and
+			// begin
+			// the preview.
+			Camera.Parameters parameters = mCamera.getParameters();
+			parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
+			requestLayout();
+
+			if (((testCameraActivity) mContext).haveFlashLight()) {
+				parameters.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+				parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+			}		
+
+			mCamera.setParameters(parameters);
+			mCamera.startPreview();
+		}
+
 	}
-
-	public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
-		// Now that the size is known, set up the camera parameters and begin
-		// the preview.
-		Camera.Parameters parameters = mCamera.getParameters();
-		parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
-		requestLayout();
-
-		parameters.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
-		parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-
-		mCamera.setParameters(parameters);
-		mCamera.startPreview();
-	}
-
 }

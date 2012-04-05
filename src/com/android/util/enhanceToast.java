@@ -14,12 +14,12 @@ public class enhanceToast{
 	public void displayToast(String message) {
 		if (null != mToast) {
 			mToast.setText(message);
-			mToast.setDuration(Toast.LENGTH_SHORT);
+			mToast.setDuration(Toast.LENGTH_LONG);
 			mToast.show();
 
 			return;
 		}
-		mToast = Toast.makeText(mContext, message, Toast.LENGTH_SHORT);
+		mToast = Toast.makeText(mContext, message, Toast.LENGTH_LONG);
 		mToast.show();
 	}
 
