@@ -15,7 +15,12 @@
     <string name="app_about">Device Checker是新一代的系统硬件检测工具。它能轻松检测电脑硬件的健康状态，让您购买爱机时少上当，不怕忽悠！
         	\r\n\r\n任务列表式的操作方式，简单，快捷，赶快体验一下吧！
         	\r\n\r\n有了Device Checker，再也不用担心买水货手机了，哪里有问题点哪里！</string>
-    <string name="app_feedback">\r\n问题反馈请联系 kevinems@gmail.com</string>   	
+    <string name="app_feedback">\r\n问题反馈请联系 kevinems@gmail.com</string>  
+    <string name="about_log_title">\r\n\r\n更新日志：</string>  
+    <string name="about_log_content">
+        \r\n\r\nV1.02 添加［NFC测试］，美化界面，修正BUG。
+        \r\n\r\nV1.01 修正BUG。
+        \r\n\r\nV1.00 发布版本。</string>  	
     
     <!-- TestLcd -->
     <string name="btn_lcd_test">Lcd测试</string>

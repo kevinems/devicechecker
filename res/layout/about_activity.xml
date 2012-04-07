@@ -17,4 +17,28 @@
         android:layout_height="wrap_content"
         android:text="@string/app_feedback" />
 
+    <ScrollView
+        android:id="@+id/scrollViewLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textViewLogTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_log_title" />
+            <TextView
+                android:id="@+id/textViewLogContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_log_content" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

@@ -4,7 +4,7 @@
 run in system must signed in a special system-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.android.devicechecker"
-      android:versionName="1.0.1" android:versionCode="1">
+      android:versionName="1.0.2" android:versionCode="2">
     	<supports-screens android:largeScreens="true"
 		android:normalScreens="true" 
 		android:smallScreens="true"
@@ -190,7 +190,8 @@ run in system must signed in a special system-->
 
         <activity android:name=".aboutActivity" 
             android:label="@string/title_about"
-          android:screenOrientation="nosensor">    
+          android:screenOrientation="nosensor"
+          android:theme="@style/beauty">>    
         </activity>  
         
         <receiver android:name=".receiver.NotificationReceiver" />
