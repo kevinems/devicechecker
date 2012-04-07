@@ -44,7 +44,9 @@ public class testNfc extends ItestActTemplate {
 		// Parse the intent
 		String action = intent.getAction();
 		if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
-			mTipTextView.setText(R.string.test_nfc_tips_ok);
+			//start a new activity to display the result.
+			Intent mIntent = new Intent(getApplicationContext(), testNfcOk.class);
+			startActivity(mIntent);
 		} else {
 			mTipTextView.setText(R.string.test_nfc_tips);
 		}

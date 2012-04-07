@@ -53,6 +53,11 @@ public class ItestActTemplate extends Activity implements IsetTestResult,
 						mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						startActivity(mIntent);
 					}
+					else {
+						Intent mIntent2 = new Intent(getApplicationContext(), MainActivity.class);
+						mIntent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(mIntent2);
+					}
 				}
 			}
 		});
@@ -66,7 +71,7 @@ public class ItestActTemplate extends Activity implements IsetTestResult,
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				setValue(getApplicationContext(), testItemIndex, RESULT_FAIL);
-//				finish();
+				finish();
 				Intent mIntent = new Intent(getApplicationContext(), MainActivity.class);
 				mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(mIntent);

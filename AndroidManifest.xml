@@ -182,11 +182,17 @@ run in system must signed in a special system-->
           android:label="@string/test_nfc"
           android:screenOrientation="nosensor"
           android:theme="@style/activityTitlebarRed">
+        </activity> 
+        
+        <activity android:name=".testNfcOk" 
+          android:label="@string/test_nfc"
+          android:screenOrientation="nosensor"
+          android:theme="@style/activityTitlebarRed">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter> 
-        </activity>          
+        </activity>
 
         <activity android:name=".aboutActivity" 
             android:label="@string/title_about"
