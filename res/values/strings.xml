@@ -12,7 +12,9 @@
     
     <!-- about activity -->
     <string name="title_about">关于</string>  
-    <string name="app_about">Device Checker是新一代的系统硬件检测工具。它能轻松检测电脑硬件的健康状态，让您购买爱机时少上当，不怕忽悠！
+    <string name="app_about">
+        	每次买手机的时候心里都是忐忑不安的，人品再好也挡不住奸商的忽悠。要是能有一款软件可以在购机或者购机后第一时间对手机的各种硬件做测试那就放心多了。
+        	\r\n\Device Checker是新一代的系统硬件检测工具。它能轻松检测电脑硬件的健康状态，让您购买爱机时少上当，不怕忽悠！
         	\r\n\r\n任务列表式的操作方式，简单，快捷，赶快体验一下吧！
         	\r\n\r\n有了Device Checker，再也不用担心买水货手机了，哪里有问题点哪里！</string>
     <string name="app_feedback">\r\n问题反馈请联系 kevinems@gmail.com</string>  

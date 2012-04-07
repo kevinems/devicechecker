@@ -182,9 +182,10 @@ run in system must signed in a special system-->
           android:label="@string/test_nfc"
           android:screenOrientation="nosensor"
           android:theme="@style/activityTitlebarRed">
+
         </activity> 
         
-        <activity android:name=".testNfcOk" 
+        <activity android:name=".testNfc" 
           android:label="@string/test_nfc"
           android:screenOrientation="nosensor"
           android:theme="@style/activityTitlebarRed">
