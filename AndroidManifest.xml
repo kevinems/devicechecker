@@ -22,7 +22,7 @@ run in system must signed in a special system-->
 	    <uses-permission android:name="android.permission.VIBRATE" />
 <!-- 	    <uses-permission android:name="android.permission.BLUETOOTH" />
 	    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> -->
-	    <uses-permission android:name="android.permission.HARDWARE_TEST" />
+<!-- 	    <uses-permission android:name="android.permission.HARDWARE_TEST" /> -->
 	    <!-- <uses-permission android:name="android.permission.CALL_PHONE" /> -->
 	    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 <!-- 	    <uses-permission android:name="android.permission.MASTER_CLEAR" />
@@ -90,32 +90,12 @@ run in system must signed in a special system-->
                   android:theme="@style/activityTitlebarRed">
         </activity>
         
-        <activity android:name=".StandardUsbActivity"
-                  android:label="@string/standare_usb_test"
-                  android:screenOrientation="nosensor"
-                  android:theme="@style/activityTitlebarRed">
-        </activity>
-        
-        <activity android:name=".headsetactivity"
-                  android:label="@string/headset_test"
-                  android:screenOrientation="nosensor"
-                  android:theme="@style/activityTitlebarRed">
-        </activity>
          <activity android:name=".sdcardactivity"
                   android:label="@string/sd_test"
                   android:screenOrientation="nosensor"
                   android:theme="@style/activityTitlebarRed">
         </activity>
-        <activity android:name=".MusicPlayActivity"
-                  android:label="@string/audio_test"
-                  android:screenOrientation="nosensor"
-                  android:theme="@style/activityTitlebarRed">
-        </activity>
-        <activity android:name="videoplayeractivity"
-                  android:label="@string/video_test"
-                  android:screenOrientation="nosensor"
-                  android:theme="@style/activityTitlebarRed">
-        </activity>
+
          <activity android:name=".testRecord"
                     android:label="@string/record_test"
                     android:screenOrientation="nosensor"
@@ -125,20 +105,7 @@ run in system must signed in a special system-->
            android:label="@string/HDMI_test"
            android:screenOrientation="nosensor"
            android:theme="@style/activityTitlebarRed">
-        </activity>
-        
-         <activity android:name=".SleepWakeActivity"
-         android:label="@string/close_test"
-         android:screenOrientation="nosensor"
-         android:theme="@style/activityTitlebarRed">
-        </activity>
-        
-         <activity android:name=".RtcActivity"
-         android:label="@string/RTC_test"
-         android:screenOrientation="nosensor"
-         android:theme="@style/activityTitlebarRed">
-        </activity>
-        
+        </activity>    
        
         <activity android:name=".WifiActivity"
         android:label="@string/Wifi_test"
@@ -164,13 +131,7 @@ run in system must signed in a special system-->
          android:screenOrientation="nosensor"
          android:theme="@style/activityTitlebarRed">                
         </activity>
-             
-         <activity android:name=".MediaPlayerVideo"
-         android:label="@string/video_test"
-         android:screenOrientation="nosensor"
-         android:theme="@style/activityTitlebarRed">                
-        </activity>
-        
+                    
         <activity android:name=".testCameraActivity"
          android:label="@string/test_camera"
          android:screenOrientation="landscape"
@@ -206,10 +167,6 @@ run in system must signed in a special system-->
          android:screenOrientation="nosensor"
          android:theme="@style/activityTitlebarRed">                
         </activity>
-        <activity android:name=".getLincenseActivity" 
-          android:label="@string/get_cpuid" 
-          android:screenOrientation="nosensor"
-          android:theme="@style/activityTitlebarRed"/>
           
         <activity android:name=".TestBatteryActivity" 
           android:label="@string/test_battery" 
@@ -217,12 +174,24 @@ run in system must signed in a special system-->
           android:theme="@style/activityTitlebarRed"/>
         
         <activity android:name=".testLed" 
+          android:label="@string/test_led"
           android:screenOrientation="nosensor"
           android:theme="@style/activityTitlebarRed"/>
         
-        <activity android:name=".aboutActivity" 
+        <activity android:name=".testNfc" 
+          android:label="@string/test_nfc"
           android:screenOrientation="nosensor"
-          />
+          android:theme="@style/activityTitlebarRed">
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter> 
+        </activity>          
+
+        <activity android:name=".aboutActivity" 
+            android:label="@string/title_about"
+          android:screenOrientation="nosensor">    
+        </activity>  
         
         <receiver android:name=".receiver.NotificationReceiver" />
     </application>

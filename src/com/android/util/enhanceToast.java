@@ -22,9 +22,32 @@ public class enhanceToast{
 		mToast = Toast.makeText(mContext, message, Toast.LENGTH_LONG);
 		mToast.show();
 	}
+	
+	public void displayToast(String message, int duration) {
+		if (null != mToast) {
+			mToast.setText(message);
+			if (duration == Toast.LENGTH_SHORT) {
+				mToast.setDuration(Toast.LENGTH_SHORT);
+			} else {
+				mToast.setDuration(Toast.LENGTH_LONG);
+			}
+			
+			mToast.show();
 
-//	public void displayToast(int id) {
-//		displayToast(getString(id));
-//	}
-
+			return;
+		}
+		if (duration == Toast.LENGTH_SHORT) {
+			mToast = Toast.makeText(mContext, message, Toast.LENGTH_SHORT);
+		} else {
+			mToast = Toast.makeText(mContext, message, Toast.LENGTH_LONG);	
+		}
+		
+		mToast.show();
+	}
+	
+	public void cancel() {
+		if (null != mToast) {
+			mToast.cancel();
+		}
+	}
 }

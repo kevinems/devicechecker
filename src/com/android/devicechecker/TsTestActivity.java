@@ -2,9 +2,6 @@ package com.android.devicechecker;
 
 import java.util.ArrayList;
 
-import com.android.devicechecker.R;
-import com.android.util.FileOperate;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,18 +14,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.android.util.FileOperate;
+import com.android.util.enhanceToast;
 
 public class TsTestActivity extends Activity
 {
 	private static final int ID_BTN_OK = 1;
 	private static final int ID_BTN_CANCEL = 2;
+	private enhanceToast mEnhanceToast;
 	private Button btn_ok;
 	private Button btn_cancel;
 	
@@ -46,12 +47,7 @@ public class TsTestActivity extends Activity
 	
 		/* screen orientation landscape */
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		
-		/* make the screen full bright for this activity */
-		WindowManager.LayoutParams lp = getWindow().getAttributes();
-		lp.screenBrightness = 1.0f;
-		getWindow().setAttributes(lp);
-		
+				
 		/* Create button and setting */
         btn_ok = new Button(this);
         btn_ok.setText(R.string.btn_ok_text);
@@ -91,38 +87,40 @@ public class TsTestActivity extends Activity
 		setContentView(layout);
 		
 		/* show tips */
-		Toast.makeText(getApplicationContext(), R.string.tstest_tips, Toast.LENGTH_SHORT).show();
-		
-		/* ok button click */
-		OnClickListener btn_ok_listener = new OnClickListener()
-		{
-			public void onClick(View v)
-			{
-				setValue(1);
-				finish();
+		mEnhanceToast = new enhanceToast(this);
+		mEnhanceToast.displayToast(getString(R.string.tstest_tips, Toast.LENGTH_SHORT));
 				
-				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-					Intent mIntent = FileOperate.getCurIntent(TsTestActivity.this,"TouchScreen");
-					if (mIntent != null) {
-						startActivity(mIntent);
-					}
-				}
-			}
-		};
-
-		/* cancel button click */
-		OnClickListener btn_cancel_listener = new OnClickListener()
-		{
-			public void onClick(View v)
-			{
-				setValue(2);
-				finish();
-			}
-		};
-		
 		btn_ok.setOnClickListener(btn_ok_listener);
 		btn_cancel.setOnClickListener(btn_cancel_listener);
 	}
+	
+	
+	/* ok button click */
+	OnClickListener btn_ok_listener = new OnClickListener()
+	{
+		public void onClick(View v)
+		{
+			setValue(1);
+			finish();
+			
+			if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
+				Intent mIntent = FileOperate.getCurIntent(TsTestActivity.this,"TouchScreen");
+				if (mIntent != null) {
+					startActivity(mIntent);
+				}
+			}
+		}
+	};
+
+	/* cancel button click */
+	OnClickListener btn_cancel_listener = new OnClickListener()
+	{
+		public void onClick(View v)
+		{
+			setValue(2);
+			finish();
+		}
+	};
 	
 	public class TsTestView extends View
 	{
@@ -240,11 +238,5 @@ public class TsTestActivity extends Activity
 	private void setValue(int value){
 		FileOperate.setIndexValue(FileOperate.TestItemTouchScreen, value);
 		FileOperate.writeToFile(this);
-	}
-	
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
 	}
 }

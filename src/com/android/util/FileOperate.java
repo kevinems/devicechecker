@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.android.devicechecker.GpsActivity;
 import com.android.devicechecker.HDMIActivity;
+import com.android.devicechecker.testNfc;
 import com.android.devicechecker.testRecord;
 import com.android.devicechecker.MiniUsbActivity;
 import com.android.devicechecker.R;
@@ -62,7 +63,7 @@ public class FileOperate {
 	
 	private static String Tag="FileOperate";
 	private static byte[] buffer = new byte[100];
-	public static int testCount=22;
+	public static int testCount=23;
 	public static int curTestItem=0;
 	public static boolean testmode=false;		//true
 	
@@ -88,17 +89,19 @@ public class FileOperate {
 	public static final int TestItemCheckSum=19;
 	public static final int TestItemTouchScreen=20;
 	public static final int TestItemLed=21;
+	public static final int TestItemNfc=22;
 	
 	public static final int TestItemRTC=100;
 	
 	public static final String TEST_LED_STRING = "Led";
 	public static final String TEST_LCD_STRING = "Lcd";
+	public static final String TEST_NFC_STRING = "NFC";
     
     //to control which item will be display on main activity.
 	//the string sequence decide the sequence of the item display on the main activity.
     public static String []curtestItem={TEST_LCD_STRING, TEST_LED_STRING, "TouchScreen", "Camera","GSensor","Vibrator",
 		/*"Video",*/"HDMI","Record",/*"Otg",*//*"Usb", "Sd",*/
-		"Battery"/*,"Wifi"*/,"Key"/*,"GetCpuID"*/};
+		"Battery"/*,"Wifi"*/,"Key", TEST_NFC_STRING/*,"GetCpuID"*/};
 	
 	public static int CHECK_NULL=0;
 	public static int CHECK_SUCCESS=1;
@@ -502,6 +505,8 @@ public class FileOperate {
 			mIntent=new Intent(mContext.getApplicationContext(), testLcd.class);
 		}else if(curTestItemStr.equals("Led")){
 			mIntent=new Intent(mContext.getApplicationContext(), testLed.class);
+		}else if(curTestItemStr.equals(FileOperate.TEST_NFC_STRING)){
+			mIntent=new Intent(mContext.getApplicationContext(), testNfc.class);
 		}else if(curTestItemStr.equals("Key")){
 			mIntent=new Intent(mContext.getApplicationContext(), TestKey.class);
 		}else if(curTestItemStr.equals("Gps")){

@@ -11,6 +11,7 @@
     <string name="main_menu_about">关于</string>
     
     <!-- about activity -->
+    <string name="title_about">关于</string>  
     <string name="app_about">Device Checker是新一代的系统硬件检测工具。它能轻松检测电脑硬件的健康状态，让您购买爱机时少上当，不怕忽悠！
         	\r\n\r\n任务列表式的操作方式，简单，快捷，赶快体验一下吧！
         	\r\n\r\n有了Device Checker，再也不用担心买水货手机了，哪里有问题点哪里！</string>
@@ -31,9 +32,15 @@
     
     <!-- Test TouchPal -->
     <string name="touch_screen">触摸屏测试</string>
-    
+        
     <!-- TestAudioAndVideo -->
     <string name="video_tip">1.检测喇叭发音是否正常。\r\n2.插入耳机，检测耳机发音是否正常。</string>
+    
+    <!-- Test NFC -->
+    <string name="test_nfc">NFC测试</string>
+    <string name="open_nfc">打开NFC</string>
+    <string name="test_nfc_tips">1.先确保已经在系统设置里面打开NFC检测功能\r\n2.将公交卡等放在手机背面进行检测</string>
+    <string name="test_nfc_tips_ok">已检测到NFC设备</string>
     
     <!-- main activity -->
     <string name="start_test">开始测试</string>
@@ -133,9 +140,7 @@
     <string name="test_brightness_low">亮度低</string>
     <string name="test_brightness_middle">亮度中</string>
     <string name="test_brightness_height">亮度高</string>
-    <string name="success_tips">成功校正触摸屏</string>
     <string name="tstest_tips">请在触摸屏上滑动测试</string>
-    <string name="try_again_tips">请再试一次</string>
     <string name="btn_ok_text">合格</string>
     <string name="btn_cancel_text">不合格</string>
     <string name="check_ok">合格</string>

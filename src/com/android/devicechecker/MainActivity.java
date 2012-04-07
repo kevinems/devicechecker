@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
@@ -57,6 +58,7 @@ public class MainActivity extends Activity {
 	private Button mTestWifi = null;
 	private Button mTestLcd = null;
 	private Button mTestLed = null;
+	private Button mTestNfc = null;
 	private Button mTestKey = null;
 	private Button mTestGps = null;
 	private Button mTestGSeneor = null;
@@ -226,6 +228,7 @@ public class MainActivity extends Activity {
 		mTestWifi = (Button) findViewById(R.id.test_wifi);
 		mTestLcd = (Button) findViewById(R.id.test_lcd);
 		mTestLed = (Button) findViewById(R.id.test_led);
+		mTestNfc = (Button) findViewById(R.id.test_nfc);
 		mTestKey = (Button) findViewById(R.id.test_key);
 		mTestGps = (Button) findViewById(R.id.test_gps);
 		mTestGSeneor = (Button) findViewById(R.id.test_GSensor);
@@ -270,6 +273,13 @@ public class MainActivity extends Activity {
 		mTestLed.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				mIntent = new Intent(MainActivity.this, testLed.class);
+				startActivity(mIntent);
+			}
+		});
+		
+		mTestNfc.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				mIntent = new Intent(MainActivity.this, testNfc.class);
 				startActivity(mIntent);
 			}
 		});
@@ -550,6 +560,8 @@ public class MainActivity extends Activity {
 				v = mTestLcd;
 			} else if (i == FileOperate.TestItemLed) {
 				v = mTestLed;
+			} else if (i == FileOperate.TestItemNfc) {
+				v = mTestNfc;	
 			} else if (i == FileOperate.TestItemKey) {
 				v = mTestKey;
 			} else if (i == FileOperate.TestItemGps) {
@@ -586,6 +598,7 @@ public class MainActivity extends Activity {
 				// }else {
 				// v.setEnabled(true);
 				// }
+				v.setBackgroundColor(Color.WHITE);
 
 				break;
 			}
@@ -831,6 +844,12 @@ public class MainActivity extends Activity {
 		} else {
 			noexistitem.add(mTestLed);
 		}
+		
+		if (FileOperate.existTestItem(FileOperate.TEST_NFC_STRING)) {
+			// existitem.add(mTestLcd);
+		} else {
+			noexistitem.add(mTestNfc);
+		}
 
 		if (FileOperate.existTestItem("Key")) {
 			// existitem.add(mTestKey);
@@ -919,6 +938,8 @@ public class MainActivity extends Activity {
 				existitem.add(mTestLcd);
 			} else if (curString.equals(FileOperate.TEST_LED_STRING)) {
 				existitem.add(mTestLed);
+			} else if (curString.equals(FileOperate.TEST_NFC_STRING)) {
+				existitem.add(mTestNfc);	
 			} else if (curString.equals("Key")) {
 				existitem.add(mTestKey);
 			} else if (curString.equals("Gps")) {
