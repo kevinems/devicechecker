@@ -598,7 +598,7 @@ public class MainActivity extends Activity {
 				// }else {
 				// v.setEnabled(true);
 				// }
-				v.setBackgroundColor(Color.WHITE);
+//				v.setBackgroundColor(Color.WHITE);
 
 				break;
 			}
