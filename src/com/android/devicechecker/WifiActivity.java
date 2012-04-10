@@ -175,7 +175,7 @@ public class WifiActivity extends Activity implements OnClickListener {
 
 					if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
 						Intent mIntent = FileOperate.getCurIntent(
-								WifiActivity.this, "Wifi");
+								WifiActivity.this, FileOperate.TestItemWifi);
 						if (mIntent != null) {
 							startActivity(mIntent);
 						}
@@ -210,7 +210,7 @@ public class WifiActivity extends Activity implements OnClickListener {
 
 					if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
 						Intent mIntent = FileOperate.getCurIntent(
-								WifiActivity.this, "Wifi");
+								WifiActivity.this, FileOperate.TestItemWifi);
 						if (mIntent != null) {
 							startActivity(mIntent);
 						}
@@ -287,7 +287,7 @@ public class WifiActivity extends Activity implements OnClickListener {
 
 				if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
 					Intent mIntent = FileOperate.getCurIntent(
-							WifiActivity.this, "Wifi");
+							WifiActivity.this, FileOperate.TestItemWifi);
 					if (mIntent != null) {
 						startActivity(mIntent);
 					}

@@ -27,8 +27,7 @@ public class testLed extends ItestActTemplate {
 
 		mYes = (Button) findViewById(R.id.but_ok);
 		mNo = (Button) findViewById(R.id.but_nook);
-		setYesBtnOnClickListener(mYes, FileOperate.TestItemLed,
-				FileOperate.TEST_LED_STRING);
+		setYesBtnOnClickListener(mYes, FileOperate.TestItemLed);
 		setNoBtnOnClickListener(mNo, FileOperate.TestItemLed);
 	}
 

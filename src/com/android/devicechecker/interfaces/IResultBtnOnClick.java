@@ -8,9 +8,8 @@ public interface IResultBtnOnClick {
 	 * set yes button event
 	 * @param yesBtn
 	 * @param testItemIndex
-	 * @param fileOperateStr
 	 */
-	public void setYesBtnOnClickListener(Button yesBtn, final int testItemIndex, final String fileOperateStr);
+	public void setYesBtnOnClickListener(Button yesBtn, final int testItemIndex);
 	
 	/**
 	 * set no button event

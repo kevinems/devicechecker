@@ -101,7 +101,7 @@ public class OtgActivity extends Activity{
 							finish();
 
 						if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-							 Intent mIntent = FileOperate.getCurIntent(OtgActivity.this,"Otg");
+							 Intent mIntent = FileOperate.getCurIntent(OtgActivity.this, FileOperate.TestItemOtg);
 							 if (mIntent!=null) {
 								 startActivity(mIntent);
 							}	 
@@ -145,7 +145,7 @@ public class OtgActivity extends Activity{
 			finish();
 
 			if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-				 Intent mIntent = FileOperate.getCurIntent(OtgActivity.this,"Otg");
+				 Intent mIntent = FileOperate.getCurIntent(OtgActivity.this, FileOperate.TestItemOtg);
 				 if (mIntent!=null) {
 					 startActivity(mIntent);
 				}	 

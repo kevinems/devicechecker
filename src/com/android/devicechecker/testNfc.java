@@ -32,8 +32,7 @@ public class testNfc extends ItestActTemplate {
 		mYes = (Button) findViewById(R.id.but_ok);
 		mNo = (Button) findViewById(R.id.but_nook);
 		mOpenNfc.setOnClickListener(btnOpenNfOcl);
-		setYesBtnOnClickListener(mYes, FileOperate.TestItemNfc,
-				FileOperate.TEST_NFC_STRING);
+		setYesBtnOnClickListener(mYes, FileOperate.TestItemNfc);
 		setNoBtnOnClickListener(mNo, FileOperate.TestItemNfc);
 
 		resolveIntent(getIntent());

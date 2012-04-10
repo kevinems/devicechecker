@@ -14,7 +14,7 @@ import com.android.devicechecker.interfaces.ItestActTemplate;
 import com.android.util.FileOperate;
 import com.android.util.enhanceToast;
 
-public class testLcd extends ItestActTemplate {
+public class testLcdActivity extends ItestActTemplate {
 	private static final String TAG = "TestLcd";
 
 	private Button mYes = null;
@@ -47,7 +47,7 @@ public class testLcd extends ItestActTemplate {
 		mYes.setVisibility(View.GONE);
 		mNo.setVisibility(View.GONE);
 		
-		setYesBtnOnClickListener(mYes, FileOperate.TestItemLcd, FileOperate.TEST_LCD_STRING);
+		setYesBtnOnClickListener(mYes, FileOperate.TestItemLcd);
 		setNoBtnOnClickListener(mNo, FileOperate.TestItemLcd);
 
 		mEnhanceToast = new enhanceToast(this);

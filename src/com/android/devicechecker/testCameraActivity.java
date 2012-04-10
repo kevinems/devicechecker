@@ -3,6 +3,7 @@ package com.android.devicechecker;
 import java.io.IOException;
 import java.util.List;
 
+import com.android.devicechecker.interfaces.ItestActTemplate;
 import com.android.util.FileOperate;
 import com.android.util.enhanceToast;
 
@@ -37,7 +38,7 @@ import android.widget.RelativeLayout;
 
 // ----------------------------------------------------------------------
 
-public class testCameraActivity extends Activity {
+public class testCameraActivity extends ItestActTemplate {
 	private Preview mPreview;
 	Camera mCamera;
 	int numberOfCameras;
@@ -67,12 +68,12 @@ public class testCameraActivity extends Activity {
 		btn_ok = new Button(this);
 		btn_ok.setText(R.string.btn_ok_text);
 		btn_ok.setId(ID_BTN_OK_CAMERA);
-		btn_ok.setBackgroundColor(Color.GREEN);
+		setYesBtnOnClickListener(btn_ok, FileOperate.TestItemCamera);
 		btn_cancel = new Button(this);
 		btn_cancel.setText(R.string.btn_cancel_text);
 		btn_cancel.setId(ID_BTN_CANCEL_CAMERA);
-		btn_cancel.setBackgroundColor(Color.RED);
-
+		setNoBtnOnClickListener(btn_cancel, FileOperate.TestItemCamera);
+		
 		/* main layout */
 		RelativeLayout layout = new RelativeLayout(this);
 		mPreview = new Preview(this);
@@ -124,39 +125,6 @@ public class testCameraActivity extends Activity {
 				defaultCameraId = i;
 			}
 		}
-
-		/* ok button click */
-		OnClickListener btn_ok_listener = new OnClickListener() {
-			public void onClick(View v) {
-				setValue(1);
-				finish();
-
-				if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-					Intent mIntent = FileOperate.getCurIntent(
-							testCameraActivity.this, "Camera");
-					if (mIntent != null) {
-						startActivity(mIntent);
-					}
-				}
-			}
-		};
-
-		/* cancel button click */
-		OnClickListener btn_cancel_listener = new OnClickListener() {
-			public void onClick(View v) {
-				setValue(2);
-				finish();
-			}
-		};
-
-		btn_ok.setOnClickListener(btn_ok_listener);
-		btn_cancel.setOnClickListener(btn_cancel_listener);
-	}
-
-	private void setValue(int value) {
-
-		FileOperate.setIndexValue(FileOperate.TestItemCamera, value);
-		FileOperate.writeToFile(this);
 	}
 
 	@Override
@@ -430,7 +398,7 @@ public class testCameraActivity extends Activity {
 			if (((testCameraActivity) mContext).haveFlashLight()) {
 				parameters.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
 				parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-			}		
+			}
 
 			mCamera.setParameters(parameters);
 			mCamera.startPreview();

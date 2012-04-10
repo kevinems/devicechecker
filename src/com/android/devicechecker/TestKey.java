@@ -1,44 +1,22 @@
 package com.android.devicechecker;
 
-import com.android.devicechecker.R;
-import com.android.util.FileOperate;
-import com.android.util.GSensor;
-import com.android.util.ParseSeverData;
-import com.android.util.GSensor.OnShakeListener;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.DialogInterface.OnKeyListener;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class TestKey extends Activity {
+import com.android.devicechecker.interfaces.ItestActTemplate;
+import com.android.util.FileOperate;
+
+public class TestKey extends ItestActTemplate {
 	private static final String TAG = "TestKey";
 
 	private TextView mTextView;
 
 	private Button mYes = null;
 	private Button mNo = null;
-
-	private AlertDialog progressAlert;
-	boolean checkOk = false; // 是否是成功
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,28 +32,9 @@ public class TestKey extends Activity {
 
 		mYes = (Button) findViewById(R.id.but_ok);
 		mNo = (Button) findViewById(R.id.but_nook);
-		mYes.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				setValue(1);
-				finish();
-
-				if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-					Intent mIntent = FileOperate.getCurIntent(TestKey.this,
-							"Key");
-					if (mIntent != null) {
-						startActivity(mIntent);
-					}
-				}
-			}
-		});
-
-		mNo.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				setValue(2);
-				finish();
-			}
-		});
-
+		
+		setYesBtnOnClickListener(mYes, FileOperate.TestItemKey);
+		setNoBtnOnClickListener(mNo, FileOperate.TestItemKey);
 	}
 
 	// 屏蔽Home键
@@ -157,14 +116,4 @@ public class TestKey extends Activity {
 		return super.onKeyUp(keyCode, event);
 	}
 
-	@Override
-	protected void onStop() {
-		super.onStop();
-
-	}
-
-	private void setValue(int value) {
-		FileOperate.setIndexValue(FileOperate.TestItemKey, value);
-		FileOperate.writeToFile(this);
-	}
 }

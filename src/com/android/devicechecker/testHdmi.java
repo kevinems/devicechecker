@@ -3,6 +3,7 @@ package com.android.devicechecker;
 import java.io.File;
 import java.io.FileDescriptor;
 
+import com.android.devicechecker.interfaces.ItestActTemplate;
 import com.android.util.FileOperate;
 
 import android.app.Activity;
@@ -31,7 +32,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 
-public class HDMIActivity extends Activity implements
+public class testHdmi extends ItestActTemplate implements
 		OnBufferingUpdateListener, OnCompletionListener, OnPreparedListener,
 		OnVideoSizeChangedListener, SurfaceHolder.Callback {
 	// private Button btStart,btOpen,btClose;
@@ -43,13 +44,6 @@ public class HDMIActivity extends Activity implements
 	private SurfaceView mPreview;
 	private SurfaceHolder holder;
 	private String path;
-	private Bundle extras;
-	private static final String MEDIA = "media";
-	private static final int LOCAL_AUDIO = 1;
-	private static final int STREAM_AUDIO = 2;
-	private static final int RESOURCES_AUDIO = 3;
-	private static final int LOCAL_VIDEO = 4;
-	private static final int STREAM_VIDEO = 5;
 	private boolean mIsVideoSizeKnown = false;
 	private boolean mIsVideoReadyToBePlayed = false;
 
@@ -58,14 +52,6 @@ public class HDMIActivity extends Activity implements
 	private SeekBar mSeekBar;
 	AudioManager mAudioManager;
 	int maxVolume;
-
-	private AlertDialog progressAlert;
-	boolean checkOk = false; // 是否是成功
-
-	private void setValue(int value) {
-		FileOperate.setIndexValue(FileOperate.TestItemHDMI, value);
-		FileOperate.writeToFile(this);
-	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -84,27 +70,8 @@ public class HDMIActivity extends Activity implements
 
 		mYes = (Button) findViewById(R.id.but_ok);
 		mNo = (Button) findViewById(R.id.but_nook);
-		mYes.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				setValue(1);
-				finish();
-
-				if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-					Intent mIntent = FileOperate.getCurIntent(
-							HDMIActivity.this, "HDMI");
-					if (mIntent != null) {
-						startActivity(mIntent);
-					}
-				}
-			}
-		});
-
-		mNo.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				setValue(2);
-				finish();
-			}
-		});
+		setYesBtnOnClickListener(mYes, FileOperate.TestItemHDMI);
+		setNoBtnOnClickListener(mNo, FileOperate.TestItemHDMI);
 
 		mSeekBar = (SeekBar) findViewById(R.id.hdmiseekBar);
 		mSeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -143,7 +110,7 @@ public class HDMIActivity extends Activity implements
 			if (path == "") {
 				// Tell the user to provide a media file URL.
 				Toast.makeText(
-						HDMIActivity.this,
+						testHdmi.this,
 						"Please edit MediaPlayerDemo_Video Activity,"
 								+ " and set the path variable to your media file URL.",
 						Toast.LENGTH_LONG).show();
@@ -231,7 +198,6 @@ public class HDMIActivity extends Activity implements
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		String string = null;
 		int mcurProgress;
 		switch (keyCode) {
 

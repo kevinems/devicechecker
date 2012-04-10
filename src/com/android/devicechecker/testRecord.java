@@ -7,6 +7,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.android.devicechecker.R;
+import com.android.devicechecker.interfaces.ItestActTemplate;
 import com.android.util.FileOperate;
 import com.android.util.MediaRecoderControl;
 import com.android.util.MultiPlayer;
@@ -35,7 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
-public class testRecord extends Activity {
+public class testRecord extends ItestActTemplate {
 	private static final String TAG = "MediaRecoderactivity";
 	MediaRecoderControl mMediaRecoder = null;
 	Button mButStartRecord;
@@ -57,14 +58,6 @@ public class testRecord extends Activity {
 	AudioManager mAudioManager;
 	int maxVolume;
 
-	private AlertDialog progressAlert;
-	boolean checkOk = false; // 鏄惁鏄垚鍔�
-
-	private void setValue(int value) {
-		FileOperate.setIndexValue(FileOperate.TestItemRecord, value);
-		FileOperate.writeToFile(this);
-	}
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -82,27 +75,8 @@ public class testRecord extends Activity {
 
 		mYes = (Button) findViewById(R.id.but_ok);
 		mNo = (Button) findViewById(R.id.but_nook);
-		mYes.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				setValue(1);
-				finish();
-
-				if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-					Intent mIntent = FileOperate.getCurIntent(
-							testRecord.this, "Record");
-					if (mIntent != null) {
-						startActivity(mIntent);
-					}
-				}
-			}
-		});
-
-		mNo.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				setValue(2);
-				finish();
-			}
-		});
+		setYesBtnOnClickListener(mYes, FileOperate.TestItemRecord);
+		setNoBtnOnClickListener(mNo, FileOperate.TestItemRecord);
 
 		seekBar = (SeekBar) findViewById(R.id.seekBar);
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -148,7 +122,6 @@ public class testRecord extends Activity {
 	}
 
 	private Handler mHandler = new Handler() {
-		float mCurrentVolume = 1.0f;
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -325,7 +298,6 @@ public class testRecord extends Activity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		String string = null;
 		int mcurProgress;
 		switch (keyCode) {
 

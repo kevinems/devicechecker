@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import org.xml.sax.InputSource;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -30,6 +31,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -43,11 +45,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.util.AccessPointState;
 import com.android.util.FileOperate;
 import com.android.util.ParseSeverData;
+import com.android.util.TestItemProperty;
 import com.android.util.UpTestItem;
 
 public class MainActivity extends Activity {
@@ -55,39 +59,13 @@ public class MainActivity extends Activity {
 
 	private LinearLayout mfirstLayout, msecLayout, mthirdLayout;
 
-	private Button mTestWifi = null;
-	private Button mTestLcd = null;
-	private Button mTestLed = null;
-	private Button mTestNfc = null;
-	private Button mTestKey = null;
-	private Button mTestGps = null;
-	private Button mTestGSeneor = null;
-
-	private Button mTestVibrator = null;
-	private Button mTestRecoder = null;
-	private Button mTestHDMI = null;
-
-	private Button mTestCamera = null;
-	private Button mTestOtg = null;
-	private Button mTestUsb = null;
-	private Button mTestSD = null;
-	private Button mGetCpuid = null;
-	private Button mTestBattery = null;
-	private Button mTestTouchScreen = null;
-
 	private TextView mVersion = null;
-
-	// private Button mTestRtc = null;
-	//
-	//
 	private Intent mIntent = null;
 	private Button mStartTest = null;
 	private Button mModeChange = null;
 	// private Button mLinkWanAgain=null; //
 	// private Button mReloadTest=null; //重取测试项
 	// private Button mActiveMachine=null; //激活
-	public LinkedList<Button> existitem = new LinkedList<Button>();
-	public LinkedList<Button> noexistitem = new LinkedList<Button>();
 
 	EditText etPassword;
 	private AlertDialog.Builder mBuilderpass;
@@ -158,25 +136,23 @@ public class MainActivity extends Activity {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.main);
 
-//		setWifi();
+		// setWifi();
 
-//		mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-//		mWifiInfo = mWifiManager.getConnectionInfo();
+		// mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		// mWifiInfo = mWifiManager.getConnectionInfo();
 
 		FileOperate.CreateFile(this);
 		FileOperate.readFromFile(this);
 
 		FileOperate.clearGobal();
 
-		FileOperate.ReadTestItemXML();
+		// FileOperate.ReadTestItemXML();
 		FileOperate.setGobalHandle(mhHandler);
 
-		FileOperate.SetTestItemXML();
-
-		initButton();
+		FileOperate.SetTestItemXML(this);	
 
 		refreashTestItemLayout();
-
+		
 		if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
 			setTitle(R.string.to_factory_mode);
 		} else {
@@ -184,258 +160,71 @@ public class MainActivity extends Activity {
 		}
 
 	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// TODO Auto-generated method stub
-//		return super.onCreateOptionsMenu(menu);
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main_menu, menu);
-		return true;
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		int mId = item.getItemId();
-		
-		switch (mId) {
-		case R.id.main_menu_about:
-			Intent mIntent = new Intent(getApplicationContext(), aboutActivity.class);
-			startActivity(mIntent);
-			break;
-
-		default:
-			break;
-		}
-		
-		return super.onOptionsItemSelected(item);
-	}
-
-	private void DisplayVersion() {
-		mVersion.setText(getString(R.string.cur_version)
-				+ getAppVersionName(getApplicationContext()));
-
-	}
 
 	private void initButton() {
-		// mModeShow=(TextView)findViewById(R.id.mode_show);
-
-		// mWifiStatus=(TextView)findViewById(R.id.wifisingalimage);
-		mVersion = (TextView) findViewById(R.id.test_version);
+		// TODO Auto-generated method stub		
 		DisplayVersion();
-
-		mTestWifi = (Button) findViewById(R.id.test_wifi);
-		mTestLcd = (Button) findViewById(R.id.test_lcd);
-		mTestLed = (Button) findViewById(R.id.test_led);
-		mTestNfc = (Button) findViewById(R.id.test_nfc);
-		mTestKey = (Button) findViewById(R.id.test_key);
-		mTestGps = (Button) findViewById(R.id.test_gps);
-		mTestGSeneor = (Button) findViewById(R.id.test_GSensor);
-		mTestVibrator = (Button) findViewById(R.id.test_vibrator);
-		mTestRecoder = (Button) findViewById(R.id.test_record);
-		mTestHDMI = (Button) findViewById(R.id.test_HDMI);
-		mTestCamera = (Button) findViewById(R.id.test_carema);
-		mTestOtg = (Button) findViewById(R.id.test_otg);
-		mTestUsb = (Button) findViewById(R.id.test_usb);
-		mTestSD = (Button) findViewById(R.id.test_sd);
-		mTestBattery = (Button) findViewById(R.id.test_battery);
-		// mTestRtc = (Button)findViewById(R.id.test_Rtc);
-		mGetCpuid = (Button) findViewById(R.id.test_cpuid);
-		mTestTouchScreen = (Button) findViewById(R.id.test_touch_screen);
-
-		mStartTest = (Button) findViewById(R.id.test_start);
+		
 		mModeChange = (Button) findViewById(R.id.mode_change);
 		mModeChange.setVisibility(View.INVISIBLE);
-		// mLinkWanAgain=(Button)findViewById(R.id.test_con_wifi);
-		// mReloadTest=(Button)findViewById(R.id.reloadtestitem);
-		// mActiveMachine=(Button)findViewById(R.id.active_machine);
-
-		mfirstLayout = (LinearLayout) findViewById(R.id.first_layout);
-		msecLayout = (LinearLayout) findViewById(R.id.second_layout);
-		mthirdLayout = (LinearLayout) findViewById(R.id.third_layout);
-
-		mTestWifi.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, WifiActivity.class);
-
-				startActivity(mIntent);
-			}
-		});
-
-		mTestLcd.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, testLcd.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestLed.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, testLed.class);
-				startActivity(mIntent);
-			}
-		});
 		
-		mTestNfc.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, testNfc.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestKey.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, TestKey.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestGps.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, GpsActivity.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestGSeneor.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, TestGSensor.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestVibrator.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this,
-						TestVibratorActivity.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestRecoder.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this,
-						testRecord.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestHDMI.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, HDMIActivity.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestCamera.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this,
-						testCameraActivity.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestOtg.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, OtgActivity.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestUsb.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, MiniUsbActivity.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestSD.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, sdcardactivity.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mGetCpuid.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View arg0) {
-				mIntent = new Intent(MainActivity.this,
-						getLincenseActivity.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestTouchScreen.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this, TsTestActivity.class);
-				startActivity(mIntent);
-			}
-		});
-
-		mTestBattery.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mIntent = new Intent(MainActivity.this,
-						TestBatteryActivity.class);
-				startActivity(mIntent);
-			}
-		});
-
+		mStartTest = (Button) findViewById(R.id.test_start);
+		
 		mStartTest.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (FileOperate.getTestItemCount() > 0) {
 					reStartTest();
 				} else {
-					// Toast.makeText(getApplicationContext(),
-					// getResources().getString(R.string.no_test),
-					// Toast.LENGTH_SHORT).show();
 					FileOperate.MyToast(getApplicationContext(), null,
 							R.string.no_test);
 				}
 
 			}
 		});
+	}
 
-		mModeChange.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				// if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL) {
-				// showDialog(DIALOG_ADMINSETTINGS);
-				// }else {
-				// FileOperate.changeMode();
-				// ChagngeModeTest();
-				// }
-				FileOperate.changeMode();
-				ChagngeModeTest();
-			}
-		});
+	private void initLayout() {
+		mfirstLayout = (LinearLayout) findViewById(R.id.first_layout);
+		msecLayout = (LinearLayout) findViewById(R.id.second_layout);
+		mthirdLayout = (LinearLayout) findViewById(R.id.third_layout);
+				
+		mfirstLayout.removeAllViews();
+		msecLayout.removeAllViews();
+		mthirdLayout.removeAllViews();
+	}
 
-		/*
-		 * mLinkWanAgain.setOnClickListener(new View.OnClickListener(){ public
-		 * void onClick(View v){ showDialog(DIALOG_CONNECT_WIFI); } });
-		 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		// return super.onCreateOptionsMenu(menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main_menu, menu);
+		return true;
+	}
 
-		/*
-		 * mReloadTest.setOnClickListener(new View.OnClickListener(){ public
-		 * void onClick(View v){
-		 * 
-		 * showDialog(DIALOG_GET_TEST_ITEM); } });
-		 * 
-		 * mActiveMachine.setOnClickListener(new View.OnClickListener(){ public
-		 * void onClick(View v){ if (FileOperate.getTestItemCount()<=0) {
-		 * //Toast.makeText(getApplicationContext(),
-		 * getResources().getString(R.string.no_test),
-		 * Toast.LENGTH_SHORT).show();
-		 * FileOperate.MyToast(getApplicationContext(), null, R.string.no_test);
-		 * }else if (FileOperate.getTestSttus()==FileOperate.CHECK_FAILURE) {
-		 * FileOperate
-		 * .MyToast(getApplicationContext(),null,R.string.can_not_active);
-		 * //Toast.makeText(getApplicationContext(),
-		 * getResources().getString(R.string.can_not_active),
-		 * Toast.LENGTH_SHORT).show(); }else { showDialog(DIALOG_START_ACTIVE);
-		 * }
-		 * 
-		 * } });
-		 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		int mId = item.getItemId();
+
+		switch (mId) {
+		case R.id.main_menu_about:
+			Intent mIntent = new Intent(getApplicationContext(),
+					aboutActivity.class);
+			startActivity(mIntent);
+			break;
+
+		default:
+			break;
+		}
+
+		return super.onOptionsItemSelected(item);
+	}
+
+	private void DisplayVersion() {
+		mVersion = (TextView) findViewById(R.id.test_version);
+		mVersion.setText(getString(R.string.cur_version)
+				+ getAppVersionName(getApplicationContext()));
 
 	}
 
@@ -469,8 +258,6 @@ public class MainActivity extends Activity {
 
 	public void reStartTest() {
 		if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-			// setContentView(R.layout.main);
-			// initButton();
 			FileOperate.CreateFile(this);
 			FileOperate.readFromFile(this);
 
@@ -478,8 +265,7 @@ public class MainActivity extends Activity {
 			FileOperate.curTestItem = 0;
 			FileOperate.restartTest(this);
 
-			// mIntent = new Intent(MainActivity.this, WifiActivity.class);
-			mIntent = FileOperate.getCurIntent(MainActivity.this, null);
+			mIntent = FileOperate.getCurIntent(MainActivity.this, -1);
 			startActivity(mIntent);
 		} else {
 			FileOperate.CreateFile(this);
@@ -519,116 +305,57 @@ public class MainActivity extends Activity {
 
 	}
 
-//	@Override
-//	protected void onResume() {
-//		// TODO Auto-generated method stub
-//		super.onResume();
-//		registerIntentReceivers();
-//		mhHandler.postDelayed(mRunnableTips, TipsTime);
-//	}
+	// @Override
+	// protected void onResume() {
+	// // TODO Auto-generated method stub
+	// super.onResume();
+	// registerIntentReceivers();
+	// mhHandler.postDelayed(mRunnableTips, TipsTime);
+	// }
 
-//	@Override
-//	protected void onPause() {
-//		// TODO Auto-generated method stub
-//		super.onPause();
-//		unregisterIntentReceivers();
-//		if (mhHandler != null && mRunnableTips != null) {
-//			mhHandler.removeCallbacks(mRunnableTips);
-//		}
-//	}
+	// @Override
+	// protected void onPause() {
+	// // TODO Auto-generated method stub
+	// super.onPause();
+	// unregisterIntentReceivers();
+	// if (mhHandler != null && mRunnableTips != null) {
+	// mhHandler.removeCallbacks(mRunnableTips);
+	// }
+	// }
 
-//	@Override
-//	protected void onStop() {
-//		// TODO Auto-generated method stub
-//		super.onStop();
-//		if (mhHandler != null && mRunnable != null) {
-//			mhHandler.removeCallbacks(mRunnable);
-//		}
-//	}
+	// @Override
+	// protected void onStop() {
+	// // TODO Auto-generated method stub
+	// super.onStop();
+	// if (mhHandler != null && mRunnable != null) {
+	// mhHandler.removeCallbacks(mRunnable);
+	// }
+	// }
 
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		
+		for (int i = 0; i < FileOperate.TestInfoInfo.size(); i++) {
 
-		View v = null;
-
-		for (int i = 0; i < FileOperate.testCount; i++) {
-			if (i == FileOperate.TestItemWifi) {
-				v = mTestWifi;
-			} else if (i == FileOperate.TestItemLcd) {
-				v = mTestLcd;
-			} else if (i == FileOperate.TestItemLed) {
-				v = mTestLed;
-			} else if (i == FileOperate.TestItemNfc) {
-				v = mTestNfc;	
-			} else if (i == FileOperate.TestItemKey) {
-				v = mTestKey;
-			} else if (i == FileOperate.TestItemGps) {
-				v = mTestGps;
-			} else if (i == FileOperate.TestItemGSensor) {
-				v = mTestGSeneor;
-			} else if (i == FileOperate.TestItemVibrator) {
-				v = mTestVibrator;
-			} else if (i == FileOperate.TestItemRecord) {
-				v = mTestRecoder;
-			} else if (i == FileOperate.TestItemHDMI) {
-				v = mTestHDMI;
-			} else if (i == FileOperate.TestItemCamera) {
-				v = mTestCamera;
-			} else if (i == FileOperate.TestItemOtg) {
-				v = mTestOtg;
-			} else if (i == FileOperate.TestItemUsb) {
-				v = mTestUsb;
-			} else if (i == FileOperate.TestItemSd) {
-				v = mTestSD;
-			} else if (i == FileOperate.TestItemCpu) {
-				v = mGetCpuid;
-			} else if (i == FileOperate.TestItemBattery) {
-				v = mTestBattery;
-			} else if (i == FileOperate.TestItemTouchScreen) {
-				v = mTestTouchScreen;
-			}
-
-			switch (FileOperate.getIndexValue(i)) {
-
+			switch (FileOperate.getIndexValue(FileOperate.TestInfoInfo.get(i).getIndex())) {
 			case 0: {
-				// if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL) {
-				// v.setEnabled(false);
-				// }else {
-				// v.setEnabled(true);
-				// }
-//				v.setBackgroundColor(Color.WHITE);
-
+				FileOperate.TestInfoInfo.get(i).getButton().setBackgroundColor(Color.WHITE);
 				break;
 			}
 			case 1: {
-				v.setBackgroundColor(getResources().getColor(R.color.green));
-				/*
-				 * if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL) {
-				 * v.setEnabled(false); }else { v.setEnabled(true); }
-				 */
-				v.setEnabled(true);
+				FileOperate.TestInfoInfo.get(i).getButton().setBackgroundColor(Color.GREEN);
 				break;
-
 			}
 			case 2: {
-				v.setBackgroundColor(getResources().getColor(R.color.red));
-				v.setEnabled(true);
+				FileOperate.TestInfoInfo.get(i).getButton().setBackgroundColor(Color.RED);
 				break;
 			}
 			default:
 				break;
 			}
 		}
-
-		// openLoginDlg(DIALOG_UP_TEST_STATUS);
-
-		/*
-		 * //开始激活 if (FileOperate.testAllSuccess()) {
-		 * 
-		 * }
-		 */
 	}
 
 	//
@@ -819,186 +546,59 @@ public class MainActivity extends Activity {
 
 	// 更新显示测试项布局
 	public void refreashTestItemLayout() {
-
-		existitem.clear();
-		noexistitem.clear();
-
-		mfirstLayout.removeAllViews();
-		msecLayout.removeAllViews();
-		mthirdLayout.removeAllViews();
-
-		if (FileOperate.existTestItem("Wifi")) {
-			// existitem.add(mTestWifi);
-		} else {
-			noexistitem.add(mTestWifi);
-		}
-
-		if (FileOperate.existTestItem(FileOperate.TEST_LCD_STRING)) {
-			// existitem.add(mTestLcd);
-		} else {
-			noexistitem.add(mTestLcd);
-		}
-
-		if (FileOperate.existTestItem(FileOperate.TEST_LED_STRING)) {
-			// existitem.add(mTestLcd);
-		} else {
-			noexistitem.add(mTestLed);
-		}
-		
-		if (FileOperate.existTestItem(FileOperate.TEST_NFC_STRING)) {
-			// existitem.add(mTestLcd);
-		} else {
-			noexistitem.add(mTestNfc);
-		}
-
-		if (FileOperate.existTestItem("Key")) {
-			// existitem.add(mTestKey);
-		} else {
-			noexistitem.add(mTestKey);
-		}
-
-		if (FileOperate.existTestItem("Gps")) {
-			// existitem.add(mTestGps);
-		} else {
-			noexistitem.add(mTestGps);
-		}
-
-		if (FileOperate.existTestItem("GSensor")) {
-			// existitem.add(mTestGSeneor);
-		} else {
-			noexistitem.add(mTestGSeneor);
-		}
-
-		if (FileOperate.existTestItem("Vibrator")) {
-			// existitem.add(mTestVibrator);
-		} else {
-			noexistitem.add(mTestVibrator);
-		}
-
-		if (FileOperate.existTestItem("Record")) {
-			// existitem.add(mTestRecoder);
-		} else {
-			noexistitem.add(mTestRecoder);
-		}
-
-		if (FileOperate.existTestItem("HDMI")) {
-			// existitem.add(mTestHDMI);
-		} else {
-			noexistitem.add(mTestHDMI);
-		}
-
-		if (FileOperate.existTestItem("Camera")) {
-			// existitem.add(mTestCamera);
-		} else {
-			noexistitem.add(mTestCamera);
-		}
-
-		if (FileOperate.existTestItem("Otg")) {
-			// existitem.add(mTestOtg);
-		} else {
-			noexistitem.add(mTestOtg);
-		}
-
-		if (FileOperate.existTestItem("Usb")) {
-			// existitem.add(mTestUsb);
-		} else {
-			noexistitem.add(mTestUsb);
-		}
-
-		if (FileOperate.existTestItem("Sd")) {
-			// existitem.add(mTestSD);
-		} else {
-			noexistitem.add(mTestSD);
-		}
-
-		if (FileOperate.existTestItem("GetCpuID")) {
-			// existitem.add(mTestclose);
-		} else {
-			noexistitem.add(mGetCpuid);
-		}
-
-		if (FileOperate.existTestItem("Battery")) {
-			// existitem.add(mTestclose);
-		} else {
-			noexistitem.add(mTestBattery);
-		}
-
-		if (FileOperate.existTestItem("TouchScreen")) {
-			// existitem.add(mTestclose);
-		} else {
-			noexistitem.add(mTestTouchScreen);
-		}
-
-		for (int i = 0; i < FileOperate.getTestItemCount(); i++) {
-			String curString = FileOperate.getCurTestItem(i);
-
-			if (curString.equals("Wifi")) {
-				existitem.add(mTestWifi);
-			} else if (curString.equals(FileOperate.TEST_LCD_STRING)) {
-				existitem.add(mTestLcd);
-			} else if (curString.equals(FileOperate.TEST_LED_STRING)) {
-				existitem.add(mTestLed);
-			} else if (curString.equals(FileOperate.TEST_NFC_STRING)) {
-				existitem.add(mTestNfc);	
-			} else if (curString.equals("Key")) {
-				existitem.add(mTestKey);
-			} else if (curString.equals("Gps")) {
-				existitem.add(mTestGps);
-			} else if (curString.equals("GSensor")) {
-				existitem.add(mTestGSeneor);
-			} else if (curString.equals("Vibrator")) {
-				existitem.add(mTestVibrator);
-			} else if (curString.equals("Record")) {
-				existitem.add(mTestRecoder);
-			} else if (curString.equals("HDMI")) {
-				existitem.add(mTestHDMI);
-			} else if (curString.equals("Camera")) {
-				existitem.add(mTestCamera);
-			} else if (curString.equals("Otg")) {
-				existitem.add(mTestOtg);
-			} else if (curString.equals("Usb")) {
-				existitem.add(mTestUsb);
-			} else if (curString.equals("Sd")) {
-				existitem.add(mTestSD);
-			} else if (curString.equals("GetCpuID")) {
-				existitem.add(mGetCpuid);
-			} else if (curString.equals("Battery")) {
-				existitem.add(mTestBattery);
-			} else if (curString.equals("TouchScreen")) {
-				existitem.add(mTestTouchScreen);
-			}
-		}
-
-		for (int i = 0; i < existitem.size(); i++) {
+		initLayout();
+		updateTestItem();
+		initButton();
+	}
+	
+	private void updateTestItem() {
+		for (int i = 0; i < FileOperate.TestInfoInfo.size(); i++) {
+			final TestItemProperty mItemProperty = FileOperate.TestInfoInfo.get(i);
+			
+			//set onclick button event
+			mItemProperty.getButton().setOnClickListener(new OnClickListener() {
+				
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent mIntent = new Intent(getApplicationContext(), mItemProperty.getCls());
+					startActivity(mIntent);
+				}
+			});
+			
 			switch (i / 6) {
 			case 0: {
-				existitem.get(i).setVisibility(View.VISIBLE);
-				mfirstLayout.addView(existitem.get(i));
+//				mfirstLayout.addView(mItemProperty.getButton());
+				
+				LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(300, 100, 1);
+				btnParams.setMargins(10, 10, 10, 10);
+				mfirstLayout.addView(mItemProperty.getButton(), btnParams);
+				
+				/* ok button */
+//				RelativeLayout.LayoutParams btn_ok_param = new RelativeLayout.LayoutParams(
+//						200, LayoutParams.WRAP_CONTENT);
+//				btn_ok_param.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,
+//						RelativeLayout.TRUE);
+//				btn_layout.addView(btn_ok, btn_ok_param);
 				break;
 			}
 			case 1: {
-				existitem.get(i).setVisibility(View.VISIBLE);
-				msecLayout.addView(existitem.get(i));
+//				msecLayout.addView(mItemProperty.getButton());
+				LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(300, 100, 1);
+				btnParams.setMargins(10, 10, 10, 10);
+				msecLayout.addView(mItemProperty.getButton(), btnParams);
 				break;
 			}
 			case 2: {
-				existitem.get(i).setVisibility(View.VISIBLE);
-				mthirdLayout.addView(existitem.get(i));
+				mthirdLayout.addView(mItemProperty.getButton());
 				break;
 			}
 			default:
 				break;
 			}
 		}
-
-		for (int i = 0; i < noexistitem.size(); i++) {
-			noexistitem.get(i).setVisibility(View.GONE);
-			// mthirdLayout.addView(noexistitem.get(i));
-		}
-		mTestWifi.invalidate();
 	}
 
-	// wifi鎺ュ彛
+	// wifi
 	public void setWifi() {
 		WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 		wifiManager.setWifiEnabled(true);

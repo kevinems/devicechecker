@@ -72,7 +72,7 @@ public class TestGSensor extends Activity implements OnShakeListener{
 				finish();
 				
 				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-					Intent mIntent = FileOperate.getCurIntent(TestGSensor.this,"GSensor");
+					Intent mIntent = FileOperate.getCurIntent(TestGSensor.this, FileOperate.TestItemGSensor);
 					 if (mIntent!=null) {
 						 startActivity(mIntent);
 					}

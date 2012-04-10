@@ -35,7 +35,7 @@ public class sdcardactivity extends Activity {
 	SDCard m_SdCard;
 	int curStatus = 1; // 1检测插入 2是检测拔出
 
-	private Button mYes=null;
+	private Button mYes = null;
 	private Button mNo = null;
 
 	private AlertDialog progressAlert;
@@ -54,16 +54,17 @@ public class sdcardactivity extends Activity {
 		mSdTips = (TextView) findViewById(R.id.sdtips);
 
 		mSdTips.setText(R.string.sd_test_hinta);
-		
-		mYes=(Button)findViewById(R.id.but_ok);
-		
+
+		mYes = (Button) findViewById(R.id.but_ok);
+
 		mYes.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {			
+			public void onClick(View v) {
 				setValue(1);
 				finish();
-				
-				if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-					Intent mIntent = FileOperate.getCurIntent(sdcardactivity.this,"Sd");
+
+				if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
+					Intent mIntent = FileOperate.getCurIntent(
+							sdcardactivity.this, FileOperate.TestItemSd);
 					if (mIntent != null) {
 						startActivity(mIntent);
 					}
@@ -115,9 +116,9 @@ public class sdcardactivity extends Activity {
 				mNo.setVisibility(View.GONE);
 				mSdTextView.setText(R.string.test_sd_success);
 				SetLogoStatus();
-				
+
 				mHandler.postDelayed(mHaveSDRunnable, 2000);
-			}else{
+			} else {
 				mSdTips.setVisibility(View.GONE);
 				mNo.setVisibility(View.GONE);
 				mSdTextView.setText(R.string.test_sd_success);
@@ -155,7 +156,7 @@ public class sdcardactivity extends Activity {
 
 							if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
 								Intent mIntent = FileOperate.getCurIntent(
-										sdcardactivity.this, "Sd");
+										sdcardactivity.this, FileOperate.TestItemSd);
 								startActivity(mIntent);
 							}
 						} else {
@@ -185,29 +186,28 @@ public class sdcardactivity extends Activity {
 
 	private Runnable mHaveSDRunnable = new Runnable() {
 		public void run() {
-			if(isExistLogoFile()){
+			if (isExistLogoFile()) {
 				if (getLogoStatus()) {
 					setValue(1);
 					finish();
 					if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-						Intent mIntent = FileOperate.getCurIntent(sdcardactivity.this,
-								"Sd");
+						Intent mIntent = FileOperate.getCurIntent(
+								sdcardactivity.this, FileOperate.TestItemSd);
 						startActivity(mIntent);
 					}
 				} else {
 					mHandler.postDelayed(mHaveSDRunnable, 2000);
 				}
-			}else{
+			} else {
 				setValue(1);
 				finish();
 				if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
-					Intent mIntent = FileOperate.getCurIntent(sdcardactivity.this,
-							"Sd");
+					Intent mIntent = FileOperate.getCurIntent(
+							sdcardactivity.this, FileOperate.TestItemSd);
 					startActivity(mIntent);
 				}
 			}
-			
-			
+
 		}
 
 	};
@@ -232,7 +232,6 @@ public class sdcardactivity extends Activity {
 
 		}
 	};
-
 
 	public void SetLogoStatus() {
 		SystemProperties.set("tcc.smit.mklogo", "2");

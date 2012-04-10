@@ -112,7 +112,7 @@ public class GpsActivity extends Activity implements OnItemClickListener,OnItemL
 	    			//FileOperate.setCurmode(false);
 	    			finish();
 	    			if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-	    			Intent mIntent = FileOperate.getCurIntent(GpsActivity.this,"Gps");
+	    			Intent mIntent = FileOperate.getCurIntent(GpsActivity.this, FileOperate.TestItemGps);
 	    			startActivity(mIntent);
 	    			}
 				}  	

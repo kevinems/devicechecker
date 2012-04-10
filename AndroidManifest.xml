@@ -78,7 +78,7 @@ run in system must signed in a special system-->
             </intent-filter>
         </activity>
         
-        <activity android:name=".testLcd"
+        <activity android:name=".testLcdActivity"
                   android:screenOrientation="nosensor"
                   android:theme="@style/activityTitlebarRed">
         </activity>
@@ -97,12 +97,12 @@ run in system must signed in a special system-->
         </activity>
 
          <activity android:name=".testRecord"
-                    android:label="@string/record_test"
+                    android:label="@string/test_record"
                     android:screenOrientation="nosensor"
                     android:theme="@style/activityTitlebarRed">
         </activity>
-           <activity android:name=".HDMIActivity"
-           android:label="@string/HDMI_test"
+           <activity android:name=".testHdmi"
+           android:label="@string/test_audio_video"
            android:screenOrientation="nosensor"
            android:theme="@style/activityTitlebarRed">
         </activity>    
@@ -122,7 +122,7 @@ run in system must signed in a special system-->
                   android:screenOrientation="nosensor"
                   android:theme="@style/activityTitlebarRed">
         </activity>
-         <activity android:name=".TsTestActivity"
+         <activity android:name=".testTouchScreen"
          android:screenOrientation="nosensor"
          android:theme="@style/activityTitlebarRed">                
         </activity>

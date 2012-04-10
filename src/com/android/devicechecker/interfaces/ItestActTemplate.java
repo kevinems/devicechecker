@@ -36,7 +36,7 @@ public class ItestActTemplate extends Activity implements IsetTestResult,
 	 * 
 	 */
 	public void setYesBtnOnClickListener(Button yesBtn,
-			final int testItemIndex, final String fileOperateStr) {
+			final int testItemIndex) {
 		// TODO Auto-generated method stub
 		yesBtn.setBackgroundColor(Color.GREEN);
 		yesBtn.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +48,7 @@ public class ItestActTemplate extends Activity implements IsetTestResult,
 
 				if (FileOperate.getCurMode() == FileOperate.TEST_MODE_ALL) {
 					Intent mIntent = FileOperate.getCurIntent(
-							getApplicationContext(), fileOperateStr);
+							getApplicationContext(), testItemIndex);
 					if (mIntent != null) {
 						mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						startActivity(mIntent);

@@ -22,10 +22,11 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.devicechecker.interfaces.ItestActTemplate;
 import com.android.util.FileOperate;
 import com.android.util.enhanceToast;
 
-public class TsTestActivity extends Activity
+public class testTouchScreen extends ItestActTemplate
 {
 	private static final int ID_BTN_OK = 1;
 	private static final int ID_BTN_CANCEL = 2;
@@ -52,11 +53,11 @@ public class TsTestActivity extends Activity
         btn_ok = new Button(this);
         btn_ok.setText(R.string.btn_ok_text);
         btn_ok.setId(ID_BTN_OK);
-        btn_ok.setBackgroundColor(Color.GREEN);
+        setYesBtnOnClickListener(btn_ok, FileOperate.TestItemTouchScreen);
         btn_cancel = new Button(this);
         btn_cancel.setText(R.string.btn_cancel_text);
         btn_cancel.setId(ID_BTN_CANCEL);
-        btn_cancel.setBackgroundColor(Color.RED);
+        setNoBtnOnClickListener(btn_cancel, FileOperate.TestItemTouchScreen);
 
 		/* main layout */
         RelativeLayout layout = new RelativeLayout(this);
@@ -89,38 +90,7 @@ public class TsTestActivity extends Activity
 		/* show tips */
 		mEnhanceToast = new enhanceToast(this);
 		mEnhanceToast.displayToast(getString(R.string.tstest_tips, Toast.LENGTH_SHORT));
-				
-		btn_ok.setOnClickListener(btn_ok_listener);
-		btn_cancel.setOnClickListener(btn_cancel_listener);
 	}
-	
-	
-	/* ok button click */
-	OnClickListener btn_ok_listener = new OnClickListener()
-	{
-		public void onClick(View v)
-		{
-			setValue(1);
-			finish();
-			
-			if (FileOperate.getCurMode()==FileOperate.TEST_MODE_ALL){
-				Intent mIntent = FileOperate.getCurIntent(TsTestActivity.this,"TouchScreen");
-				if (mIntent != null) {
-					startActivity(mIntent);
-				}
-			}
-		}
-	};
-
-	/* cancel button click */
-	OnClickListener btn_cancel_listener = new OnClickListener()
-	{
-		public void onClick(View v)
-		{
-			setValue(2);
-			finish();
-		}
-	};
 	
 	public class TsTestView extends View
 	{
@@ -233,10 +203,5 @@ public class TsTestActivity extends Activity
 			invalidate();
 			return true;
 		}
-	}
-	
-	private void setValue(int value){
-		FileOperate.setIndexValue(FileOperate.TestItemTouchScreen, value);
-		FileOperate.writeToFile(this);
 	}
 }
