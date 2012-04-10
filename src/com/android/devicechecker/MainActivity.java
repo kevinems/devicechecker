@@ -1,14 +1,12 @@
 package com.android.devicechecker;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import org.xml.sax.InputSource;
 
-import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -31,7 +29,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -45,7 +42,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.util.AccessPointState;
@@ -141,7 +137,7 @@ public class MainActivity extends Activity {
 		// mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 		// mWifiInfo = mWifiManager.getConnectionInfo();
 
-		FileOperate.CreateFile(this);
+//		FileOperate.CreateFile(this);
 		FileOperate.readFromFile(this);
 
 		FileOperate.clearGobal();
@@ -567,23 +563,22 @@ public class MainActivity extends Activity {
 			
 			switch (i / 6) {
 			case 0: {
-//				mfirstLayout.addView(mItemProperty.getButton());
-				
-				LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(300, 100, 1);
+				LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
+						(int) getResources().getDimension(
+								R.dimen.main_menu_button_width2),
+						(int) getResources().getDimension(
+								R.dimen.test_item_bottom_button_heith2));
 				btnParams.setMargins(10, 10, 10, 10);
 				mfirstLayout.addView(mItemProperty.getButton(), btnParams);
 				
-				/* ok button */
-//				RelativeLayout.LayoutParams btn_ok_param = new RelativeLayout.LayoutParams(
-//						200, LayoutParams.WRAP_CONTENT);
-//				btn_ok_param.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,
-//						RelativeLayout.TRUE);
-//				btn_layout.addView(btn_ok, btn_ok_param);
 				break;
 			}
 			case 1: {
-//				msecLayout.addView(mItemProperty.getButton());
-				LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(300, 100, 1);
+				LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
+						(int) getResources().getDimension(
+								R.dimen.main_menu_button_width2),
+						(int) getResources().getDimension(
+								R.dimen.test_item_bottom_button_heith2));
 				btnParams.setMargins(10, 10, 10, 10);
 				msecLayout.addView(mItemProperty.getButton(), btnParams);
 				break;

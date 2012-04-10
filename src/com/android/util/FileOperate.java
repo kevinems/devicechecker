@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.devicechecker.GpsActivity;
+import com.android.devicechecker.TestCompassActivity;
 import com.android.devicechecker.testHdmi;
 import com.android.devicechecker.MiniUsbActivity;
 import com.android.devicechecker.R;
@@ -48,10 +49,10 @@ public class FileOperate {
 																	// created
 																	// in record
 																	// test
-	private static String FILE_PATH = "log.bin"; // log file
+	private static String FILE_PATH = "logStatus.bin"; // log file
 	private static String FILE_PATH_XML = "data/data/com.android.devicechecker/files/log.xml";//
 	private static String TEST_ITEM_FILE = "data/data/com.android.devicechecker/files/testitemfile.xml";//
-//	private static final String PRODUCT_PATH = "/test_config.xml";
+	// private static final String PRODUCT_PATH = "/test_config.xml";
 	public static final String sdCradPathTelechips = Environment
 			.getExternalStorageDirectory() + "/tflash/";
 	// public static final String
@@ -91,12 +92,13 @@ public class FileOperate {
 	public static final int TestItemTouchScreen = 20;
 	public static final int TestItemLed = 21;
 	public static final int TestItemNfc = 22;
-	
+	public static final int TestItemCompass = 23;
+
 	public static final int TestItemRTC = 100;
 
-//	public static final String TEST_LED_STRING = "Led";
-//	public static final String TEST_LCD_STRING = "Lcd";
-//	public static final String TEST_NFC_STRING = "NFC";
+	// public static final String TEST_LED_STRING = "Led";
+	// public static final String TEST_LCD_STRING = "Lcd";
+	// public static final String TEST_NFC_STRING = "NFC";
 
 	// to control which item will be display on main activity.
 	// the string sequence decide the sequence of the item display on the main
@@ -107,44 +109,23 @@ public class FileOperate {
 	 * "Video","HDMI","Record","Otg","Usb", "Sd", "Battery","Wifi","Key",
 	 * TEST_NFC_STRING,"GetCpuID"};
 	 */
-	public static int[] curtestItem = { 
-		TestItemLcd,
-		TestItemLed,
-		TestItemTouchScreen,
-		TestItemCamera,
-		TestItemVibrator,
-		TestItemHDMI, 
-		TestItemRecord,
-		TestItemBattery,
-		TestItemKey,
-		TestItemNfc
-		};
-	
-	public static int[] curtestItemStrId = {
-		R.string.test_lcd,
-		R.string.test_led,
-		R.string.test_touch_screen,
-		R.string.test_camera,
-		R.string.test_vibrator,
-		R.string.test_audio_video, 
-		R.string.test_record,
-		R.string.test_battery,
-		R.string.test_key,
-		R.string.test_nfc,
-	};
-	
-	public static Class<?>[] curtestItemActivity = { 
-		testLcdActivity.class,
-		testLed.class,
-		testTouchScreen.class,
-		testCameraActivity.class,
-		TestVibratorActivity.class,
-		testHdmi.class, 
-		testRecord.class,
-		TestBatteryActivity.class,
-		TestKey.class,
-		testNfc.class
-		};
+	public static int[] curtestItem = { TestItemLcd, TestItemLed,
+			TestItemTouchScreen, TestItemCamera, TestItemVibrator,
+			TestItemHDMI, TestItemRecord, TestItemBattery, TestItemKey,
+			TestItemNfc, TestItemCompass, };
+
+	public static int[] curtestItemStrId = { R.string.test_lcd,
+			R.string.test_led, R.string.test_touch_screen,
+			R.string.test_camera, R.string.test_vibrator,
+			R.string.test_audio_video, R.string.test_record,
+			R.string.test_battery, R.string.test_key, R.string.test_nfc,
+			R.string.test_compass, };
+
+	public static Class<?>[] curtestItemActivity = { testLcdActivity.class,
+			testLed.class, testTouchScreen.class, testCameraActivity.class,
+			TestVibratorActivity.class, testHdmi.class, testRecord.class,
+			TestBatteryActivity.class, TestKey.class, testNfc.class,
+			TestCompassActivity.class, };
 
 	public static int CHECK_NULL = 0;
 	public static int CHECK_SUCCESS = 1;
@@ -157,7 +138,7 @@ public class FileOperate {
 	public static int TEST_MODE_ITEM = 1;
 	public static int curStatus = TEST_MODE_ALL;
 
-	// 鍥哄畾ip
+	// 
 	public static String AP_NAME = "\"TTPP-LLIINNKK\"";
 	// public static String AP_PASSWORD="12341234";
 	public static String AP_PASSWORD = "43214321";
@@ -174,7 +155,6 @@ public class FileOperate {
 	public static LinkedList<TestItemProperty> TestInfoInfo = new LinkedList<TestItemProperty>();
 
 	public static Handler mHandler;
-	
 
 	public static void setGobalHandle(Handler tmp) {
 		mHandler = tmp;
@@ -296,7 +276,7 @@ public class FileOperate {
 		}
 	}
 
-	// 
+	//
 	public static String ReadXML() {
 		InputStream is = null;
 		byte[] data = new byte[1000];
@@ -488,7 +468,6 @@ public class FileOperate {
 		}
 	}
 
-
 	static public int getNextTestItemIndex(int curTestItemIndex) {
 		int mResult = -1;
 
@@ -517,7 +496,8 @@ public class FileOperate {
 			if (nextTestItemIndex != -1) {
 				return getItemIntent(mContext, nextTestItemIndex);
 			} else {
-				return null;
+//				return null;
+				return getItemIntent(mContext, nextTestItemIndex);
 			}
 		}
 
@@ -526,54 +506,12 @@ public class FileOperate {
 	//
 	public static Intent getItemIntent(Context mContext, int curTestItemIndex) {
 		mIntent = null;
-
-		if (curTestItemIndex == FileOperate.TestItemWifi) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					WifiActivity.class);
-		} else if (curTestItemIndex == FileOperate.TestItemLcd) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					testLcdActivity.class);
-		} else if (curTestItemIndex == FileOperate.TestItemLed) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					testLed.class);
-		} else if (curTestItemIndex == FileOperate.TestItemNfc) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					testNfc.class);
-		} else if (curTestItemIndex == FileOperate.TestItemKey) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					TestKey.class);
-		} else if (curTestItemIndex == FileOperate.TestItemGps) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					GpsActivity.class);
-		} else if (curTestItemIndex == FileOperate.TestItemGSensor) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					TestGSensor.class);
-		} else if (curTestItemIndex == FileOperate.TestItemVibrator) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					TestVibratorActivity.class);
-		} else if (curTestItemIndex == FileOperate.TestItemRecord) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					testRecord.class);
-		} else if (curTestItemIndex == FileOperate.TestItemHDMI) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					testHdmi.class);
-		} else if (curTestItemIndex == FileOperate.TestItemCamera) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					testCameraActivity.class);
-		} else if (curTestItemIndex == FileOperate.TestItemUsb) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					MiniUsbActivity.class);
-		} else if (curTestItemIndex == FileOperate.TestItemSd) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					sdcardactivity.class);
-		} else if (curTestItemIndex == FileOperate.TestItemBattery) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					TestBatteryActivity.class);
-		} else if (curTestItemIndex == FileOperate.TestItemTouchScreen) {
-			mIntent = new Intent(mContext.getApplicationContext(),
-					testTouchScreen.class);
-		} else {
-
+		
+		for (int i = 0; i < getTestItemCount(); i++) {
+			if (curTestItemIndex == TestInfoInfo.get(i).getIndex()) {
+				mIntent = new Intent(mContext.getApplicationContext(), TestInfoInfo.get(i).getCls());
+				break;
+			}
 		}
 
 		return mIntent;
@@ -589,7 +527,7 @@ public class FileOperate {
 				break;
 			}
 		}
-		
+
 		return mResult;
 	}
 

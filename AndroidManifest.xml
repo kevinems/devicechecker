@@ -4,7 +4,7 @@
 run in system must signed in a special system-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.android.devicechecker"
-      android:versionName="1.0.2" android:versionCode="2">
+      android:versionName="1.1.0" android:versionCode="3">
     	<supports-screens android:largeScreens="true"
 		android:normalScreens="true" 
 		android:smallScreens="true"
@@ -182,10 +182,9 @@ run in system must signed in a special system-->
           android:label="@string/test_nfc"
           android:screenOrientation="nosensor"
           android:theme="@style/activityTitlebarRed">
-
         </activity> 
         
-        <activity android:name=".testNfc" 
+        <activity android:name=".testNfcOk" 
           android:label="@string/test_nfc"
           android:screenOrientation="nosensor"
           android:theme="@style/activityTitlebarRed">
@@ -194,6 +193,12 @@ run in system must signed in a special system-->
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter> 
         </activity>
+        
+        <activity android:name=".TestCompassActivity" 
+          android:label="@string/test_compass"
+          android:screenOrientation="nosensor"
+          android:theme="@style/activityTitlebarRed">
+        </activity> 
 
         <activity android:name=".aboutActivity" 
             android:label="@string/title_about"

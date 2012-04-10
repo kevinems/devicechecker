@@ -55,6 +55,10 @@
     <!-- Test Record -->
     <string name="test_record">录音测试</string>
     
+    <!-- Test Compass -->
+    <string name="test_compass">指南针测试</string>
+    <string name="direction_north">北</string>
+    
     <!-- main activity -->
     <string name="start_test">开始测试</string>
     <string name="see_log">查看测试结果</string>

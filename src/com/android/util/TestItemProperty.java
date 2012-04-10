@@ -33,7 +33,6 @@ public class TestItemProperty {
 	
 	private void initButton() {
 		this.button.setTextSize(DEFAULT_FONT_SIZE);
-//		this.button.setPadding(30, 30, 30, 30);
 		
 	}
 

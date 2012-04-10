@@ -69,12 +69,20 @@ public class testTouchScreen extends ItestActTemplate
 		btn_layout.setLayoutParams(btn_layout_param);
 		
 		/* ok button */
-		RelativeLayout.LayoutParams btn_ok_param = new RelativeLayout.LayoutParams(200, LayoutParams.WRAP_CONTENT);
+		RelativeLayout.LayoutParams btn_ok_param = new RelativeLayout.LayoutParams(
+				(int) getResources().getDimension(
+						R.dimen.test_item_bottom_button_width),
+				(int) getResources().getDimension(
+						R.dimen.test_item_bottom_button_heith));
 		btn_ok_param.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);	
 		btn_layout.addView(btn_ok, btn_ok_param);
 		
 		/* cancel button */
-		RelativeLayout.LayoutParams btn_cancel_param = new RelativeLayout.LayoutParams(200, LayoutParams.WRAP_CONTENT);
+		RelativeLayout.LayoutParams btn_cancel_param = new RelativeLayout.LayoutParams(
+				(int) getResources().getDimension(
+						R.dimen.test_item_bottom_button_width),
+				(int) getResources().getDimension(
+						R.dimen.test_item_bottom_button_heith));
 		btn_cancel_param.addRule(RelativeLayout.ALIGN_TOP, ID_BTN_CANCEL);
 		btn_cancel_param.addRule(RelativeLayout.LEFT_OF, ID_BTN_CANCEL);	
 		btn_layout.addView(btn_cancel, btn_cancel_param);
